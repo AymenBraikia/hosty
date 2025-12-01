@@ -3,8 +3,10 @@ import Image from "next/image";
 import logoIcon from "../../public/logo.png";
 import Link from "next/link";
 import Button from "./button";
+import Select from "./select";
 
 export default function Header() {
+
 	return (
 		<header className="w-dvw h-fit p-2.5 bg-[var(--clr-surface)] fixed left-0 top-0 flex justify-between items-center px-20">
 			<div className="flex justify-center items-center gap-10">
@@ -32,13 +34,23 @@ export default function Header() {
 				</div>
 			</div>
 			<div className="flex justify-center items-center gap-10">
-				<select className="text-xl focus:bg-[var(--clr-surface)]">
+				{/* <select className="text-xl focus:bg-[var(--clr-surface)] outline-0 cursor-pointer">
 					<option value="en-us">en-us</option>
 					<option value="en-uk">en-uk</option>
 					<option value="ar-dz">ar-dz</option>
 					<option value="es-es">es-es</option>
 					<option value="ru-ru">ru-ru</option>
-				</select>
+				</select> */}
+				<Select
+					options={[
+						["en-us", "en-us"],
+						["en-uk", "en-uk"],
+						["ar-dz", "ar-dz"],
+						["es-es", "es-es"],
+						["ru-ru", "ru-ru"],
+					]}
+					action={() => console.log("changed")}
+				/>
 				<Button action={() => console.log("clicked my account")} content="My Account" />
 			</div>
 		</header>
