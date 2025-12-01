@@ -1,11 +1,14 @@
 "use client";
+import { useState } from "react";
 import Image from "next/image";
 import logoIcon from "../../public/logo.png";
 import Link from "next/link";
 import Button from "./button";
 import Select from "./select";
 
+type langs = "en-us" | "en-uk" | "ar-dz" | "es-es" | "ru-ru";
 export default function Header() {
+	const [lang, set_lang] = useState<langs | string>(() => (typeof window !== "undefined" && (localStorage.getItem("lang") as langs)) || "en-us");
 
 	return (
 		<header className="w-dvw h-fit p-2.5 bg-[var(--clr-surface)] fixed left-0 top-0 flex justify-between items-center px-20">
@@ -34,13 +37,6 @@ export default function Header() {
 				</div>
 			</div>
 			<div className="flex justify-center items-center gap-10">
-				{/* <select className="text-xl focus:bg-[var(--clr-surface)] outline-0 cursor-pointer">
-					<option value="en-us">en-us</option>
-					<option value="en-uk">en-uk</option>
-					<option value="ar-dz">ar-dz</option>
-					<option value="es-es">es-es</option>
-					<option value="ru-ru">ru-ru</option>
-				</select> */}
 				<Select
 					options={[
 						["en-us", "en-us"],
@@ -49,7 +45,13 @@ export default function Header() {
 						["es-es", "es-es"],
 						["ru-ru", "ru-ru"],
 					]}
-					action={() => console.log("changed")}
+					action={(e) => {
+						const val = e.currentTarget.getAttribute("data-val");
+						if (!val) return;
+						localStorage.setItem("lang", val);
+						set_lang(val);
+					}}
+					default={lang}
 				/>
 				<Button action={() => console.log("clicked my account")} content="My Account" />
 			</div>
