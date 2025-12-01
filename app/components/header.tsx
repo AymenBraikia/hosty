@@ -11,9 +11,9 @@ export default function Header() {
 	const [lang, set_lang] = useState<langs | string>(() => (typeof window !== "undefined" && (localStorage.getItem("lang") as langs)) || "en-us");
 
 	return (
-		<header className="w-dvw h-fit p-2.5 bg-[var(--clr-surface)] fixed left-0 top-0 flex justify-between items-center px-20">
+		<header className="w-dvw h-fit p-2.5 bg-(--clr-surface) fixed left-0 top-0 flex justify-between items-center px-20">
 			<div className="flex justify-center items-center gap-10">
-				<Link className="flex justify-center items-center text-[var(--clr-primary)] font-bold text-3xl gap-2.5" href={"/"}>
+				<Link className="flex justify-center items-center text-(--clr-primary) font-bold text-3xl gap-2.5" href={"/"}>
 					<Image width={70} height={70} src={logoIcon} alt="logo" />
 					Hosty
 				</Link>
