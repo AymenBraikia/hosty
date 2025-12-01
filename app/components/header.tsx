@@ -39,11 +39,11 @@ export default function Header() {
 			<div className="flex justify-center items-center gap-10">
 				<Select
 					options={[
-						["en-us", "en-us"],
-						["en-uk", "en-uk"],
-						["ar-dz", "ar-dz"],
-						["es-es", "es-es"],
-						["ru-ru", "ru-ru"],
+						["English", "en-us"],
+						["English", "en-uk"],
+						["Arabic", "ar-dz"],
+						["Spanish", "es-es"],
+						["Russian", "ru-ru"],
 					]}
 					action={(e) => {
 						const val = e.currentTarget.getAttribute("data-val");
