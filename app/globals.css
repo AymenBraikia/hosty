@@ -5,7 +5,9 @@
   --foreground: #020617;
   --clr-primary: #0EA5E9;
   --clr-secondary: #06B6D4;
-  --clr-accent: #A855F7;
+  --gradient: linear-gradient(45deg, #8400ff, #f700ff, #ff00ea);
+  --clr-accent: #8400ff;
+  /* --clr-accent2: #f700ff; */
   --clr-surface: #111827;
 }
 
@@ -31,4 +33,42 @@ body {
 
 .transition {
   transition: .3s ease;
+}
+.shine{
+  overflow: hidden;
+}
+
+.shine::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -75%;
+  width: 50%;
+  height: 100%;
+  background: linear-gradient(120deg,
+      rgba(255, 255, 255, 0) 0%,
+      rgba(255, 255, 255, 0.663) 50%,
+      rgba(255, 255, 255, 0) 100%);
+  transform: skewX(-25deg);
+  animation: shine 3s ease 0s infinite;
+}
+
+@keyframes shine {
+  from {
+    left: -75%;
+  }
+
+  to {
+    left: 125%;
+  }
+}
+
+.blink {
+  animation: blink 2s ease 0s infinite;
+}
+
+@keyframes blink {
+  50% {
+    opacity: 0;
+  }
 }

@@ -4,7 +4,7 @@ export default function Select(props: { default?: string; action: (e: React.Mous
 	const [is_active, set_active] = useState<boolean>(false);
 
 	return (
-		<div onClick={() => set_active(!is_active)} className={`relative text-xl focus:bg-(--clr-surface) outline-0 cursor-pointer hover:rounded-none ${props.css}`}>
+		<div onClick={() => set_active(!is_active)} className={`relative text-xl focus:bg-(--clr-surface) outline-0 cursor-pointer hover:rounded-none z-50 ${props.css}`}>
 			{props.default || props.options[0][1] || props.options[0][0]}
 
 			{is_active && (

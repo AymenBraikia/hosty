@@ -1,9 +1,11 @@
+import Body from "./components/body";
 import Header from "./components/header";
 
 export default function Home() {
 	return (
-		<>
-			<Header />
-		</>
+		<div className="flex flex-col">
+			<Header promotion={{ content: "Don't miss the Cyber week deals", expire_date: 1765289482959 }} />
+			<Body />
+		</div>
 	);
 }
