@@ -9,6 +9,7 @@
   --clr-accent: #8400ff;
   --clr-accent2: #ff00ea;
   --clr-surface: #111827;
+  --clr-surface2: #070a11;
   --clr-background-opacity: #f1f5f912;
   --clr-border-opacity: #f1f5f91d;
 
@@ -28,10 +29,39 @@
   }
 }
 
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
 body {
   background: var(--background);
   color: var(--foreground);
   font-family: var(--font-main), Arial, Helvetica, sans-serif;
+}
+
+.terminal {
+  background: var(--clr-surface2);
+  color: var(--foreground);
+  font-family: var(--font-terminal);
+  border-radius: 0.5rem;
+  position: relative;
+}
+
+.terminal::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 80%;
+  height: 80%;
+  background: var(--gradient);
+  border-radius: inherit;
+  pointer-events: none;
+  z-index: -1;
+  filter: blur(50px);
+  animation: bg_anim 5s ease infinite;
 }
 
 .transition {
@@ -65,6 +95,14 @@ body {
   to {
     left: 125%;
   }
+}
+
+.blinker {
+  width: 8px;
+  height: 16px;
+  animation: blink 1s ease 0s infinite;
+  background-color: var(--clr-primary);
+
 }
 
 .blink {
@@ -153,6 +191,14 @@ body {
   display: none;
 }
 
+.text_anim {
+  background-size: 200% 200%;
+  animation: bg_anim 5s ease infinite;
+  background-image: var(--gradient);
+  background-clip: text;
+  color: transparent;
+}
+
 .bg_anim {
   background-size: 200% 200%;
   animation: bg_anim 5s ease infinite;
@@ -170,5 +216,21 @@ body {
 
   100% {
     background-position: 0% 50%;
+  }
+}
+
+.float_anim {
+  animation: float_anim 3s ease infinite;
+}
+
+@keyframes float_anim {
+
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-10px);
   }
 }

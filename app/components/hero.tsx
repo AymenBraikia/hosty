@@ -3,20 +3,21 @@ import Button from "./button";
 import { useRouter } from "next/navigation";
 import Search from "./svg/search";
 import Arrow from "./svg/arrow";
+import Terminal from "./terminal";
 
 export default function Hero() {
 	const inp = useRef<HTMLInputElement>(null);
 	const router = useRouter();
 
 	return (
-		<div className="w-4/5 relative left-[10%] h-dvh flex justify-center items-start flex-col flex-wrap gap-8">
+		<div className="w-4/5 relative left-[10%] h-dvh flex justify-center items-start flex-col flex-wrap gap-8 select-none">
 			<div className="flex justify-center items-center gap-2.5 text-(--clr-primary) p-2.5 font-light bg-(--clr-surface) rounded-4xl border">
 				<div className="pulse w-2 h-2 rounded-full bg-(--clr-primary)"></div>New: NVMe Gen 4 Cloud Servers
 			</div>
 
 			<div className="text-7xl font-black">
 				<p>Host your dreams</p>
-				<p className="[background-image:var(--gradient)] bg-clip-text text-transparent">Beyond Limits.</p>
+				<p className="text_anim">Beyond Limits.</p>
 			</div>
 			<p className="text-gray-400 text-xl max-w-2/5">Hosty provides premium cloud infrastructure with enterprise-grade security. Deploy instantly, scale globally, sleep soundly.</p>
 
@@ -32,6 +33,8 @@ export default function Hero() {
 					action={() => inp.current?.value && router.push(`/search/?domain=${inp.current.value}`)}
 				/>
 			</div>
+
+			<Terminal />
 		</div>
 	);
 }

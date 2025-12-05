@@ -48,6 +48,51 @@ const myFont = localFont({
 	],
 	variable: "--font-main",
 });
+const myFont2 = localFont({
+	src: [
+		// {
+		// 	path: "../public/fonts/JetBrains_Mono/JetBrainsMono-ExtraLight.ttf",
+		// 	weight: "200",
+		// 	style: "normal",
+		// },
+		// {
+		// 	path: "../public/fonts/JetBrains_Mono/JetBrainsMono-Light.ttf",
+		// 	weight: "300",
+		// 	style: "normal",
+		// },
+		{
+			path: "../public/fonts/JetBrains_Mono/JetBrainsMono-Regular.ttf",
+			weight: "400",
+			style: "normal",
+		},
+		// {
+		// 	path: "../public/fonts/JetBrains_Mono/JetBrainsMono-Medium.ttf",
+		// 	weight: "500",
+		// 	style: "normal",
+		// },
+		// {
+		// 	path: "../public/fonts/JetBrains_Mono/JetBrainsMono-SemiBold.ttf",
+		// 	weight: "600",
+		// 	style: "normal",
+		// },
+		// {
+		// 	path: "../public/fonts/JetBrains_Mono/JetBrainsMono-Bold.ttf",
+		// 	weight: "700",
+		// 	style: "normal",
+		// },
+		// {
+		// 	path: "../public/fonts/JetBrains_Mono/JetBrainsMono-ExtraBold.ttf",
+		// 	weight: "800",
+		// 	style: "normal",
+		// },
+		// {
+		// 	path: "../public/fonts/JetBrains_Mono/JetBrainsMono-Black.ttf",
+		// 	weight: "900",
+		// 	style: "normal",
+		// },
+	],
+	variable: "--font-terminal",
+});
 
 export const metadata: Metadata = {
 	metadataBase: new URL("https://your-hostify-demo.com"),
@@ -111,7 +156,7 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
 	return (
-		<html lang="en" className={myFont.variable}>
+		<html lang="en" className={`${myFont.variable} ${myFont2.variable}`}>
 			<body>{children}</body>
 		</html>
 	);
