@@ -7,8 +7,11 @@
   --clr-secondary: #06B6D4;
   --gradient: linear-gradient(45deg, #8400ff, #f700ff, #ff00ea);
   --clr-accent: #8400ff;
-  /* --clr-accent2: #f700ff; */
+  --clr-accent2: #ff00ea;
   --clr-surface: #111827;
+  --clr-background-opacity: #f1f5f912;
+  --clr-border-opacity: #f1f5f91d;
+
 }
 
 @theme inline {
@@ -34,7 +37,8 @@ body {
 .transition {
   transition: .3s ease;
 }
-.shine{
+
+.shine {
   overflow: hidden;
 }
 
@@ -70,5 +74,101 @@ body {
 @keyframes blink {
   50% {
     opacity: 0;
+  }
+}
+
+.pulse {
+  position: relative;
+  overflow: visible;
+}
+
+.pulse::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: currentColor;
+  opacity: 1;
+  border-radius: inherit;
+  animation: pulse_anim 1.5s ease .5s infinite;
+  box-shadow: 0 0 10px currentColor;
+}
+
+@keyframes pulse_anim {
+  100% {
+    transform: scale(2);
+    opacity: 0;
+  }
+}
+
+.underline_anim {
+  position: relative;
+  overflow: hidden;
+
+}
+
+.underline_anim::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background: var(--clr-accent);
+  transform: translateX(-100%);
+  transition: transform .3s ease;
+}
+
+.underline_anim:hover::after {
+  transform: translateX(0);
+}
+
+.fade_in {
+  animation: fade_in 0.3s ease 0s forwards;
+  opacity: 0;
+
+}
+
+@keyframes fade_in {
+  to {
+    opacity: 1;
+  }
+}
+
+.fade_out {
+  animation: fade_out 0.3s ease 0s forwards;
+  opacity: 1;
+
+}
+
+@keyframes fade_out {
+  to {
+    opacity: 0;
+  }
+}
+
+.no_scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+.bg_anim {
+  background-size: 200% 200%;
+  animation: bg_anim 5s ease infinite;
+  background-image: var(--gradient);
+}
+
+@keyframes bg_anim {
+  0% {
+    background-position: 0% 50%;
+  }
+
+  50% {
+    background-position: 100% 50%;
+  }
+
+  100% {
+    background-position: 0% 50%;
   }
 }

@@ -8,7 +8,7 @@ import Hero from "./hero";
 
 export default function Body() {
 	return (
-		<div>
+		<div className="translate-y-16">
 			<Hero />
 		</div>
 	);

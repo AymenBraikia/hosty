@@ -12,7 +12,7 @@ export default function Header(props: { promotion?: { url?: string; content: str
 	const [lang, set_lang] = useState<langs | string>(() => (typeof window !== "undefined" && (localStorage.getItem("lang") as langs)) || "en-us");
 
 	return (
-		<header className="w-dvw h-fit p-2.5 bg-(--clr-surface) fixed left-0 top-0 flex justify-between items-center px-20">
+		<header className="w-dvw h-fit p-2.5 bg-(--clr-surface) fixed left-0 top-0 flex justify-between items-center px-20 z-50">
 			<div className="flex justify-center items-center gap-10">
 				<Link className="flex justify-center items-center text-(--clr-primary) font-bold text-3xl" href={"/"}>
 					<Image width={70} height={70} src={logoIcon} alt="logo" />
@@ -20,24 +20,21 @@ export default function Header(props: { promotion?: { url?: string; content: str
 				</Link>
 
 				<div className="flex justify-center items-center gap-6">
-					<Link className="text-[18px] text-gray-200 hover:text-gray-400 transition" href={"#"}>
-						Home
+					<Link className="text-[18px] underline_anim text-gray-400 hover:text-gray-200 transition" href={"#"}>
+						Hosting
 					</Link>
-					<Link className="text-[18px] text-gray-200 hover:text-gray-400 transition" href={"#"}>
-						Services
+					<Link className="text-[18px] underline_anim text-gray-400 hover:text-gray-200 transition" href={"#"}>
+						VPS
 					</Link>
-					<Link className="text-[18px] text-gray-200 hover:text-gray-400 transition" href={"#"}>
-						Explore
+					<Link className="text-[18px] underline_anim text-gray-400 hover:text-gray-200 transition" href={"#"}>
+						Dedicated
 					</Link>
-					<Link className="text-[18px] text-gray-200 hover:text-gray-400 transition" href={"#"}>
-						Support
-					</Link>
-					<Link className="text-[18px] text-gray-200 hover:text-gray-400 transition" href={"#"}>
-						Self-hosted n8n
+					<Link className="text-[18px] underline_anim text-gray-400 hover:text-gray-200 transition" href={"#"}>
+						Domains
 					</Link>
 				</div>
 			</div>
-			<div className="flex justify-center items-center gap-10">
+			<div className="flex justify-center items-center gap-5">
 				<Select
 					options={[
 						["English", "en-us"],
@@ -54,7 +51,8 @@ export default function Header(props: { promotion?: { url?: string; content: str
 					}}
 					default={lang}
 				/>
-				<Button action={() => console.log("clicked my account")} content="My Account" />
+				<Button css="hover:bg-(--clr-accent) hover:shadow-[0_0_10px_0_var(--clr-accent)]" action={() => console.log("clicked my account")} content="Log in" />
+				<Button css="hover:bg-(--clr-accent2) hover:shadow-[0_0_10px_0_var(--clr-accent2)]" action={() => console.log("clicked my account")} content="Get Started" />
 			</div>
 			{props.promotion ? <Promotion data={props.promotion} /> : <></>}
 		</header>
