@@ -5,11 +5,13 @@
 // import Button from "./button";
 // import Select from "./select";
 import Hero from "./hero";
+import TechStackScroll from "./svg/slider";
 
 export default function Body() {
 	return (
 		<div className="translate-y-16">
 			<Hero />
+			<TechStackScroll />
 		</div>
 	);
 }

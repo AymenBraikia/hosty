@@ -23,7 +23,7 @@ export default function Terminal() {
 					<span className="text-(--clr-accent)">➜</span>{" "}
 					<span className="text-(--clr-primary) flex justify-start items-center gap-2.5">
 						dev@hosty:~$
-						<div className="blinker"></div>
+						<span className="blinker"></span>
 					</span>
 				</p>
 			</div>
