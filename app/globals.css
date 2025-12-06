@@ -4,12 +4,14 @@
   --background: #F1F5F9;
   --foreground: #020617;
   --clr-primary: #0EA5E9;
-  --clr-secondary: #06B6D4;
   --gradient: linear-gradient(45deg, #8400ff, #f700ff, #ff00ea);
+  --gradient2: linear-gradient(45deg, #00ddff, #ff00ea);
   --clr-accent: #8400ff;
   --clr-accent2: #ff00ea;
   --clr-surface: #111827;
   --clr-surface2: #070a11;
+  --clr-surface-light: #18202c;
+  --clr-surface-light2: #1f2937;
   --clr-background-opacity: #f1f5f912;
   --clr-border-opacity: #f1f5f91d;
 
@@ -31,6 +33,11 @@
 
 ::-webkit-scrollbar {
   display: none;
+}
+
+::selection {
+  background-color: var(--clr-accent);
+  color: white;
 }
 
 body {
@@ -190,18 +197,34 @@ body {
   display: none;
 }
 
+.text_anim2,
 .text_anim {
   background-size: 200% 200%;
   animation: bg_anim 5s ease infinite;
-  background-image: var(--gradient);
   background-clip: text;
   color: transparent;
 }
 
+.text_anim {
+  background-image: var(--gradient);
+}
+
+.text_anim2 {
+  background-image: var(--gradient2);
+}
+
+.bg_anim2,
 .bg_anim {
   background-size: 200% 200%;
   animation: bg_anim 5s ease infinite;
+}
+
+.bg_anim {
   background-image: var(--gradient);
+}
+
+.bg_anim2 {
+  background-image: var(--gradient2);
 }
 
 @keyframes bg_anim {
@@ -266,6 +289,6 @@ body {
 @layer utilities {
   .animate-marquee {
     animation: marquee 30s linear infinite;
-  
+
   }
 }
