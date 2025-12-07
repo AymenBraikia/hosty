@@ -1,10 +1,7 @@
 "use client";
-// import { useState } from "react";
-// import Image from "next/image";
-// import Link from "next/link";
-// import Button from "./button";
-// import Select from "./select";
+
 import Hero from "./hero";
+import Network from "./network";
 import OneClickDeploy from "./oneClickDeploy";
 import Perks from "./perks";
 import TechStackScroll from "./svg/slider";
@@ -16,6 +13,7 @@ export default function Body() {
 			<TechStackScroll />
 			<Perks />
 			<OneClickDeploy />
+			<Network />
 		</div>
 	);
 }
