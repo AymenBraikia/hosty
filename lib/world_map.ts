@@ -1,4 +1,5 @@
 import * as d3 from "d3-geo";
+import { ColorCycleGradient } from "./color";
 
 // Define the shape of our server data
 interface ServerLocation {
@@ -15,13 +16,13 @@ export class DarkWorldMap {
 	private scale: number = 1.5;
 	private drawing: boolean = false;
 	private mapData = null;
+	private gradient = new ColorCycleGradient();
 
 	public COLORS = {
 		background: "transparent",
 		land: "#151b24",
-		markerCore: "#0ea5e9", // Bright Cyan/Blue
-		markerGlow: "#0ea5e9", // Very faint transparent blue
-		// markerGlow: "rgba(14, 165, 233, 0.15)", // Very faint transparent blue
+		// markerCore: "#0ea5e9", // Bright Cyan/Blue
+		markerCore: "#8400ff", // Bright Cyan/Blue
 	};
 
 	public globalAlpha: number = 1;
@@ -124,6 +125,8 @@ export class DarkWorldMap {
 		requestAnimationFrame(this.draw.bind(this));
 		if (!this.mapData) return;
 
+		this.COLORS.markerCore = this.gradient.getNextColor();
+
 		// 1. Clear & Background
 		this.ctx.clearRect(0, 0, this.width, this.height);
 		this.ctx.fillStyle = this.COLORS.background;
@@ -156,13 +159,13 @@ export class DarkWorldMap {
 				this.ctx.globalAlpha = this.globalAlpha;
 				this.ctx.beginPath();
 				this.ctx.arc(x, y, this.scale * 6 * (this.increament < 0 ? 1 - this.globalAlpha : 0), 0, 2 * Math.PI); // Radius 8
-				this.ctx.fillStyle = this.COLORS.markerGlow;
+				this.ctx.fillStyle = this.COLORS.markerCore;
 				this.ctx.fill();
 
 				// Draw Inner Core (Small, Solid)
 				this.ctx.globalAlpha = 1;
 				this.ctx.beginPath();
-				this.ctx.arc(x, y, this.scale * 2, 0, 2 * Math.PI); // Radius 3
+				this.ctx.arc(x, y, this.scale * 2.5, 0, 2 * Math.PI); // Radius 3
 				this.ctx.fillStyle = this.COLORS.markerCore;
 				this.ctx.fill();
 			}
