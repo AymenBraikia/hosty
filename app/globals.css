@@ -2,12 +2,17 @@
 
 :root {
   --background: #F1F5F9;
+  --background2: #d3d4d6;
+  --background3: #bdbdbd;
   --foreground: #020617;
+  --foreground2: #474747;
+  --foreground3: #767676;
   --clr-primary: #0EA5E9;
   --gradient: linear-gradient(45deg, #8400ff, #f700ff, #ff00ea);
   --gradient2: linear-gradient(45deg, #00ddff, #ff00ea);
   --clr-accent: #8400ff;
   --clr-accent2: #ff00ea;
+  --clr-accent-opacity: #4f00994d;
   --clr-surface: #111827;
   --clr-surface2: #070a11;
   --clr-surface-light: #18202c;
@@ -291,4 +296,48 @@ body {
     animation: marquee 30s linear infinite;
 
   }
+}
+
+.bg-light {
+  background-color: var(--clr-surface-light);
+}
+
+.bg-light2 {
+  background-color: var(--clr-surface-light2);
+}
+
+.border-gradient {
+  position: relative;
+}
+
+.border-gradient::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  left: -0.5px;
+  top: -0.5px;
+  padding: 2px;
+  width: 100%;
+  height: 100%;
+  border-radius: inherit;
+  background-size: 200% 200% !important;
+  background: var(--gradient);
+  mask:
+    linear-gradient(#fff 0 0) content-box,
+    linear-gradient(#fff 0 0);
+  mask-composite: xor;
+  mask-composite: exclude;
+  z-index: -1;
+  animation: bg_anim 5s ease infinite;
+}
+
+.plan_btn {
+  font-weight: 900;
+  background-color: var(--clr-surface-light);
+  border: 2px solid var(--clr-surface-light2);
+}
+
+
+.plan_btn:hover {
+  background-color: var(--clr-surface-light2);
 }

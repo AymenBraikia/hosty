@@ -2,7 +2,7 @@ import { svg_props } from "@/app/types/svg_icon";
 
 export default function Arrow(props: svg_props) {
 	return (
-		<svg className={props.css} width={`${props.s || props.w}px` || "50px"} height={`${props.s || props.h}px` || "50px"} viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+		<svg className={props.css} width={`${props.s || props.w}px` || "50px"} height={`${props.s || props.h}px` || "50px"} viewBox="0 0 24 24" fill="none">
 			<path
 				fillRule="evenodd"
 				clipRule="evenodd"

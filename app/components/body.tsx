@@ -4,6 +4,7 @@ import Hero from "./hero";
 import Network from "./network";
 import OneClickDeploy from "./oneClickDeploy";
 import Perks from "./perks";
+import Pricing from "./pricing";
 import TechStackScroll from "./svg/slider";
 
 export default function Body() {
@@ -14,6 +15,7 @@ export default function Body() {
 			<Perks />
 			<OneClickDeploy />
 			<Network />
+			<Pricing />
 		</div>
 	);
 }
