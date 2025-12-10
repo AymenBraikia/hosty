@@ -6,6 +6,7 @@ import OneClickDeploy from "./oneClickDeploy";
 import Perks from "./perks";
 import Pricing from "./pricing";
 import TechStackScroll from "./svg/slider";
+import Trust from "./trust";
 
 export default function Body() {
 	return (
@@ -16,6 +17,7 @@ export default function Body() {
 			<OneClickDeploy />
 			<Network />
 			<Pricing />
+			<Trust />
 		</div>
 	);
 }

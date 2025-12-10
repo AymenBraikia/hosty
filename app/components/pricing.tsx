@@ -5,6 +5,7 @@ import DataBase from "./svg/database";
 import Thunder from "./svg/thunder";
 import Shield from "./svg/shield";
 import Storage from "./svg/storage";
+import Star2 from "./svg/star2";
 
 type plan = {
 	name: string;
@@ -92,7 +93,7 @@ function Plan(props: { p: plan; plan: "m" | "y" }) {
 				info.popular ? "scale-105 border-gradient" : "border border-(--clr-surface-light2)"
 			}`}
 		>
-			{info.popular && <span className="absolute left-1/2 top-6 -translate-1/2 bg_anim px-4 py-1.5 rounded-full font-black text-xs min-w-fit text-center">MOST POPULAR</span>}
+			{info.popular && <span className="absolute left-1/2 top-6 -translate-1/2 bg_anim px-4 py-2 rounded-full font-black text-xs min-w-fit flex justify-center items-center gap-1"><Star2 s={16} color="white"/>MOST POPULAR</span>}
 			<div className="w-full flex justify-between items-center">
 				<div className="flex flex-col">
 					<h3 className="text-2xl font-black">{info.name}</h3>
