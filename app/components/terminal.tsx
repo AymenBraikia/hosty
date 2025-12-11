@@ -2,7 +2,7 @@ import Thunder from "./svg/thunder";
 
 export default function Terminal() {
 	return (
-		<div className="terminal flex flex-col rounded-2xl w-2/4 h-3/5 border-gray-800 border">
+		<div className="terminal flex-col rounded-2xl w-2/4 h-3/5 border-gray-800 border max-lg:hidden lg:flex">
 			<div className="w-full flex justify-center items-center bg-(--clr-surface) border-gray-800 border-b relative px-4 py-2 rounded-t-md">
 				<div className="flex absolute left-3">
 					<div className="w-3 h-3 rounded-full bg-red-500 m-1"></div>

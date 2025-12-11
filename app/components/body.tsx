@@ -1,5 +1,7 @@
 "use client";
 
+import Cta from "./cta";
+import Faq from "./faq";
 import Hero from "./hero";
 import Network from "./network";
 import OneClickDeploy from "./oneClickDeploy";
@@ -10,7 +12,7 @@ import Trust from "./trust";
 
 export default function Body() {
 	return (
-		<div className="translate-y-16 flex flex-col justify-center items-start gap-14">
+		<div className="translate-y-16 flex flex-col justify-center items-start">
 			<Hero />
 			<TechStackScroll />
 			<Perks />
@@ -18,6 +20,8 @@ export default function Body() {
 			<Network />
 			<Pricing />
 			<Trust />
+			<Faq />
+			<Cta />
 		</div>
 	);
 }

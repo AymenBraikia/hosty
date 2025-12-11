@@ -5,7 +5,7 @@ export default function TechStackMarquee() {
 	const marqueeContent = [...technologies, ...technologies];
 
 	return (
-		<div className="w-full overflow-hidden whitespace-nowrap py-4 bg-gray-900 shadow-lg">
+		<section className="w-full overflow-hidden whitespace-nowrap py-4 bg-gray-900 shadow-lg">
 			<div className="inline-flex space-x-12 animate-marquee select-none py-10">
 				{marqueeContent.map((tech, index) => (
 					<div
@@ -16,6 +16,6 @@ export default function TechStackMarquee() {
 					</div>
 				))}
 			</div>
-		</div>
+		</section>
 	);
 }

@@ -16,8 +16,8 @@ const perks = [
 
 export default function Perks() {
 	return (
-		<div className="h-fit min-h-dvh py-30 flex flex-col justify-center items-center gap-12 bg-(--clr-surface-light2)">
-			<h1 className="font-black text-5xl">
+		<section className="h-fit min-h-dvh py-30 flex flex-col justify-center items-center gap-12 bg-(--clr-surface-light2)">
+			<h1 className="font-black text-5xl text-center">
 				Why developers switch to <span className="text_anim">Hosty</span>
 			</h1>
 			<p className="text-gray-400 text-xl text-center text_shine">
@@ -26,7 +26,7 @@ export default function Perks() {
 			<div className="flex flex-wrap justify-center items-center gap-4">
 				{perks.map((perk, i) => {
 					return (
-						<div key={i} className="w-[30%] min-h-64 flex flex-col justify-center items-start bg-(--clr-surface) p-8 gap-6 rounded-2xl border border-(--clr-surface-light) transition hover:bg-(--clr-surface-light) group">
+						<div key={i} className="w-[30%] min-w-80 max-md:min-w-11/12 min-h-64 flex flex-col justify-center items-start bg-(--clr-surface) p-8 gap-6 rounded-2xl border border-(--clr-surface-light) transition hover:bg-(--clr-surface-light) group">
 							<div className="w-14 h-14 bg-(--clr-surface-light2) border border-gray-700 rounded-full group-hover:scale-110 flex justify-center items-center">{perk.icon}</div>
 							<h2 className="text-xl font-bold text-foreground">{perk.title}</h2>
 							<p className="text-gray-400">{perk.description}</p>
@@ -34,6 +34,6 @@ export default function Perks() {
 					);
 				})}
 			</div>
-		</div>
+		</section>
 	);
 }

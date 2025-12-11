@@ -56,8 +56,8 @@ const plans: plan[] = [
 export default function Pricing() {
 	const [plan, setPlan] = useState<"m" | "y">("m");
 	return (
-		<div className="w-dvw min-h-dvh box-content flex flex-col justify-center items-center gap-8 pb-16">
-			<h1 className="text-5xl font-black">Simple, Transparent Pricing</h1>
+		<section className="w-dvw min-h-dvh flex flex-col justify-center items-center gap-8 p-16">
+			<h1 className="text-5xl font-black max-sm:text-3xl max-lg:text-4xl text-center">Simple, Transparent Pricing</h1>
 			<div className="p-2 border border-(--clr-surface-light) flex justify-center items-center bg-(--clr-surface2) rounded-full relative">
 				<Button
 					action={() => setPlan("m")}
@@ -76,12 +76,12 @@ export default function Pricing() {
 				/>
 				<div className={`transition bg-(--clr-surface-light) ${plan == "m" ? "left-2 w-22" : "left-23 w-30"} h-12 rounded-full absolute top-1/2 -translate-y-1/2`}></div>
 			</div>
-			<div className="flex flex-wrap justify-center items-center gap-10 w-dvw">
+			<div className="flex flex-wrap justify-center items-center gap-10 w-dvw max-lg:flex-col max-lg:px-8">
 				{plans.map((p, i) => (
 					<Plan key={i} p={p} plan={plan} />
 				))}
 			</div>
-		</div>
+		</section>
 	);
 }
 
@@ -89,11 +89,11 @@ function Plan(props: { p: plan; plan: "m" | "y" }) {
 	const info = props.p;
 	return (
 		<div
-			className={`relative cursor-pointer overflow-hidden transition bg-(--clr-surface) hover:bg-(--clr-surface-light) rounded-4xl w-[25%] flex flex-col gap-5 justify-center items-start p-8 hover:-translate-y-2 ${
+			className={`relative cursor-pointer overflow-hidden transition bg-(--clr-surface) hover:bg-(--clr-surface-light) rounded-4xl w-[25%] max-lg:w-full flex flex-col gap-5 justify-center items-start p-8 hover:-translate-y-2 ${
 				info.popular ? "scale-105 border-gradient" : "border border-(--clr-surface-light2)"
 			}`}
 		>
-			{info.popular && <span className="absolute left-1/2 top-6 -translate-1/2 bg_anim px-4 py-2 rounded-full font-black text-xs min-w-fit flex justify-center items-center gap-1"><Star2 s={16} color="white"/>MOST POPULAR</span>}
+			{info.popular && <span className="absolute left-1/2 top-6 -translate-1/2 bg_anim px-4 py-2 rounded-full font-black text-xs min-w-fit flex justify-center items-center gap-1 max-sm:text-[10px]"><Star2 s={16} color="white"/>MOST POPULAR</span>}
 			<div className="w-full flex justify-between items-center">
 				<div className="flex flex-col">
 					<h3 className="text-2xl font-black">{info.name}</h3>
@@ -104,7 +104,7 @@ function Plan(props: { p: plan; plan: "m" | "y" }) {
 					<Cpu s={23} color={info.popular ? "var(--clr-accent)" : "var(--background3)"} />
 				</div>
 			</div>
-			<h1 className="text-5xl font-black">
+			<h1 className="text-5xl font-black max-sm:text-3xl">
 				${props.plan == "m" ? info.pricing.m : info.pricing.y}
 				<span className="text-gray-500 text-2xl m-2 font-medium">/mo</span>
 			</h1>

@@ -18,6 +18,10 @@
   --clr-surface-light: #18202c;
   --clr-surface-light2: #1f2937;
   --clr-background-opacity: #f1f5f912;
+  --clr-background-opacity2: #f1f5f94a;
+  --clr-foreground-opacity: #00000012;
+  --clr-foreground-opacity2: #00000052;
+  --clr-primary-opacity: #0080ff36;
   --clr-border-opacity: #f1f5f91d;
 
 }

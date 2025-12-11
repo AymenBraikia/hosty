@@ -35,7 +35,7 @@ const reviews: review[] = [
 
 export default function Trust() {
 	return (
-		<div className="w-dvw h-fit p-30 flex flex-col justify-center items-center gap-16 bg-(--clr-surface)">
+		<section className="w-dvw h-fit p-30 flex flex-col justify-center items-center gap-16 bg-(--clr-surface)">
 			<h2 className="text-4xl font-black">Trusted by 10,000+ Innovators</h2>
 			<div className="flex justify-center items-center gap-6 w-full">
 				{reviews.map((rev, i) => (
@@ -59,6 +59,6 @@ export default function Trust() {
 					</div>
 				))}
 			</div>
-		</div>
+		</section>
 	);
 }
