@@ -35,11 +35,11 @@ const reviews: review[] = [
 
 export default function Trust() {
 	return (
-		<section className="w-dvw h-fit p-30 flex flex-col justify-center items-center gap-16 bg-(--clr-surface)">
-			<h2 className="text-4xl font-black">Trusted by 10,000+ Innovators</h2>
-			<div className="flex justify-center items-center gap-6 w-full">
+		<section className="w-dvw h-fit p-30 flex flex-col justify-center items-center gap-16 bg-(--clr-surface) max-md:px-6">
+			<h2 className="text-4xl font-black max-md:text-3xl max-md:text-center">Trusted by 10,000+ Innovators</h2>
+			<div className="flex justify-center items-center gap-6 w-full max-md:flex-col">
 				{reviews.map((rev, i) => (
-					<div key={i} className="w-[30%] flex flex-col gap-8 rounded-2xl border border-(--clr-surface-light2) p-8">
+					<div key={i} className="w-[30%] max-md:w-full flex flex-col gap-8 rounded-2xl border border-(--clr-surface-light2) p-8">
 						<div className="flex justify-start items-center w-full">
 							<Star s={16} color="#eab308" />
 							<Star s={16} color="#eab308" />

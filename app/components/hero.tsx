@@ -17,11 +17,11 @@ export default function Hero() {
 					<div className="pulse w-2 h-2 rounded-full bg-(--clr-primary)"></div>New: NVMe Gen 4 Cloud Servers
 				</div>
 
-				<div className="text-6xl font-black max-lg:text-5xl max-md:text-4xl">
-					<p>Host your dreams</p>
-					<p className="text_anim">Beyond Limits.</p>
+				<div className="text-6xl font-black max-lg:text-5xl max-md:text-5xl">
+					<h1>Host your dreams</h1>
+					<h1 className="text_anim">Beyond Limits.</h1>
 				</div>
-				<p className="text-gray-400 text-xl max-sm:text-base max-w-full tracking-tight text_shine">Hosty provides premium cloud infrastructure with enterprise-grade security. Deploy instantly, scale globally, sleep soundly.</p>
+				<p className="text-gray-400 text-xl max-w-full tracking-tight text_shine max-md:text-2xl max-sm:text-xl">Hosty provides premium cloud infrastructure with enterprise-grade security. Deploy instantly, scale globally, sleep soundly.</p>
 
 				<div className="min-w-full max-sm:flex-col border-gray-700 border rounded-2xl flex justify-between gap-4 px-6 py-3 bg-(--clr-background-opacity)">
 					<div className="flex justify-center items-center w-full gap-4 text-gray-400">

@@ -21,7 +21,7 @@ export default function Header(props: { promotion?: { url?: string; content: str
 	}, []);
 	const [lang, set_lang] = useState<langs | string>(() => (typeof window !== "undefined" && (localStorage.getItem("lang") as langs)) || "en-us");
 	return (
-		<header className="w-dvw h-fit p-2.5 bg-(--clr-surface) fixed left-0 top-0 flex justify-between items-center px-20 z-50">
+		<header className="w-dvw h-fit p-2.5 bg-(--clr-surface) fixed left-0 top-0 flex justify-between items-center px-20 z-50 max-md:px-6">
 			<div className="flex justify-center items-center gap-10">
 				<Link className="flex justify-center items-center text-(--clr-primary) font-bold text-3xl" href={"/"}>
 					<Image width={70} height={70} src={logoIcon} alt="logo" />
@@ -121,7 +121,7 @@ export default function Header(props: { promotion?: { url?: string; content: str
 					</nav>
 				</>
 			)}
-			{props.promotion ? <Promotion data={props.promotion} /> : <></>}
+			{props.promotion && <Promotion data={props.promotion} />}
 		</header>
 	);
 }

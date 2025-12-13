@@ -34,9 +34,9 @@ const questions: { question: string; answer: string; id: number }[] = [
 export default function Faq() {
 	const [selected_q, set_question] = useState<number | null>(null);
 	return (
-		<section className="w-dvw h-fit px-30 flex flex-col justify-center items-center gap-16 bg-(--clr-surface2) py-30">
-			<h2 className="text-3xl font-black">Frequently Asked Questions</h2>
-			<div className="flex flex-col justify-center items-center gap-3 w-3/5">
+		<section className="w-dvw h-fit px-30 flex flex-col justify-center items-center gap-16 bg-(--clr-surface2) py-30 max-md:px-6">
+			<h2 className="text-3xl font-black max-md:text-center">Frequently Asked Questions</h2>
+			<div className="flex flex-col justify-center items-center gap-3 w-3/5 max-md:w-full">
 				{questions.map((q) => (
 					<div className={`transition flex flex-col w-full bg-(--clr-surface) border-2 border-(--clr-surface-light2) overflow-hidden rounded-2xl cursor-pointer text-foreground`} key={q.id}>
 						<h3 onClick={() => (selected_q == q.id ? set_question(null) : set_question(q.id))} className="transition flex justify-between items-center font-bold text-current hover:bg-(--clr-surface-light) p-5">

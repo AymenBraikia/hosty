@@ -9,9 +9,9 @@ import Facebook from "./svg/facebook";
 
 export default function Footer() {
 	return (
-		<footer className="w-dvw min-h-[50dvh] bg-(--clr-surface2) flex flex-col p-26 pb-8 gap-8">
-			<div className="w-full flex justify-between items-center gap-8">
-				<div className="flex flex-col justify-start items-start w-[30%] gap-7 h-[250px]">
+		<footer className="w-dvw min-h-[50dvh] bg-(--clr-surface2) flex flex-col p-26 pb-8 gap-8 max-md:px-6">
+			<div className="w-full flex justify-between items-center gap-8 max-md:flex-row flex-wrap">
+				<div className="flex flex-col justify-start items-start w-[30%] gap-7 h-[250px] max-md:w-full">
 					<Link className="flex justify-start items-center text-(--clr-primary) font-bold text-2xl" href={"/"}>
 						<Image width={45} height={45} src={logoIcon} alt="logo" />
 						Hosty
@@ -91,7 +91,7 @@ export default function Footer() {
 				</div>
 			</div>
 			<hr className="text-gray-800" />
-			<div className="flex justify-between items-center text-gray-400">
+			<div className="flex justify-between items-center text-gray-400 max-md:flex-col max-md:gap-4">
 				<span>© 2026 Hosty Inc. All rights reserved.</span>
 				<div className="flex justify-center items-center gap-5">
 					<Link className="" href={"#"}>

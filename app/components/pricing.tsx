@@ -56,7 +56,7 @@ const plans: plan[] = [
 export default function Pricing() {
 	const [plan, setPlan] = useState<"m" | "y">("m");
 	return (
-		<section className="w-dvw min-h-dvh flex flex-col justify-center items-center gap-8 p-16">
+		<section className="w-dvw min-h-dvh flex flex-col justify-center items-center gap-8 p-16 max-md:p-6">
 			<h1 className="text-5xl font-black max-sm:text-3xl max-lg:text-4xl text-center">Simple, Transparent Pricing</h1>
 			<div className="p-2 border border-(--clr-surface-light) flex justify-center items-center bg-(--clr-surface2) rounded-full relative">
 				<Button

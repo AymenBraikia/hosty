@@ -19,7 +19,7 @@ export default function Promotion(props: { data: { url?: string; expire_date: nu
 		<></>
 	) : (
 		<Link className="shine w-dvw min-h-10 flex justify-evenly items-center font-bold text-[18px] absolute bottom-0 left-0 translate-y-full bg_anim" href={props.data.url || "#"}>
-			<div className="flex justify-center items-center">
+			<div className="flex justify-center items-center max-md:flex-col">
 				{props.data.content}
 				<div className="bg-[#ffffff58] mx-2 px-3.5 rounded-xl">{date}</div>
 			</div>

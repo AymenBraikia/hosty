@@ -14,7 +14,7 @@ export default function Network() {
 		}
 	}, []);
 	return (
-		<section className="w-dvw min-h-dvh bg-(--clr-surface) flex max-lg:flex-col justify-center items-center px-16 max-lg:p-16 gap-16">
+		<section className="w-dvw min-h-dvh bg-(--clr-surface) flex max-lg:flex-col justify-center items-center px-16 max-lg:p-16 max-md:px-6 gap-16">
 			<div className="flex flex-col justify-center items-start gap-4 w-1/2 max-lg:w-full">
 				<div className="flex justify-center items-center gap-2.5 text-xs text-(--clr-primary) p-1.5 font-black bg-(--clr-surface) rounded-4xl border-2">
 					<Web color="var(--clr-primary)" s={20} />

@@ -19,13 +19,13 @@ const apps = [
 export default function OneClickDeploy() {
 	return (
 		<section className="min-h-dvh w-dvw px-[10dvw] flex max-md:p-7 justify-center items-center text-center">
-			<div className="min-h-1/2 w-full bg-(--clr-surface) flex max-md:flex-col justify-center items-center p-10 relative rounded-2xl border-2 border-(--clr-surface-light2) overflow-hidden">
-				<div className="flex flex-col justify-center items-center gap-7 p-11 w-1/2 max-md:w-full z-10">
+			<div className="min-h-1/2 w-full bg-(--clr-surface) flex max-md:flex-col justify-center items-center p-10 relative rounded-2xl border-2 border-(--clr-surface-light2) overflow-hidden max-md:gap-10">
+				<div className="flex flex-col justify-center items-center gap-7 p-11 w-1/2 max-md:w-full max-md:p-0 z-10">
 					<h2 className="text-4xl font-black max-sm:text-2xl">
 						Deploy your favorite apps with <span className="text_anim2">1-Click</span>
 					</h2>
-					<p className="text_shine text-xl max-sm:text-base">Forget complex server configurations. Hosty&apos;s marketplace lets you launch production-ready instances of popular software instantly.</p>
-					<Link className="text-(--clr-accent2) flex justify-center items-center w-fit font-bold transition gap-0 hover:text-(--clr-accent) hover:gap-2" href={"#"}>
+					<p className="text_shine text-xl text-start">Forget complex server configurations. Hosty&apos;s marketplace lets you launch production-ready instances of popular software instantly.</p>
+					<Link className="text-(--clr-accent2) flex justify-center items-center w-fit font-bold transition gap-0 hover:text-(--clr-accent) hover:gap-2 max-md:text-xl max-md:w-full max-md:justify-start max-md:gap-3" href={"#"}>
 						Browse Marketplace
 						<Arrow color="currentColor" s={25} />
 					</Link>
