@@ -32,7 +32,7 @@ export default function Header(props: { promotion?: { url?: string; content: str
 			{size >= 1024 ? (
 				<>
 					<div className="flex justify-center items-center gap-6 text-[18px]">
-						<Link className="underline_anim text-gray-400 hover:text-gray-200 transition" href={"#"}>
+						<Link className="underline_anim text-gray-400 hover:text-gray-200 transition" href={"/hosting"}>
 							Hosting
 						</Link>
 						<Link className="underline_anim text-gray-400 hover:text-gray-200 transition" href={"#"}>

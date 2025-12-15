@@ -49,6 +49,10 @@
   color: white;
 }
 
+* {
+  scroll-behavior: smooth;
+}
+
 body {
   background: var(--background);
   color: var(--foreground);
@@ -344,4 +348,13 @@ body {
 
 .plan_btn:hover {
   background-color: var(--clr-surface-light2);
+}
+
+.deploy {
+  background: var(--color-foreground);
+  color: var(--color-background);
+}
+
+.deploy:hover {
+  box-shadow: 0 0 10px 0 var(--color-foreground);
 }
