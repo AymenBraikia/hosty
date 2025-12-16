@@ -11,43 +11,47 @@ type plan = {
 	name: string;
 	pricing: { m: number; y: number };
 	popular: boolean;
-	specs: { cpu: number; ram: number; storage: string; bandWidth: string; ssl_cdn: boolean };
+	description: string;
+	specs: { cpu: number | string; ram: number | string; storage: string; bandWidth: string; ssl_cdn: boolean };
 };
 
 const plans: plan[] = [
 	{
-		name: "Basic",
+		name: "Cloud VPS",
 		pricing: { m: 4.99, y: 3.99 },
+		description: "Flexible virtual instances for developers and small apps. Scale instantly.",
 		popular: false,
 		specs: {
-			cpu: 1,
-			ram: 2,
-			storage: "50 GB NVMe",
-			bandWidth: "2 TB Traffic",
+			cpu: "1-16",
+			ram: "1-32",
+			storage: "25 GB - 400 GB SSD",
+			bandWidth: "1 TB - 12 TB Traffic",
 			ssl_cdn: true,
 		},
 	},
 	{
-		name: "Pro",
-		pricing: { m: 12.99, y: 9.99 },
-		popular: true,
+		name: "VDS Hybrid",
+		pricing: { m: 39.99, y: 27.99 },
+		description: "Virtual Dedicated Servers with guaranteed resources and dedicated threads.",
+		popular: false,
 		specs: {
-			cpu: 4,
-			ram: 8,
-			storage: "200 GB NVMe",
-			bandWidth: "8 TB Traffic",
+			cpu: "4-40",
+			ram: "8-128",
+			storage: "200 GB - 2 TB NVMe",
+			bandWidth: "5 TB - 30 Traffic",
 			ssl_cdn: true,
 		},
 	},
 	{
-		name: "Elite",
-		pricing: { m: 34.99, y: 29.99 },
+		name: "Dedicated Server",
+		pricing: { m: 79.99, y: 55.99 },
+		description: "Single-tenant physical servers for maximum performance and control.",
 		popular: false,
 		specs: {
-			cpu: 8,
-			ram: 32,
-			storage: "1TB NVMe",
-			bandWidth: "Unlimited Traffic",
+			cpu: "8-64",
+			ram: "16-512",
+			storage: "1 TB - 2x4 TB NVMe",
+			bandWidth: "10 TB - 60TB Traffic",
 			ssl_cdn: true,
 		},
 	},
@@ -72,7 +76,7 @@ export default function Pricing() {
 						${plan == "y" ? "text-foreground" : "text-gray-400"} py-2 z-10 gap-2 flex
 					`}
 					content="Yearly"
-					children_el={<span className="text-(--clr-accent)">-20%</span>}
+					children_el={<span className="text-(--clr-accent)">-30%</span>}
 				/>
 				<div className={`transition bg-(--clr-surface-light) ${plan == "m" ? "left-2 w-22" : "left-23 w-30"} h-12 rounded-full absolute top-1/2 -translate-y-1/2`}></div>
 			</div>
@@ -93,22 +97,22 @@ function Plan(props: { p: plan; plan: "m" | "y" }) {
 				info.popular ? "scale-105 border-gradient" : "border border-(--clr-surface-light2)"
 			}`}
 		>
-			{info.popular && <span className="absolute left-1/2 top-6 -translate-1/2 bg_anim px-4 py-2 rounded-full font-black text-xs min-w-fit flex justify-center items-center gap-1 max-sm:text-[10px]"><Star2 s={16} color="white"/>MOST POPULAR</span>}
+			{info.popular && (
+				<span className="absolute left-1/2 top-5 -translate-1/2 bg_anim px-4 py-1 rounded-full font-black text-xs min-w-fit flex justify-center items-center gap-1 max-sm:text-[10px]">
+					<Star2 s={16} color="white" />
+					MOST POPULAR
+				</span>
+			)}
 			<div className="w-full flex justify-between items-center">
 				<div className="flex flex-col">
 					<h3 className="text-2xl font-black">{info.name}</h3>
-					<h3 className="text-gray-400 text-[14px] font-medium">HOSTY CLOUD</h3>
+					<h3 className="text-gray-400 text-[14px] font-medium">{info.description}</h3>
 				</div>
 
 				<div className={`${info.popular ? "bg-(--clr-accent-opacity)" : "bg-(--clr-background-opacity)"} p-2.5 rounded-full`}>
 					<Cpu s={23} color={info.popular ? "var(--clr-accent)" : "var(--background3)"} />
 				</div>
 			</div>
-			<h1 className="text-5xl font-black max-sm:text-3xl">
-				${props.plan == "m" ? info.pricing.m : info.pricing.y}
-				<span className="text-gray-500 text-2xl m-2 font-medium">/mo</span>
-			</h1>
-			<div className="w-full border border-dashed border-(--clr-surface-light2) brightness-150"></div>
 
 			<div className="flex flex-col gap-3 justify-center items-start text-gray-400">
 				<div className="flex gap-2 justify-start items-center font-bold">
@@ -134,12 +138,17 @@ function Plan(props: { p: plan; plan: "m" | "y" }) {
 					</div>
 				)}
 			</div>
+			<h1 className="text-3xl font-black max-sm:text-3xl">
+				<span className="text-gray-400 text-base font-medium">Starting at </span>${props.plan == "m" ? info.pricing.m : info.pricing.y}
+				<span className="text-gray-400 text-base font-medium">/mo</span>
+			</h1>
 			<Button
 				css={`
 					${info.popular && "bg_anim"} plan_btn flex justify-center items-center gap-2 w-full
 				`}
 				content="Choose Plan"
 			/>
+
 			{info.popular && <div className="absolute right-0 top-0 translate-x-1/2 -translate-y-1/2 bg-(--clr-accent2) w-xs aspect-square -z-10 rounded-full blur-[200px]"></div>}
 		</div>
 	);

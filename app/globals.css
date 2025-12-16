@@ -8,22 +8,22 @@
   --foreground2: #474747;
   --foreground3: #767676;
   --clr-primary: #0EA5E9;
+  --clr-primary-opacity: #0080ff33;
   --gradient: linear-gradient(45deg, #8400ff, #f700ff, #ff00ea);
   --gradient2: linear-gradient(45deg, #00ddff, #ff00ea);
   --clr-accent: #8400ff;
-  --clr-accent2: #ff00ea;
   --clr-accent-opacity: #4f00994d;
+  --clr-accent2: #ff00ea;
+  --clr-accent2-opacity: #ff00ea33;
   --clr-surface: #111827;
   --clr-surface2: #070a11;
   --clr-surface-light: #18202c;
   --clr-surface-light2: #1f2937;
+  --clr-border-opacity: #f1f5f91d;
   --clr-background-opacity: #f1f5f912;
   --clr-background-opacity2: #f1f5f94a;
   --clr-foreground-opacity: #00000012;
   --clr-foreground-opacity2: #00000052;
-  --clr-primary-opacity: #0080ff36;
-  --clr-border-opacity: #f1f5f91d;
-
 }
 
 @theme inline {
@@ -37,6 +37,10 @@
   :root {
     --background: #020617;
     --foreground: #F1F5F9;
+    --clr-foreground-opacity: #f1f5f912;
+    --clr-foreground-opacity2: #f1f5f94a;
+    --clr-background-opacity: #00000012;
+    --clr-background-opacity2: #00000052;
   }
 }
 
@@ -322,9 +326,9 @@ body {
   content: "";
   position: absolute;
   inset: 0;
-  left: -0.5px;
-  top: -0.5px;
-  padding: 2px;
+  left: -0.25px;
+  top: -0.25px;
+  padding: 1.5px;
   width: 100%;
   height: 100%;
   border-radius: inherit;
@@ -357,4 +361,49 @@ body {
 
 .deploy:hover {
   box-shadow: 0 0 10px 0 var(--color-foreground);
+}
+
+/* .shadow_anim:hover {
+  box-shadow: 0 0 0 0 transparent;
+}
+
+.shadow_anim:hover {
+  animation: shadow_anim 3s ease infinite;
+  box-shadow: 0 0 10px 0 var(--clr-accent);
+}
+
+@keyframes shadow_anim {
+  50% {
+    box-shadow: 0 0 10px 0 var(--clr-accent2);
+  }
+} */
+
+
+.shadow_anim {
+  position: relative;
+  overflow: visible;
+}
+
+.shadow_anim::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 100%;
+  height: 100%;
+  border-radius: inherit;
+  pointer-events: none;
+  z-index: -1;
+  filter: blur(0);
+  background-size: 200% 200%;
+  animation: bg_anim 5s ease infinite;
+  background-image: var(--gradient);
+  transition: .3s ease;
+  opacity: 1;
+}
+
+.shadow_anim:hover::before {
+  filter: blur(15px);
+  opacity: 0.5;
 }
