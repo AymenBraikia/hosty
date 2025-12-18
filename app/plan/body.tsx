@@ -536,7 +536,7 @@ export default function Body() {
 
 					<AtcBtn />
 				</div>
-				<div className="flex flex-col justify-start items-start w-1/2 gap-8">
+				<div className="flex flex-col justify-start items-start w-1/2 gap-4">
 					<h4 className="text-2xl font-bold flex justify-start items-center gap-3">
 						<Cpu color="var(--clr-primary)" s={25} /> Hardware Specifications
 					</h4>
