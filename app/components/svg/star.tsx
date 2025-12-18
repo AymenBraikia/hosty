@@ -7,7 +7,6 @@ export default function Star(props: svg_props) {
 			className={props.css}
 			width={`${props.s || props.w}px` || "50px"}
 			height={`${props.s || props.h}px` || "50px"}
-			fill={props.color || "black"}
 			stroke={props.color || "black"}
 			strokeWidth="2"
 			strokeLinecap="round"

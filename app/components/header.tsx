@@ -23,9 +23,11 @@ export default function Header(props: { promotion?: { url?: string; content: str
 	return (
 		<header className="w-dvw h-fit p-2.5 bg-(--clr-background-opacity) backdrop-blur-3xl fixed left-0 top-0 flex justify-between items-center px-20 z-50 max-md:px-6">
 			<div className="flex justify-center items-center gap-10">
-				<Link className="flex justify-center items-center text-(--clr-primary) font-bold text-3xl" href={"/"}>
+				<Link className="flex justify-center items-center font-bold text-3xl" href={"/"}>
 					<Image width={70} height={70} src={logoIcon} alt="logo" />
-					Hosty
+					<p className="text-transparent [background:var(--gradient)] decoration-0" style={{ backgroundClip: "text" }}>
+						Hosty
+					</p>
 				</Link>
 			</div>
 
