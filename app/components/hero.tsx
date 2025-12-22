@@ -32,7 +32,7 @@ export default function Hero() {
 						children_el={<Arrow color="currentColor" s={30} />}
 						content="Search"
 						css="outline-0 bg_anim text-xl flex justify-center items-center gap-0 hover:gap-2"
-						action={() => inp.current?.value && router.push(`/search/?domain=${inp.current.value}`)}
+						action={() => inp.current?.value && router.push(`/domain/?domain=${inp.current.value}`)}
 					/>
 				</div>
 				<ul className="flex max-sm:text-xs max-sm:flex-wrap gap-7 text-gray-400">

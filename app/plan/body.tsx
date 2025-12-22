@@ -523,16 +523,22 @@ export default function Body() {
 
 	return (
 		<section className="w-dvw min-h-dvh flex flex-col justify-start items-start p-32">
-			<Button url="/hosting" content="Back to Services" css="text-gray-400 hover:text-foreground flex flex-row-reverse gap-1 justify-start items-center mb-8" children_el={<Arrow s={25} css="rotate-180" color="currentColor"/>} />
+			<Button url="/hosting" content="Back to Services" css="text-gray-400 hover:text-foreground flex flex-row-reverse gap-1 justify-start items-center mb-8" children_el={<Arrow s={25} css="rotate-180" color="currentColor" />} />
 			<div className="flex justify-center items-start w-full gap-16">
-				<div className="bg-(--clr-surface) p-16 rounded-2xl border border-(--clr-surface-light2) flex flex-col justify-center items-start gap-8 w-1/2">
-					<Server color="var(--clr-primary)" s={32} />
-					<h2 className="text-4xl font-black">{data?.type}</h2>
-					<p className="text_shine text-xl">{data?.description}</p>
-					<h1 className="text-6xl font-bold">
+				<div className="bg-(--clr-surface) relative overflow-hidden p-16 rounded-2xl border border-(--clr-surface-light2) flex flex-col justify-center items-start gap-8 w-1/2">
+					{data?.mostPopular && (
+						<>
+							<div className="absolute right-0 top-0 bg_anim w-80 aspect-square rounded-full translate-x-1/2 -translate-y-1/2 blur-[250px]"></div>
+							<h6 className="font-black bg-(--clr-accent-opacity) text-(--clr-accent) py-2 px-4 rounded-2xl absolute top-4 right-4 z-10">BEST VALUE</h6>
+						</>
+					)}
+					<Server color="var(--clr-primary)" s={32} css="z-10" />
+					<h2 className="text-4xl font-black z-10">{data?.type}</h2>
+					<p className="text_shine text-xl z-10">{data?.description}</p>
+					<h1 className="text-6xl font-bold z-10">
 						${data?.price} <span className="text-gray-500 font-normal text-3xl">/mo</span>
 					</h1>
-					<hr className="border-gray-600 w-full" />
+					<hr className="border-gray-600 w-full z-10" />
 
 					<AtcBtn />
 				</div>

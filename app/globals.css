@@ -1,29 +1,37 @@
 @import "tailwindcss";
 
 :root {
+  /* --- Existing Base Colors --- */
   --background: #F1F5F9;
   --background2: #d3d4d6;
   --background3: #bdbdbd;
   --foreground: #020617;
   --foreground2: #474747;
   --foreground3: #767676;
+
+
   --clr-primary: #0EA5E9;
-  --clr-primary-opacity: #0080ff33;
-  --gradient: linear-gradient(45deg, #8400ff, #f700ff, #ff00ea);
-  --gradient2: linear-gradient(45deg, #00ddff, #ff00ea);
-  --clr-accent: #8400ff;
-  --clr-accent-opacity: #4f00994d;
-  --clr-accent2: #ff00ea;
-  --clr-accent2-opacity: #ff00ea33;
+  --clr-primary-opacity: rgba(14, 165, 233, 0.2);
+
+  --gradient: linear-gradient(135deg, #0EA5E9 0%, #6366F1 100%);
+  --gradient2: linear-gradient(135deg, #38BDF8 0%, #2DD4BF 100%);
+
+  --clr-accent: #6366F1;
+  --clr-accent-opacity: rgba(99, 102, 241, 0.2);
+
+  --clr-accent2: #2DD4BF;
+  --clr-accent2-opacity: rgba(45, 212, 191, 0.2);
+
   --clr-surface: #111827;
   --clr-surface2: #070a11;
-  --clr-surface-light: #18202c;
-  --clr-surface-light2: #1f2937;
-  --clr-border-opacity: #f1f5f91d;
-  --clr-background-opacity: #f1f5f912;
-  --clr-background-opacity2: #f1f5f94a;
-  --clr-foreground-opacity: #00000012;
-  --clr-foreground-opacity2: #00000052;
+  --clr-surface-light: #18202C;
+  --clr-surface-light2: #1F2937;
+
+  --clr-border-opacity: rgba(241, 245, 249, 0.11);
+  --clr-background-opacity: rgba(241, 245, 249, 0.07);
+  --clr-background-opacity2: rgba(241, 245, 249, 0.29);
+  --clr-foreground-opacity: rgba(0, 0, 0, 0.07);
+  --clr-foreground-opacity2: rgba(0, 0, 0, 0.32);
 }
 
 @theme inline {
@@ -406,4 +414,47 @@ body {
 .shadow_anim:hover::before {
   filter: blur(15px);
   opacity: 0.5;
+}
+
+.loading {
+  position: relative;
+  overflow: hidden;
+  border-radius: 15px;
+}
+
+.loading::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 50px;
+  height: 100%;
+  transform: skewX(15deg) translateX(-300%);
+  background-color: white;
+  filter: blur(45px);
+  animation: loading 1s ease 0s infinite;
+}
+
+@keyframes loading {
+  from {
+    transform: skewX(15deg) translateX(-300%);
+    left: 0;
+  }
+
+  to {
+    transform: skewX(15deg) translateX(200%);
+    left: 100%;
+  }
+}
+
+.loading2 {
+  opacity: 1;
+  animation: loading2 3s ease 0s infinite;
+}
+
+@keyframes loading2 {
+  50% {
+    opacity: 0.5;
+
+  }
 }

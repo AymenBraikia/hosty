@@ -38,13 +38,10 @@ export default function Header(props: { promotion?: { url?: string; content: str
 							Hosting
 						</Link>
 						<Link className="underline_anim text-gray-400 hover:text-gray-200 transition" href={"#"}>
-							VPS
-						</Link>
-						<Link className="underline_anim text-gray-400 hover:text-gray-200 transition" href={"#"}>
-							Dedicated
-						</Link>
-						<Link className="underline_anim text-gray-400 hover:text-gray-200 transition" href={"#"}>
 							Domains
+						</Link>
+						<Link className="underline_anim text-gray-400 hover:text-gray-200 transition" href={"#"}>
+							Docs
 						</Link>
 					</div>
 					<div className="flex justify-center items-center gap-5">
@@ -81,16 +78,13 @@ export default function Header(props: { promotion?: { url?: string; content: str
 								Hosting
 							</Link>
 							<Link className="text-[18px] underline_anim text-foreground hover:text-gray-200 transition" href={"#"}>
-								VPS
-							</Link>
-							<Link className="text-[18px] underline_anim text-foreground hover:text-gray-200 transition" href={"#"}>
-								Dedicated
-							</Link>
-							<Link className="text-[18px] underline_anim text-foreground hover:text-gray-200 transition" href={"#"}>
 								Domains
 							</Link>
 							<Link className="text-[18px] underline_anim text-foreground hover:text-gray-200 transition" href={"#"}>
 								Support
+							</Link>
+							<Link className="text-[18px] underline_anim text-foreground hover:text-gray-200 transition" href={"#"}>
+								Docs
 							</Link>
 							<Link className="text-[18px] underline_anim text-foreground hover:text-gray-200 transition" href={"#"}>
 								Self-hosted n8n
