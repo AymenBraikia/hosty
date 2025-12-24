@@ -1,14 +1,19 @@
 "use client";
 
-import Cta from "./components/cta";
-import Faq from "./components/faq";
-import Hero from "./components/hero";
-import Network from "./components/network";
-import OneClickDeploy from "./components/oneClickDeploy";
-import Perks from "./components/perks";
-import Pricing from "./components/pricing";
-import TechStackScroll from "./components/svg/slider";
-import Trust from "./components/trust";
+import LoadingHero from "./components/loading/hero";
+import LoadingTechStackScroll from "./components/loading/slider";
+import dynamic from "next/dynamic";
+
+const Hero = dynamic(() => import("./components/hero"), { ssr: false, loading: () => <LoadingHero /> });
+const TechStackScroll = dynamic(() => import("./components/loading/slider"), { ssr: false, loading: () => <LoadingTechStackScroll /> });
+
+const Cta = dynamic(() => import("./components/cta"), { ssr: false, loading: () => <></> });
+const Faq = dynamic(() => import("./components/faq"), { ssr: false, loading: () => <></> });
+const Network = dynamic(() => import("./components/network"), { ssr: false, loading: () => <></> });
+const OneClickDeploy = dynamic(() => import("./components/oneClickDeploy"), { ssr: false, loading: () => <></> });
+const Perks = dynamic(() => import("./components/perks"), { ssr: false, loading: () => <></> });
+const Pricing = dynamic(() => import("./components/pricing"), { ssr: false, loading: () => <></> });
+const Trust = dynamic(() => import("./components/trust"), { ssr: false, loading: () => <></> });
 
 export default function Body() {
 	return (

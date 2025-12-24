@@ -79,6 +79,10 @@ body {
   position: relative;
 }
 
+.code-font {
+  font-family: var(--font-terminal) !important;
+}
+
 .terminal::before {
   content: '';
   position: absolute;
@@ -420,6 +424,7 @@ body {
   position: relative;
   overflow: hidden;
   border-radius: 15px;
+  background-color: transparent !important;
 }
 
 .loading::before {

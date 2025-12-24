@@ -37,10 +37,10 @@ export default function Header(props: { promotion?: { url?: string; content: str
 						<Link className="underline_anim text-gray-400 hover:text-gray-200 transition" href={"/hosting"}>
 							Hosting
 						</Link>
-						<Link className="underline_anim text-gray-400 hover:text-gray-200 transition" href={"#"}>
+						<Link className="underline_anim text-gray-400 hover:text-gray-200 transition" href={"/domain"}>
 							Domains
 						</Link>
-						<Link className="underline_anim text-gray-400 hover:text-gray-200 transition" href={"#"}>
+						<Link className="underline_anim text-gray-400 hover:text-gray-200 transition" href={"/docs"}>
 							Docs
 						</Link>
 					</div>
