@@ -1,47 +1,47 @@
 // app/layout.tsx
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import localFont from "next/font/local";
 import "./globals.css";
 
 const myFont = localFont({
 	src: [
 		{
-			path: "../public/fonts/Nunito/Nunito-ExtraLight.ttf",
+			path: "../../public/fonts/Nunito/Nunito-ExtraLight.ttf",
 			weight: "200",
 			style: "normal",
 		},
 		{
-			path: "../public/fonts/Nunito/Nunito-Light.ttf",
+			path: "../../public/fonts/Nunito/Nunito-Light.ttf",
 			weight: "300",
 			style: "normal",
 		},
 		{
-			path: "../public/fonts/Nunito/Nunito-Regular.ttf",
+			path: "../../public/fonts/Nunito/Nunito-Regular.ttf",
 			weight: "400",
 			style: "normal",
 		},
 		{
-			path: "../public/fonts/Nunito/Nunito-Medium.ttf",
+			path: "../../public/fonts/Nunito/Nunito-Medium.ttf",
 			weight: "500",
 			style: "normal",
 		},
 		{
-			path: "../public/fonts/Nunito/Nunito-SemiBold.ttf",
+			path: "../../public/fonts/Nunito/Nunito-SemiBold.ttf",
 			weight: "600",
 			style: "normal",
 		},
 		{
-			path: "../public/fonts/Nunito/Nunito-Bold.ttf",
+			path: "../../public/fonts/Nunito/Nunito-Bold.ttf",
 			weight: "700",
 			style: "normal",
 		},
 		{
-			path: "../public/fonts/Nunito/Nunito-ExtraBold.ttf",
+			path: "../../public/fonts/Nunito/Nunito-ExtraBold.ttf",
 			weight: "800",
 			style: "normal",
 		},
 		{
-			path: "../public/fonts/Nunito/Nunito-Black.ttf",
+			path: "../../public/fonts/Nunito/Nunito-Black.ttf",
 			weight: "900",
 			style: "normal",
 		},
@@ -61,7 +61,7 @@ const myFont2 = localFont({
 		// 	style: "normal",
 		// },
 		{
-			path: "../public/fonts/JetBrains_Mono/JetBrainsMono-Regular.ttf",
+			path: "../../public/fonts/JetBrains_Mono/JetBrainsMono-Regular.ttf",
 			weight: "400",
 			style: "normal",
 		},
@@ -151,13 +151,21 @@ export const metadata: Metadata = {
 	alternates: {
 		canonical: "https://your-hostify-demo.com",
 	},
+};
+export const viewport: Viewport = {
 	themeColor: "#0A0A0A",
 };
 
-export default function RootLayout({ children }: { children: React.ReactNode }) {
+
+
+import { NextIntlClientProvider } from "next-intl";
+
+export default async function RootLayout({ children }: { children: React.ReactNode }) {
 	return (
 		<html lang="en" className={`${myFont.variable} ${myFont2.variable}`}>
-			<body>{children}</body>
+			<body>
+				<NextIntlClientProvider>{children}</NextIntlClientProvider>
+			</body>
 		</html>
 	);
 }

@@ -1,7 +1,7 @@
 "use client";
 import { useEffect, useState } from "react";
 import Image from "next/image";
-import logoIcon from "../../public/logo.png";
+import logoIcon from "../../../public/logo.png";
 import Link from "next/link";
 import Button from "./button";
 import Select from "./select";
