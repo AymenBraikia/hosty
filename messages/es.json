@@ -1,6 +1,218 @@
 {
-  "Index": {
-    "title": "¡Hola mundo!",
-    "welcome": "Bienvenido a mi sitio web"
-  }
+	"hero": {
+		"badge": "Nuevo: Servidores Cloud NVMe Gen 4",
+		"headline": "Hospeda tus sueños",
+		"subheadline": "Más allá de los límites.",
+		"description": "Hosty ofrece infraestructura cloud premium con seguridad de nivel empresarial. Despliega al instante, escala globalmente, duerme tranquilo.",
+		"search": {
+			"placeholder": "Encuentra tu dominio perfecto...",
+			"button": "Buscar"
+		},
+		"features": {
+			"ssl": "SSL gratuito",
+			"ddos": "Protección DDoS",
+			"uptime": "99,9% de disponibilidad"
+		},
+		"performance": {
+			"label": "Puntaje de velocidad",
+			"value": "100/100"
+		}
+	},
+	"why": {
+		"headline": "Por qué los desarrolladores cambian a",
+		"description": "No solo hospedamos tu código; lo optimizamos. Experimenta la diferencia de una plataforma creada por desarrolladores, para desarrolladores.",
+		"features": {
+			"nvme": {
+				"title": "NVMe ultrarrápido",
+				"description": "La arquitectura de almacenamiento 100 % NVMe ofrece hasta 10 veces más rendimiento I/O que el hosting SSD tradicional."
+			},
+			"security": {
+				"title": "Seguridad sólida",
+				"description": "Copias de seguridad automáticas diarias, SSL gratuito y protección DDoS con IA mantienen tus datos seguros 24/7."
+			},
+			"cdn": {
+				"title": "CDN global",
+				"description": "El contenido se almacena en caché en más de 200 ubicaciones en todo el mundo, asegurando baja latencia para todos los usuarios."
+			},
+			"devtools": {
+				"title": "Herramientas para desarrolladores",
+				"description": "SSH, integración con Git, WP-CLI y entornos de staging incluidos en todos los planes."
+			},
+			"support": {
+				"title": "Soporte experto 24/7",
+				"description": "Sin bots. Chatea con ingenieros reales que pueden solucionar problemas en minutos, no horas."
+			},
+			"scalability": {
+				"title": "Infraestructura escalable",
+				"description": "Comienza pequeño y escala instantáneamente a grandes clusters sin migración ni tiempo de inactividad."
+			}
+		}
+	},
+	"marketplace": {
+		"headline": "Despliega tus apps favoritas con 1 clic",
+		"description": "Olvida configuraciones de servidor complejas. El marketplace de Hosty permite lanzar instancias listas para producción al instante.",
+		"cta": {
+			"browse": "Explorar Marketplace"
+		},
+		"apps": {
+			"wordpress": "WordPress",
+			"magento": "Magento",
+			"joomla": "Joomla",
+			"drupal": "Drupal",
+			"prestashop": "PrestaShop",
+			"opencart": "OpenCart"
+		}
+	},
+	"network": {
+		"badge": "Red global",
+		"headline": {
+			"primary": "Centros de datos ubicados",
+			"highlight": "donde están tus usuarios."
+		},
+		"description": "Nuestra red de ultra baja latencia abarca 6 continentes. Hosty enruta automáticamente el tráfico al nodo más cercano, asegurando carga instantánea desde Tokio a Toronto.",
+		"features": {
+			"latency": {
+				"title": "Optimización de latencia",
+				"description": "El enrutamiento inteligente reduce los tiempos de respuesta en un 40 %"
+			},
+			"ddos": {
+				"title": "Mitigación DDoS",
+				"description": "Protección activa hasta 100 Gbps"
+			}
+		}
+	},
+	"pricing": {
+		"headline": "Precios simples y transparentes",
+		"billing": {
+			"monthly": "Mensual",
+			"yearly": "Anual",
+			"discount": "-30%"
+		},
+		"labels": {
+			"startingAt": "Desde",
+			"perMonth": "/mes",
+			"choosePlan": "Elegir plan",
+			"mostPopular": "Más popular",
+			"freeSslCdn": "SSL & CDN gratuitos"
+		},
+		"plans": {
+			"cloudVps": {
+				"name": "Cloud VPS",
+				"description": "Instancias virtuales flexibles para desarrolladores y apps pequeñas. Escala al instante.",
+				"specs": {
+					"cpu": "vCPU",
+					"ram": "GB RAM",
+					"storage": "Almacenamiento",
+					"bandwidth": "Ancho de banda"
+				}
+			},
+			"vdsHybrid": {
+				"name": "VDS Híbrido",
+				"description": "Servidores dedicados virtuales con recursos garantizados y hilos dedicados.",
+				"specs": {
+					"cpu": "vCPU",
+					"ram": "GB RAM",
+					"storage": "Almacenamiento",
+					"bandwidth": "Ancho de banda"
+				}
+			},
+			"dedicated": {
+				"name": "Servidor dedicado",
+				"description": "Servidores físicos de un solo inquilino para máximo rendimiento y control.",
+				"specs": {
+					"cpu": "vCPU",
+					"ram": "GB RAM",
+					"storage": "Almacenamiento",
+					"bandwidth": "Ancho de banda"
+				}
+			}
+		}
+	},
+	"trust": {
+		"headline": "Confiado por más de 10,000 innovadores",
+		"reviews": {
+			"sarah": {
+				"name": "Sarah Jenkins",
+				"role": "CTO @ TechFlow",
+				"content": "Cambiar a Hosty fue la mejor decisión del año. Los tiempos de respuesta de nuestra API se redujeron un 60 % al instante."
+			},
+			"david": {
+				"name": "David Chen",
+				"role": "Desarrollador independiente",
+				"content": "La experiencia del desarrollador es insuperable. La herramienta CLI hace que desplegar mis apps Next.js sea mágico."
+			},
+			"elena": {
+				"name": "Elena Rodriguez",
+				"role": "Propietaria de agencia",
+				"content": "Los sitios de los clientes son más rápidos, el soporte es realmente útil y la tarifa es transparente. Muy recomendable."
+			}
+		}
+	},
+	"faq": {
+		"title": "Preguntas frecuentes",
+		"questions": [
+			{
+				"question": "¿Qué tan rápido es Hosty comparado con los competidores?",
+				"answer": "Hosty utiliza almacenamiento NVMe Gen4 de nivel empresarial y puertos uplink de 10Gbps, siendo aproximadamente 4 veces más rápido que los proveedores SSD estándar como Godaddy o Bluehost."
+			},
+			{
+				"question": "¿Qué tipos de hosting ofrecen?",
+				"answer": "Ofrecemos hosting web compartido, VPS, servidores dedicados, cloud y WordPress. Todos los planes incluyen SSL gratuito, copias de seguridad diarias y soporte 24/7."
+			},
+			{
+				"question": "¿Ofrecen garantía de devolución de dinero?",
+				"answer": "Sí, ofrecemos garantía de devolución de 30 días en todos los planes. Contacta a soporte en 30 días para un reembolso completo."
+			},
+			{
+				"question": "¿Proporcionan un panel de control?",
+				"answer": "Sí, todos los planes incluyen un panel intuitivo para administrar dominios, bases de datos, correos electrónicos, archivos y más."
+			},
+			{
+				"question": "¿Ofrecen migración gratuita?",
+				"answer": "¡Sí! Nuestro equipo experto migrará tus sitios existentes desde cualquier proveedor completamente gratis y sin tiempo de inactividad."
+			},
+			{
+				"question": "¿Mis datos se respaldan automáticamente?",
+				"answer": "Sí, realizamos copias de seguridad automáticas diarias. Los planes Professional y Enterprise incluyen retención de 30 días y restauración con un clic."
+			},
+			{
+				"question": "¿Dónde se encuentran sus centros de datos?",
+				"answer": "Tenemos centros de datos en Nueva York, Londres, Frankfurt, Singapur y Sídney. Puedes elegir tu ubicación preferida al realizar la compra."
+			}
+		]
+	},
+	"cta": {
+		"title": "Deja de esperar. Comienza a construir",
+		"subtitle": "Únete al nuevo estándar de hosting cloud. Garantía de devolución de 30 días, sin preguntas.",
+		"buttons": {
+			"launchServer": "Lanzar servidor",
+			"viewDocs": "Ver documentación"
+		}
+	},
+	"footer": {
+		"description": "Hosty ofrece infraestructura cloud de alto rendimiento para desarrolladores que valoran la velocidad, disponibilidad y diseño.",
+		"socials": {
+			"twitter": "Twitter",
+			"github": "Github",
+			"linkedin": "Linkedin",
+			"youtube": "YouTube",
+			"facebook": "Facebook"
+		},
+		"sections": {
+			"platform": {
+				"title": "Plataforma",
+				"links": ["Compute", "Almacenamiento", "Bases de datos", "Red", "Seguridad"]
+			},
+			"company": {
+				"title": "Empresa",
+				"links": ["Acerca de", "Blog", "Carreras", "Clientes", "Marca"]
+			},
+			"resources": {
+				"title": "Recursos",
+				"links": ["Documentación", "Referencia API", "Estado", "Comunidad", "Ayuda"]
+			}
+		},
+		"copyright": "© 2026 Hosty Inc. Todos los derechos reservados.",
+		"policies": ["Privacidad", "Términos", "Mapa del sitio"]
+	}
 }

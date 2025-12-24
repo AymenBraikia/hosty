@@ -1,6 +1,9 @@
+import { useTranslations } from "next-intl";
 import Thunder from "./svg/thunder";
 
 export default function Terminal() {
+	const t = useTranslations("hero");
+
 	return (
 		<div className="terminal flex-col rounded-2xl w-1/2 h-3/5 border-gray-800 border max-lg:hidden lg:flex">
 			<div className="w-full flex justify-center items-center bg-(--clr-surface) border-gray-800 border-b relative px-4 py-2 rounded-t-md">
@@ -32,7 +35,7 @@ export default function Terminal() {
 					<Thunder s={20} color="#4ade80" />
 				</div>
 				<div>
-					<p className="text-gray-400 text-xs">SPEED SCORE</p>
+					<p className="text-gray-400 text-xs">{t("performance.label")}</p>
 					<p>100/100</p>
 				</div>
 			</div>

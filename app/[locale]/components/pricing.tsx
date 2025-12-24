@@ -6,6 +6,7 @@ import Thunder from "./svg/thunder";
 import Shield from "./svg/shield";
 import Storage from "./svg/storage";
 import Star2 from "./svg/star2";
+import { useTranslations } from "next-intl";
 
 type plan = {
 	name: string;
@@ -15,67 +16,69 @@ type plan = {
 	specs: { cpu: number | string; ram: number | string; storage: string; bandWidth: string; ssl_cdn: boolean };
 };
 
-const plans: plan[] = [
-	{
-		name: "Cloud VPS",
-		pricing: { m: 4.99, y: 3.99 },
-		description: "Flexible virtual instances for developers and small apps. Scale instantly.",
-		popular: false,
-		specs: {
-			cpu: "1-16",
-			ram: "1-32",
-			storage: "25 GB - 400 GB SSD",
-			bandWidth: "1 TB - 12 TB Traffic",
-			ssl_cdn: true,
-		},
-	},
-	{
-		name: "VDS Hybrid",
-		pricing: { m: 39.99, y: 27.99 },
-		description: "Virtual Dedicated Servers with guaranteed resources and dedicated threads.",
-		popular: false,
-		specs: {
-			cpu: "4-40",
-			ram: "8-128",
-			storage: "200 GB - 2 TB NVMe",
-			bandWidth: "5 TB - 30 Traffic",
-			ssl_cdn: true,
-		},
-	},
-	{
-		name: "Dedicated Server",
-		pricing: { m: 79.99, y: 55.99 },
-		description: "Single-tenant physical servers for maximum performance and control.",
-		popular: false,
-		specs: {
-			cpu: "8-64",
-			ram: "16-512",
-			storage: "1 TB - 2x4 TB NVMe",
-			bandWidth: "10 TB - 60TB Traffic",
-			ssl_cdn: true,
-		},
-	},
-];
-
 export default function Pricing() {
+	const t = useTranslations("pricing");
 	const [plan, setPlan] = useState<"m" | "y">("m");
+
+	const plans: plan[] = [
+		{
+			name: t("plans.cloudVps.name"),
+			pricing: { m: 4.99, y: 3.99 },
+			description: t("plans.cloudVps.description"),
+			popular: false,
+			specs: {
+				cpu: "1-16",
+				ram: "1-32",
+				storage: "25 GB - 400 GB SSD",
+				bandWidth: "1 TB - 12 TB Traffic",
+				ssl_cdn: true,
+			},
+		},
+		{
+			name: t("plans.vdsHybrid.name"),
+			pricing: { m: 39.99, y: 27.99 },
+			description: t("plans.vdsHybrid.description"),
+			popular: false,
+			specs: {
+				cpu: "4-40",
+				ram: "8-128",
+				storage: "200 GB - 2 TB NVMe",
+				bandWidth: "5 TB - 30 Traffic",
+				ssl_cdn: true,
+			},
+		},
+		{
+			name: t("plans.dedicated.name"),
+			pricing: { m: 79.99, y: 55.99 },
+			description: t("plans.dedicated.description"),
+			popular: false,
+			specs: {
+				cpu: "8-64",
+				ram: "16-512",
+				storage: "1 TB - 2x4 TB NVMe",
+				bandWidth: "10 TB - 60TB Traffic",
+				ssl_cdn: true,
+			},
+		},
+	];
+
 	return (
 		<section className="w-dvw min-h-dvh flex flex-col justify-center items-center gap-8 p-16 max-md:p-6">
-			<h1 className="text-5xl font-black max-sm:text-3xl max-lg:text-4xl text-center">Simple, Transparent Pricing</h1>
+			<h1 className="text-5xl font-black max-sm:text-3xl max-lg:text-4xl text-center">{t("headline")}</h1>
 			<div className="p-2 border border-(--clr-surface-light) flex justify-center items-center bg-(--clr-surface2) rounded-full relative">
 				<Button
 					action={() => setPlan("m")}
 					css={`
 						${plan == "m" ? "text-foreground" : "text-gray-400"} py-2 z-10
 					`}
-					content="Monthly"
+					content={t("billing.monthly")}
 				/>
 				<Button
 					action={() => setPlan("y")}
 					css={`
 						${plan == "y" ? "text-foreground" : "text-gray-400"} py-2 z-10 gap-2 flex
 					`}
-					content="Yearly"
+					content={t("billing.yearly")}
 					children_el={<span className="text-(--clr-accent)">-30%</span>}
 				/>
 				<div className={`transition bg-(--clr-surface-light) ${plan == "m" ? "left-2 w-22" : "left-23 w-30"} h-12 rounded-full absolute top-1/2 -translate-y-1/2`}></div>
@@ -91,6 +94,8 @@ export default function Pricing() {
 
 function Plan(props: { p: plan; plan: "m" | "y" }) {
 	const info = props.p;
+	const t = useTranslations("pricing");
+
 	return (
 		<div
 			className={`relative cursor-pointer overflow-hidden transition bg-(--clr-surface) hover:bg-(--clr-surface-light) rounded-4xl w-[25%] max-lg:w-full flex flex-col gap-5 justify-center items-start p-8 hover:-translate-y-2 ${
@@ -134,19 +139,19 @@ function Plan(props: { p: plan; plan: "m" | "y" }) {
 				{info.specs.ssl_cdn && (
 					<div className="flex gap-2 justify-start items-center font-bold">
 						<Shield color={info.popular ? "var(--clr-accent)" : "var(--clr-primary)"} s={18} />
-						<p>Free SSL & CDN</p>
+						<p>{t("labels.freeSslCdn")}</p>
 					</div>
 				)}
 			</div>
 			<h1 className="text-3xl font-black max-sm:text-3xl">
-				<span className="text-gray-400 text-base font-medium">Starting at </span>${props.plan == "m" ? info.pricing.m : info.pricing.y}
+				<span className="text-gray-400 text-base font-medium">{t("labels.startingAt")} </span>${props.plan == "m" ? info.pricing.m : info.pricing.y}
 				<span className="text-gray-400 text-base font-medium">/mo</span>
 			</h1>
 			<Button
 				css={`
 					${info.popular && "bg_anim"} plan_btn flex justify-center items-center gap-2 w-full
 				`}
-				content="Choose Plan"
+				content={t("labels.choosePlan")}
 			/>
 
 			{info.popular && <div className="absolute right-0 top-0 translate-x-1/2 -translate-y-1/2 bg-(--clr-accent2) w-xs aspect-square -z-10 rounded-full blur-[200px]"></div>}

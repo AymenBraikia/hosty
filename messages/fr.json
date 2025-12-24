@@ -1,6 +1,218 @@
 {
-  "Index": {
-    "title": "¡Hola mundo!",
-    "welcome": "Bienvenido a mi sitio web"
-  }
+	"hero": {
+		"badge": "Nouveau : Serveurs Cloud NVMe Gen 4",
+		"headline": "Hébergez vos rêves",
+		"subheadline": "Au-delà des limites.",
+		"description": "Hosty fournit une infrastructure cloud premium avec une sécurité de niveau entreprise. Déployez instantanément, évoluez globalement, dormez tranquille.",
+		"search": {
+			"placeholder": "Trouvez votre domaine idéal...",
+			"button": "Rechercher"
+		},
+		"features": {
+			"ssl": "SSL gratuit",
+			"ddos": "Protection DDoS",
+			"uptime": "Disponibilité 99,9%"
+		},
+		"performance": {
+			"label": "Score de vitesse",
+			"value": "100/100"
+		}
+	},
+	"why": {
+		"headline": "Pourquoi les développeurs choisissent",
+		"description": "Nous n'hébergeons pas seulement votre code ; nous l'optimisons. Découvrez la différence d'une plateforme conçue par des développeurs, pour des développeurs.",
+		"features": {
+			"nvme": {
+				"title": "NVMe ultra-rapide",
+				"description": "L'architecture de stockage 100 % NVMe offre jusqu'à 10x plus de performance I/O que l'hébergement SSD traditionnel."
+			},
+			"security": {
+				"title": "Sécurité renforcée",
+				"description": "Sauvegardes quotidiennes automatiques, SSL gratuit et protection DDoS pilotée par IA pour sécuriser vos données 24/7."
+			},
+			"cdn": {
+				"title": "CDN mondial",
+				"description": "Le contenu est mis en cache dans plus de 200 emplacements à travers le monde, garantissant une faible latence pour tous les utilisateurs."
+			},
+			"devtools": {
+				"title": "Outils développeur",
+				"description": "SSH, intégration Git, WP-CLI et environnements de staging inclus dans tous les plans."
+			},
+			"support": {
+				"title": "Support expert 24/7",
+				"description": "Pas de bots. Discutez avec de vrais ingénieurs qui peuvent résoudre les problèmes en quelques minutes."
+			},
+			"scalability": {
+				"title": "Infrastructure évolutive",
+				"description": "Commencez petit et évoluez instantanément vers de grands clusters sans migration ni interruption."
+			}
+		}
+	},
+	"marketplace": {
+		"headline": "Déployez vos applications favorites en 1 clic",
+		"description": "Oubliez les configurations serveur complexes. Le marketplace de Hosty vous permet de lancer des instances prêtes à la production instantanément.",
+		"cta": {
+			"browse": "Parcourir le marketplace"
+		},
+		"apps": {
+			"wordpress": "WordPress",
+			"magento": "Magento",
+			"joomla": "Joomla",
+			"drupal": "Drupal",
+			"prestashop": "PrestaShop",
+			"opencart": "OpenCart"
+		}
+	},
+	"network": {
+		"badge": "Réseau mondial",
+		"headline": {
+			"primary": "Centres de données situés",
+			"highlight": "là où se trouvent vos utilisateurs."
+		},
+		"description": "Notre réseau ultra-faible latence couvre 6 continents. Hosty redirige automatiquement le trafic vers le nœud le plus proche, assurant un chargement instantané du site de Tokyo à Toronto.",
+		"features": {
+			"latency": {
+				"title": "Optimisation de la latence",
+				"description": "Le routage intelligent réduit les temps de réponse de 40 %"
+			},
+			"ddos": {
+				"title": "Atténuation DDoS",
+				"description": "Protection permanente jusqu'à 100 Gbps"
+			}
+		}
+	},
+	"pricing": {
+		"headline": "Tarification simple et transparente",
+		"billing": {
+			"monthly": "Mensuel",
+			"yearly": "Annuel",
+			"discount": "-30%"
+		},
+		"labels": {
+			"startingAt": "À partir de",
+			"perMonth": "/mo",
+			"choosePlan": "Choisir le plan",
+			"mostPopular": "Le plus populaire",
+			"freeSslCdn": "SSL & CDN gratuits"
+		},
+		"plans": {
+			"cloudVps": {
+				"name": "Cloud VPS",
+				"description": "Instances virtuelles flexibles pour développeurs et petites applications. Évoluez instantanément.",
+				"specs": {
+					"cpu": "vCPU",
+					"ram": "GB RAM",
+					"storage": "Stockage",
+					"bandwidth": "Bande passante"
+				}
+			},
+			"vdsHybrid": {
+				"name": "VDS Hybride",
+				"description": "Serveurs dédiés virtuels avec ressources garanties et threads dédiés.",
+				"specs": {
+					"cpu": "vCPU",
+					"ram": "GB RAM",
+					"storage": "Stockage",
+					"bandwidth": "Bande passante"
+				}
+			},
+			"dedicated": {
+				"name": "Serveur dédié",
+				"description": "Serveurs physiques mono-tenant pour des performances et un contrôle maximum.",
+				"specs": {
+					"cpu": "vCPU",
+					"ram": "GB RAM",
+					"storage": "Stockage",
+					"bandwidth": "Bande passante"
+				}
+			}
+		}
+	},
+	"trust": {
+		"headline": "Fait confiance par plus de 10 000 innovateurs",
+		"reviews": {
+			"sarah": {
+				"name": "Sarah Jenkins",
+				"role": "CTO @ TechFlow",
+				"content": "Passer à Hosty a été la meilleure décision de l'année. Nos temps de réponse API ont diminué de 60 % instantanément."
+			},
+			"david": {
+				"name": "David Chen",
+				"role": "Développeur indépendant",
+				"content": "L'expérience développeur est inégalée. L'outil CLI rend le déploiement de mes apps Next.js magique."
+			},
+			"elena": {
+				"name": "Elena Rodriguez",
+				"role": "Propriétaire d'agence",
+				"content": "Les sites clients sont plus rapides, le support est vraiment utile et la tarification est transparente. Très recommandé."
+			}
+		}
+	},
+	"faq": {
+		"title": "Questions fréquentes",
+		"questions": [
+			{
+				"question": "À quelle vitesse Hosty est-il par rapport aux concurrents ?",
+				"answer": "Hosty utilise un stockage NVMe Gen4 de niveau entreprise et des ports uplink 10Gbps, ce qui nous rend environ 4x plus rapides que les hébergeurs SSD classiques comme Godaddy ou Bluehost."
+			},
+			{
+				"question": "Quels types d'hébergement proposez-vous ?",
+				"answer": "Nous proposons l'hébergement web partagé, VPS, serveurs dédiés, cloud et WordPress. Tous les plans incluent SSL gratuit, sauvegardes quotidiennes et support 24/7."
+			},
+			{
+				"question": "Proposez-vous une garantie de remboursement ?",
+				"answer": "Oui, nous offrons une garantie de remboursement de 30 jours sur tous les plans. Contactez notre support sous 30 jours pour un remboursement complet."
+			},
+			{
+				"question": "Fournissez-vous un panneau de contrôle ?",
+				"answer": "Oui, tous les plans incluent un panneau de contrôle intuitif pour gérer domaines, bases de données, emails, fichiers et plus."
+			},
+			{
+				"question": "Proposez-vous la migration gratuite ?",
+				"answer": "Oui ! Notre équipe experte migrera vos sites existants depuis n'importe quel fournisseur gratuitement et sans interruption."
+			},
+			{
+				"question": "Mes données sont-elles sauvegardées automatiquement ?",
+				"answer": "Oui ! Nous effectuons des sauvegardes automatiques quotidiennes. Les plans Professional et Enterprise incluent 30 jours de rétention et restauration en un clic."
+			},
+			{
+				"question": "Où sont situés vos centres de données ?",
+				"answer": "Nous avons des centres à New York, Londres, Francfort, Singapour et Sydney. Vous pouvez choisir votre emplacement préféré lors de l'achat."
+			}
+		]
+	},
+	"cta": {
+		"title": "Arrêtez d'attendre. Commencez à construire",
+		"subtitle": "Rejoignez la nouvelle norme de l'hébergement cloud. Garantie de remboursement 30 jours, sans questions.",
+		"buttons": {
+			"launchServer": "Lancer le serveur",
+			"viewDocs": "Voir la documentation"
+		}
+	},
+	"footer": {
+		"description": "Hosty fournit une infrastructure cloud haute performance pour les développeurs qui se soucient de la vitesse, de la disponibilité et du design.",
+		"socials": {
+			"twitter": "Twitter",
+			"github": "Github",
+			"linkedin": "Linkedin",
+			"youtube": "YouTube",
+			"facebook": "Facebook"
+		},
+		"sections": {
+			"platform": {
+				"title": "Plateforme",
+				"links": ["Compute", "Stockage", "Bases de données", "Réseau", "Sécurité"]
+			},
+			"company": {
+				"title": "Entreprise",
+				"links": ["À propos", "Blog", "Carrières", "Clients", "Marque"]
+			},
+			"resources": {
+				"title": "Ressources",
+				"links": ["Documentation", "Référence API", "Statut", "Communauté", "Aide"]
+			}
+		},
+		"copyright": "© 2026 Hosty Inc. Tous droits réservés.",
+		"policies": ["Confidentialité", "Conditions", "Plan du site"]
+	}
 }

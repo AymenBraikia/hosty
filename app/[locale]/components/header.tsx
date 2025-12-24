@@ -9,7 +9,7 @@ import Promotion from "./promotion";
 import Burger from "./svg/burger";
 import Cross from "./svg/cross";
 
-type langs = "en-us" | "en-uk" | "ar-dz" | "es-es" | "ru-ru";
+type langs = "en-us" | "fr-fr" | "ar-dz" | "es-es" | "ru-ru" | "de-de";
 export default function Header(props: { promotion?: { url?: string; content: string; expire_date: number } }) {
 	const [size, setSize] = useState<number>(() => (typeof window !== "undefined" ? innerWidth : 0));
 	const [navState, setNavState] = useState<boolean>(false);
@@ -48,9 +48,10 @@ export default function Header(props: { promotion?: { url?: string; content: str
 						<Select
 							options={[
 								["English", "en-us"],
-								["English", "en-uk"],
+								["French", "fr-fr"],
 								["Arabic", "ar-dz"],
 								["Spanish", "es-es"],
+								["German", "de-de"],
 								["Russian", "ru-ru"],
 							]}
 							action={(e) => {
@@ -94,9 +95,10 @@ export default function Header(props: { promotion?: { url?: string; content: str
 							<Select
 								options={[
 									["English", "en-us"],
-									["English", "en-uk"],
+									["French", "fr-fr"],
 									["Arabic", "ar-dz"],
 									["Spanish", "es-es"],
+									["German", "de-de"],
 									["Russian", "ru-ru"],
 								]}
 								action={(e) => {

@@ -1,0 +1,218 @@
+{
+	"hero": {
+		"badge": "Neu: NVMe Gen 4 Cloud-Server",
+		"headline": "Hoste deine Träume",
+		"subheadline": "Über die Grenzen hinaus.",
+		"description": "Hosty bietet Premium-Cloud-Infrastruktur mit Enterprise-Sicherheit. Sofortiges Deployment, globale Skalierung, sorgenfrei schlafen.",
+		"search": {
+			"placeholder": "Finde deine perfekte Domain...",
+			"button": "Suchen"
+		},
+		"features": {
+			"ssl": "Kostenloses SSL",
+			"ddos": "DDoS-Schutz",
+			"uptime": "99,9% Verfügbarkeit"
+		},
+		"performance": {
+			"label": "Geschwindigkeitspunktzahl",
+			"value": "100/100"
+		}
+	},
+	"why": {
+		"headline": "Warum Entwickler zu wechseln",
+		"description": "Wir hosten nicht nur deinen Code; wir optimieren ihn. Erlebe den Unterschied einer Plattform von Entwicklern für Entwickler.",
+		"features": {
+			"nvme": {
+				"title": "Blitzschnelles NVMe",
+				"description": "Die 100 % NVMe Speicherarchitektur liefert bis zu 10x schnellere I/O-Leistung als traditionelles SSD-Hosting."
+			},
+			"security": {
+				"title": "Eiserne Sicherheit",
+				"description": "Automatisierte tägliche Backups, kostenlose SSLs und KI-gestützter DDoS-Schutz sichern deine Daten rund um die Uhr."
+			},
+			"cdn": {
+				"title": "Globales CDN",
+				"description": "Inhalte werden an über 200 Standorten weltweit zwischengespeichert, was niedrige Latenz für alle Benutzer gewährleistet."
+			},
+			"devtools": {
+				"title": "Entwickler-Tools",
+				"description": "SSH-Zugriff, Git-Integration, WP-CLI und Staging-Umgebungen sind in allen Plänen enthalten."
+			},
+			"support": {
+				"title": "24/7 Experten-Support",
+				"description": "Keine Bots. Chatte mit echten Ingenieuren, die Probleme in Minuten lösen können."
+			},
+			"scalability": {
+				"title": "Skalierbare Infrastruktur",
+				"description": "Starte klein und skaliere sofort zu großen Clustern ohne Datenmigration oder Ausfallzeiten."
+			}
+		}
+	},
+	"marketplace": {
+		"headline": "Deploye deine Lieblings-Apps mit 1 Klick",
+		"description": "Vergiss komplexe Serverkonfigurationen. Hostys Marketplace ermöglicht es dir, sofort produktionsbereite Instanzen beliebter Software zu starten.",
+		"cta": {
+			"browse": "Marketplace durchsuchen"
+		},
+		"apps": {
+			"wordpress": "WordPress",
+			"magento": "Magento",
+			"joomla": "Joomla",
+			"drupal": "Drupal",
+			"prestashop": "PrestaShop",
+			"opencart": "OpenCart"
+		}
+	},
+	"network": {
+		"badge": "Globales Netzwerk",
+		"headline": {
+			"primary": "Rechenzentren befinden sich",
+			"highlight": "dort, wo deine Nutzer sind."
+		},
+		"description": "Unser ultra-niedriges Latenznetzwerk erstreckt sich über 6 Kontinente. Hosty leitet den Verkehr automatisch zum nächstgelegenen Knoten, sodass deine Seite von Tokio bis Toronto sofort geladen wird.",
+		"features": {
+			"latency": {
+				"title": "Latenzoptimierung",
+				"description": "Intelligentes Routing reduziert die Antwortzeiten um 40 %"
+			},
+			"ddos": {
+				"title": "DDoS-Abmilderung",
+				"description": "Immer aktiver Schutz bis zu 100 Gbps"
+			}
+		}
+	},
+	"pricing": {
+		"headline": "Einfache, transparente Preise",
+		"billing": {
+			"monthly": "Monatlich",
+			"yearly": "Jährlich",
+			"discount": "-30%"
+		},
+		"labels": {
+			"startingAt": "Ab",
+			"perMonth": "/Monat",
+			"choosePlan": "Plan wählen",
+			"mostPopular": "Beliebt",
+			"freeSslCdn": "Kostenloses SSL & CDN"
+		},
+		"plans": {
+			"cloudVps": {
+				"name": "Cloud VPS",
+				"description": "Flexible virtuelle Instanzen für Entwickler und kleine Apps. Sofort skalierbar.",
+				"specs": {
+					"cpu": "vCPU",
+					"ram": "GB RAM",
+					"storage": "Speicher",
+					"bandwidth": "Bandbreite"
+				}
+			},
+			"vdsHybrid": {
+				"name": "VDS Hybrid",
+				"description": "Virtuelle dedizierte Server mit garantierten Ressourcen und dedizierten Threads.",
+				"specs": {
+					"cpu": "vCPU",
+					"ram": "GB RAM",
+					"storage": "Speicher",
+					"bandwidth": "Bandbreite"
+				}
+			},
+			"dedicated": {
+				"name": "Dedizierter Server",
+				"description": "Einzeln genutzte physische Server für maximale Leistung und Kontrolle.",
+				"specs": {
+					"cpu": "vCPU",
+					"ram": "GB RAM",
+					"storage": "Speicher",
+					"bandwidth": "Bandbreite"
+				}
+			}
+		}
+	},
+	"trust": {
+		"headline": "Vertraut von über 10.000 Innovatoren",
+		"reviews": {
+			"sarah": {
+				"name": "Sarah Jenkins",
+				"role": "CTO @ TechFlow",
+				"content": "Der Wechsel zu Hosty war die beste Entscheidung des Jahres. Unsere API-Antwortzeiten sanken sofort um 60 %."
+			},
+			"david": {
+				"name": "David Chen",
+				"role": "Indie-Entwickler",
+				"content": "Die Entwicklererfahrung ist unvergleichlich. Das CLI-Tool macht das Deployment meiner Next.js-Apps magisch."
+			},
+			"elena": {
+				"name": "Elena Rodriguez",
+				"role": "Agenturinhaberin",
+				"content": "Kundenseiten sind schneller, der Support wirklich hilfreich und die Preisgestaltung transparent. Sehr empfehlenswert."
+			}
+		}
+	},
+	"faq": {
+		"title": "Häufig gestellte Fragen",
+		"questions": [
+			{
+				"question": "Wie schnell ist Hosty im Vergleich zu Wettbewerbern?",
+				"answer": "Hosty verwendet NVMe Gen4 Enterprise-Speicher und 10Gbps Uplink-Ports, was uns etwa 4x schneller macht als Standard-SSD-Hosting-Anbieter wie Godaddy oder Bluehost."
+			},
+			{
+				"question": "Welche Hosting-Typen bieten Sie an?",
+				"answer": "Wir bieten Shared Web Hosting, VPS, dedizierte Server, Cloud Hosting und WordPress Hosting. Alle Pläne enthalten kostenloses SSL, tägliche Backups und 24/7 Support."
+			},
+			{
+				"question": "Bieten Sie eine Geld-zurück-Garantie?",
+				"answer": "Ja, wir bieten eine 30-tägige Geld-zurück-Garantie auf alle Pläne. Kontaktiere den Support innerhalb von 30 Tagen für eine vollständige Rückerstattung."
+			},
+			{
+				"question": "Stellen Sie ein Control Panel bereit?",
+				"answer": "Ja, alle Pläne enthalten ein intuitives Control Panel zur Verwaltung von Domains, Datenbanken, E-Mail-Konten, Dateien und mehr."
+			},
+			{
+				"question": "Bieten Sie kostenlose Migration an?",
+				"answer": "Ja! Unser Expertenteam migriert Ihre bestehenden Websites von jedem Anbieter kostenlos und ohne Ausfallzeit."
+			},
+			{
+				"question": "Werden meine Daten automatisch gesichert?",
+				"answer": "Ja! Wir führen tägliche automatische Backups durch. Professional- und Enterprise-Pläne beinhalten 30 Tage Aufbewahrung und One-Click-Restore."
+			},
+			{
+				"question": "Wo befinden sich Ihre Rechenzentren?",
+				"answer": "Wir haben Rechenzentren in New York, London, Frankfurt, Singapur und Sydney. Du kannst beim Checkout deinen bevorzugten Standort wählen."
+			}
+		]
+	},
+	"cta": {
+		"title": "Hör auf zu warten. Fang an zu bauen",
+		"subtitle": "Schließe dich dem neuen Standard des Cloud-Hostings an. 30-Tage-Geld-zurück-Garantie, keine Fragen.",
+		"buttons": {
+			"launchServer": "Server starten",
+			"viewDocs": "Dokumentation anzeigen"
+		}
+	},
+	"footer": {
+		"description": "Hosty bietet leistungsstarke Cloud-Infrastruktur für Entwickler, die Wert auf Geschwindigkeit, Verfügbarkeit und Design legen.",
+		"socials": {
+			"twitter": "Twitter",
+			"github": "Github",
+			"linkedin": "Linkedin",
+			"youtube": "YouTube",
+			"facebook": "Facebook"
+		},
+		"sections": {
+			"platform": {
+				"title": "Plattform",
+				"links": ["Compute", "Speicher", "Datenbanken", "Netzwerk", "Sicherheit"]
+			},
+			"company": {
+				"title": "Unternehmen",
+				"links": ["Über uns", "Blog", "Karriere", "Kunden", "Marke"]
+			},
+			"resources": {
+				"title": "Ressourcen",
+				"links": ["Dokumentation", "API-Referenz", "Status", "Community", "Hilfe"]
+			}
+		},
+		"copyright": "© 2026 Hosty Inc. Alle Rechte vorbehalten.",
+		"policies": ["Datenschutz", "AGB", "Sitemap"]
+	}
+}
