@@ -8,18 +8,23 @@ import Select from "./select";
 import Promotion from "./promotion";
 import Burger from "./svg/burger";
 import Cross from "./svg/cross";
+import { usePathname, useRouter } from "@/i18n/routing";
+import { useLocale } from "next-intl";
 
-type langs = "en-us" | "fr-fr" | "ar-dz" | "es-es" | "ru-ru" | "de-de";
 export default function Header(props: { promotion?: { url?: string; content: string; expire_date: number } }) {
 	const [size, setSize] = useState<number>(() => (typeof window !== "undefined" ? innerWidth : 0));
 	const [navState, setNavState] = useState<boolean>(false);
+
+	const router = useRouter();
+	const pathname = usePathname();
 
 	useEffect(() => {
 		const handleResize = () => setSize(innerWidth);
 		window.addEventListener("resize", handleResize);
 		return () => window.removeEventListener("resize", handleResize);
 	}, []);
-	const [lang, set_lang] = useState<langs | string>(() => (typeof window !== "undefined" && (localStorage.getItem("lang") as langs)) || "en-us");
+
+	const lang = useLocale();
 	return (
 		<header className="w-dvw h-fit p-2.5 bg-(--clr-background-opacity) backdrop-blur-3xl fixed left-0 top-0 flex justify-between items-center px-20 z-50 max-md:px-6">
 			<div className="flex justify-center items-center gap-10">
@@ -31,7 +36,7 @@ export default function Header(props: { promotion?: { url?: string; content: str
 				</Link>
 			</div>
 
-			{size >= 1024 ? (
+			{size >= 1024 || !size ? (
 				<>
 					<div className="flex justify-center items-center gap-6 text-[18px]">
 						<Link className="underline_anim text-gray-400 hover:text-gray-200 transition" href={"/hosting"}>
@@ -47,23 +52,23 @@ export default function Header(props: { promotion?: { url?: string; content: str
 					<div className="flex justify-center items-center gap-5">
 						<Select
 							options={[
-								["English", "en-us"],
-								["French", "fr-fr"],
-								["Arabic", "ar-dz"],
-								["Spanish", "es-es"],
-								["German", "de-de"],
-								["Russian", "ru-ru"],
+								["en", "en"],
+								["fr", "fr"],
+								["ar", "ar"],
+								["es", "es"],
+								["de", "de"],
+								["ru", "ru"],
 							]}
 							action={(e) => {
 								const val = e.currentTarget.getAttribute("data-val");
 								if (!val) return;
-								localStorage.setItem("lang", val);
-								set_lang(val);
+								// setCookie("NEXT_LOCALE", val);
+								router.replace(pathname, { locale: val });
 							}}
 							default={lang}
 						/>
-						<Button css="hover:bg-(--clr-accent) hover:shadow-[0_0_10px_0_var(--clr-accent)]" action={() => console.log("clicked my account")} content="Log in" />
-						<Button css="hover:bg-(--clr-accent2) hover:shadow-[0_0_10px_0_var(--clr-accent2)]" action={() => console.log("clicked my account")} content="Get Started" />
+						<Button css="hover:bg-(--clr-accent) hover:shadow-[0_0_10px_0_var(--clr-accent)] transition" url="/get_started" content="Log in" />
+						<Button css="hover:bg-(--clr-accent2) hover:shadow-[0_0_10px_0_var(--clr-accent2)] transition" url="/login" content="Get Started" />
 					</div>
 				</>
 			) : (
@@ -104,8 +109,8 @@ export default function Header(props: { promotion?: { url?: string; content: str
 								action={(e) => {
 									const val = e.currentTarget.getAttribute("data-val");
 									if (!val) return;
-									localStorage.setItem("lang", val);
-									set_lang(val);
+									// setCookie("NEXT_LOCALE", val);
+									router.replace(pathname, { locale: val });
 								}}
 								default={lang}
 							/>
