@@ -67,8 +67,8 @@ export default function Header(props: { promotion?: { url?: string; content: str
 							}}
 							default={lang}
 						/>
-						<Button css="hover:bg-(--clr-accent) hover:shadow-[0_0_10px_0_var(--clr-accent)] transition" url="/get_started" content="Log in" />
-						<Button css="hover:bg-(--clr-accent2) hover:shadow-[0_0_10px_0_var(--clr-accent2)] transition" url="/login" content="Get Started" />
+						<Button css="hover:bg-(--clr-accent) hover:shadow-[0_0_10px_0_var(--clr-accent)] transition" url="/login" content="Log in" />
+						<Button css="hover:bg-(--clr-accent2) hover:shadow-[0_0_10px_0_var(--clr-accent2)] transition" url="/get_started" content="Get Started" />
 					</div>
 				</>
 			) : (
