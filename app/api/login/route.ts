@@ -2,7 +2,6 @@ import { client } from "@/lib/db";
 import { signJwtAccessToken } from "@/lib/jwt";
 import { NextResponse } from "next/server";
 import { cookies } from "next/headers";
-import { redirect } from "next/navigation";
 
 const reg = {
 	email: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
@@ -14,9 +13,9 @@ export async function POST(req: Request) {
 		const cookieStore = await cookies();
 
 		const body = await req.json();
-		const { email, password, full_name } = body;
+		const { email, password } = body;
 
-		if (!email || !password || !full_name) return NextResponse.json({ error: "Missing fields" }, { status: 400 });
+		if (!email || !password) return NextResponse.json({ error: "Missing fields" }, { status: 400 });
 
 		const collection = client.db("hosty").collection("users");
 
@@ -25,13 +24,14 @@ export async function POST(req: Request) {
 		if (!reg.password.test(password)) return NextResponse.json({ error: "Password does not meet complexity requirements" }, { status: 400 });
 
 		try {
-			if (await collection.findOne({ email: email })) return NextResponse.json({ error: "User already exists" }, { status: 400 });
+			const user = await collection.findOne({ email: email });
+			if (!user) return NextResponse.json({ error: "Invalid email or password" }, { status: 400 });
 
-			await collection.insertOne({ email: email, full_name: full_name, password: password });
+			if (password != user.password) return NextResponse.json({ error: "Invalid email or password" }, { status: 400 });
 
 			const payload = {
 				email: email,
-				full_name: full_name,
+				full_name: user.full_name,
 			};
 
 			const accessToken = signJwtAccessToken(payload);
@@ -45,7 +45,7 @@ export async function POST(req: Request) {
 				maxAge: 60 * 60 * 5,
 			});
 		} catch {
-			return NextResponse.json({ error: "An error occurred while signing up" }, { status: 400 });
+			return NextResponse.json({ error: "An error occurred while logging you in" }, { status: 400 });
 		}
 
 		return NextResponse.json({ redirect: "/dashboard" }, { status: 200 });
