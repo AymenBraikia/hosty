@@ -45,18 +45,17 @@ export default function Body() {
 					const res = await (await fetch("/api/sign_up", data)).json();
 				}}
 			>
-				<h1 className="text-4xl font-bold">Create Account</h1>
-				<p className="text-xl text_shine">Start your journey with Hosty</p>
+				<h1 className="text-4xl font-bold">Welcome Back</h1>
+				<p className="text-xl text_shine">Enter your credentials to access your account</p>
 
 				<div className="flex flex-col justify-center items-center w-full gap-7 mt-6">
-					<Input req={true} id="full_name" type="text" placeholder="Full Name" />
 					<Input req={true} id="email" type="email" placeholder="Email Addres" />
 					<Input req={true} id="password" type="password" placeholder="Password" />
-					<Button css="bg_anim w-full text-2xl py-3 rounded-full" type="submit" content="Sign Up" />
+					<Button css="bg_anim w-full text-2xl py-3 rounded-full" type="submit" content="Log In" />
 					<p className="text-gray-400">
-						Already have an account ?{" "}
-						<Link className="text-(--clr-primary) font-bold" href={"/login"}>
-							Log In
+						Don&apos;t have an account ?{" "}
+						<Link className="text-(--clr-primary) font-bold" href={"/sign_up"}>
+							Get Started
 						</Link>
 					</p>
 				</div>
