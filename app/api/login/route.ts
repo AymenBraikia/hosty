@@ -13,7 +13,7 @@ export async function POST(req: Request) {
 		const cookieStore = await cookies();
 
 		const body = await req.json();
-		const { email, password } = body;
+		const { email, password, red } = body;
 
 		if (!email || !password) return NextResponse.json({ error: "Missing fields" }, { status: 400 });
 
@@ -48,7 +48,7 @@ export async function POST(req: Request) {
 			return NextResponse.json({ error: "An error occurred while logging you in" }, { status: 400 });
 		}
 
-		return NextResponse.json({ redirect: "/dashboard" }, { status: 200 });
+		return NextResponse.json({ redirect: red || "/dashboard" }, { status: 200 });
 	} catch (e) {
 		console.clear();
 		console.log(e);

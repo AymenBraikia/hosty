@@ -3,7 +3,7 @@ import { FormEvent, useState } from "react";
 import Button from "../components/button";
 import Input from "../components/input";
 import Link from "next/link";
-import { useRouter } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 
 const reg = {
 	email: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
@@ -16,6 +16,7 @@ export default function Body() {
 	const [fetching, set_fetching] = useState<boolean>(false);
 
 	const router = useRouter();
+	const params = useSearchParams();
 
 	return (
 		<div className="w-dvw h-dvh flex justify-center items-center pt-16">
@@ -46,7 +47,7 @@ export default function Body() {
 							"Content-Type": "application/json",
 						},
 						method: "POST",
-						body: JSON.stringify({ email: email, full_name: full_name, password: password }),
+						body: JSON.stringify({ email: email, full_name: full_name, password: password, red: params.get("redirect") }),
 					};
 
 					const res = await (await fetch("/api/sign_up", data)).json();
