@@ -42,7 +42,16 @@ export async function POST(req: Request) {
 				httpOnly: true,
 				path: "/",
 				secure: process.env.NODE_ENV === "production",
-				maxAge: 60 * 60 * 5,
+				maxAge: 60 * 60 * 24 * 7,
+			});
+
+			cookieStore.set({
+				name: "name",
+				value: user.first_name,
+				httpOnly: false,
+				path: "/",
+				secure: process.env.NODE_ENV === "production",
+				maxAge: 60 * 60 * 24 * 7,
 			});
 		} catch {
 			return NextResponse.json({ error: "An error occurred while logging you in" }, { status: 400 });

@@ -27,7 +27,8 @@ export default function Body() {
 					if (fetching) return;
 
 					const email = (document.getElementById("email") as HTMLInputElement).value;
-					const full_name = (document.getElementById("full_name") as HTMLInputElement).value;
+					const first_name = (document.getElementById("first_name") as HTMLInputElement).value;
+					const last_name = (document.getElementById("last_name") as HTMLInputElement).value;
 					const password = (document.getElementById("password") as HTMLInputElement).value;
 
 					if (!reg.email.test(email)) {
@@ -47,7 +48,7 @@ export default function Body() {
 							"Content-Type": "application/json",
 						},
 						method: "POST",
-						body: JSON.stringify({ email: email, full_name: full_name, password: password, red: params.get("redirect") }),
+						body: JSON.stringify({ email: email, first_name: first_name, last_name: last_name, password: password, red: params.get("redirect") }),
 					};
 
 					const res = await (await fetch("/api/sign_up", data)).json();
@@ -66,7 +67,10 @@ export default function Body() {
 				<p className="text-xl text_shine">Start your journey with Hosty</p>
 
 				<div className="flex flex-col justify-center items-center w-full gap-7 mt-6">
-					<Input req={true} id="full_name" type="text" placeholder="Full Name" />
+					<div className="w-full flex justify-between items-center gap-4">
+						<Input req={true} id="first_name" type="text" placeholder="First Name" />
+						<Input req={true} id="last_name" type="text" placeholder="Last Name" />
+					</div>
 					<Input req={true} id="email" type="email" placeholder="Email Addres" />
 					<Input req={true} id="password" type="password" placeholder="Password" />
 					<Button css={`bg_anim w-full text-2xl py-3 rounded-full ${fetching && "[cursor:not-allowed_!important] brightness-70"}`} type="submit" content="Sign Up" />

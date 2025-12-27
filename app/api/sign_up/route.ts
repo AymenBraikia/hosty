@@ -2,7 +2,6 @@ import { client } from "@/lib/db";
 import { signJwtAccessToken } from "@/lib/jwt";
 import { NextResponse } from "next/server";
 import { cookies } from "next/headers";
-import { redirect } from "next/navigation";
 
 const reg = {
 	email: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
@@ -14,9 +13,9 @@ export async function POST(req: Request) {
 		const cookieStore = await cookies();
 
 		const body = await req.json();
-		const { email, password, full_name, red } = body;
+		const { email, password, first_name, last_name, red } = body;
 
-		if (!email || !password || !full_name) return NextResponse.json({ error: "Missing fields" }, { status: 400 });
+		if (!email || !password || !first_name || !last_name) return NextResponse.json({ error: "Missing fields" }, { status: 400 });
 
 		const collection = client.db("hosty").collection("users");
 
@@ -27,11 +26,12 @@ export async function POST(req: Request) {
 		try {
 			if (await collection.findOne({ email: email })) return NextResponse.json({ error: "User already exists" }, { status: 400 });
 
-			await collection.insertOne({ email: email, full_name: full_name, password: password });
+			await collection.insertOne({ email: email, first_name: first_name, last_name: last_name, password: password });
 
 			const payload = {
 				email: email,
-				full_name: full_name,
+				first_name: first_name,
+				last_name: last_name,
 			};
 
 			const accessToken = signJwtAccessToken(payload);
@@ -42,7 +42,15 @@ export async function POST(req: Request) {
 				httpOnly: true,
 				path: "/",
 				secure: process.env.NODE_ENV === "production",
-				maxAge: 60 * 60 * 5,
+				maxAge: 60 * 60 * 24 * 7,
+			});
+			cookieStore.set({
+				name: "name",
+				value: first_name,
+				httpOnly: false,
+				path: "/",
+				secure: process.env.NODE_ENV === "production",
+				maxAge: 60 * 60 * 24 * 7,
 			});
 		} catch {
 			return NextResponse.json({ error: "An error occurred while signing up" }, { status: 400 });

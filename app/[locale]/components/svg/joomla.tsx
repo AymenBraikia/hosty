@@ -1,4 +1,4 @@
-import { svg_props } from "@/app/types/svg_icon";
+import { svg_props } from "@/app/[locale]/types/svg_icon";
 
 export default function Joomla(props: svg_props) {
 	return (

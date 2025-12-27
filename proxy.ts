@@ -5,7 +5,7 @@ import { routing } from "./i18n/routing";
 
 const handleI18nRouting = createMiddleware(routing);
 
-const protectedRoutes = ["/dashboard", "/plan", "/profile", "/settings"];
+const protectedRoutes = ["/dashboard", "/profile", "/settings", "/cart", "/checkout"];
 
 export default function proxy(request: NextRequest) {
 	const { pathname } = request.nextUrl;
