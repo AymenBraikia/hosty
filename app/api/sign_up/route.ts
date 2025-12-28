@@ -2,6 +2,7 @@ import { client } from "@/lib/db";
 import { signJwtAccessToken } from "@/lib/jwt";
 import { NextResponse } from "next/server";
 import { cookies } from "next/headers";
+import { domain, hostService } from "@/app/[locale]/types/product";
 
 const reg = {
 	email: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
@@ -26,7 +27,14 @@ export async function POST(req: Request) {
 		try {
 			if (await collection.findOne({ email: email })) return NextResponse.json({ error: "User already exists" }, { status: 400 });
 
-			await collection.insertOne({ email: email, first_name: first_name, last_name: last_name, password: password });
+			await collection.insertOne({
+				email: email,
+				first_name: first_name,
+				last_name: last_name,
+				password: password,
+				cart: new Set<hostService | domain>([]),
+				wish_list: new Set<hostService | domain>([]),
+			});
 
 			const payload = {
 				email: email,

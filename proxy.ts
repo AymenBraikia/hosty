@@ -10,6 +10,8 @@ const protectedRoutes = ["/dashboard", "/profile", "/settings", "/cart", "/check
 export default function proxy(request: NextRequest) {
 	const { pathname } = request.nextUrl;
 
+	if (pathname.startsWith("/api") || pathname.startsWith("/_next/")) return NextResponse.next();
+
 	const locale = routing.locales.find((locale) => pathname.startsWith(`/${locale}/`) || pathname === `/${locale}`);
 
 	const pathnameWithoutLocale = locale ? pathname.replace(`/${locale}`, "") || "/" : pathname;

@@ -1,7 +1,5 @@
 "use client";
-import { useState } from "react";
 import Button from "../components/button";
-import Star2 from "../components/svg/star2";
 import Cpu from "../components/svg/cpu";
 import { useSearchParams } from "next/navigation";
 import AtcBtn from "../components/addToCart";
@@ -27,9 +25,7 @@ interface service {
 let i = 0;
 
 const services: service[] = [
-	// =====================
-	// Cloud VPS (by price)
-	// =====================
+
 	{
 		type: "Cloud VPS",
 		id: i++,

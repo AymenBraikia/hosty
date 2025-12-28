@@ -1,5 +1,5 @@
 "use client";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import Image from "next/image";
 import logoIcon from "../../../public/logo.png";
 import Link from "next/link";
@@ -10,9 +10,10 @@ import Promotion from "./promotion";
 // import Cross from "./svg/cross";
 import { usePathname, useRouter } from "@/i18n/routing";
 import { useLocale } from "next-intl";
-import { getCookie } from "@/lib/cookies_manager";
 import Cart from "./svg/cart";
 import Wish from "./svg/wish";
+import user_data from "../context/user_data";
+import { domain, hostService } from "../types/product";
 
 export default function Header(props: { promotion?: { url?: string; content: string; expire_date: number } }) {
 	const [size, setSize] = useState<number>(() => (typeof window !== "undefined" ? innerWidth : 0));
@@ -29,7 +30,7 @@ export default function Header(props: { promotion?: { url?: string; content: str
 
 	const lang = useLocale();
 
-	const name = getCookie("name");
+	const data = useContext(user_data) as { wish_list: [domain | hostService]; cart: [domain | hostService]; name: string } | undefined;
 
 	return (
 		<header className="w-dvw h-fit p-2.5 bg-(--clr-background-opacity) backdrop-blur-3xl fixed left-0 top-0 flex justify-between items-center px-20 z-50 max-md:px-6">
@@ -73,15 +74,17 @@ export default function Header(props: { promotion?: { url?: string; content: str
 							default={lang}
 						/>
 
-						{name ? (
+						{data ? (
 							<>
-								<Link href={"/cart"} className="p-2 text-gray-500 hover:text-(--clr-primary) transition cursor-pointer">
+								<Link href={"/cart"} className="relative p-2 text-gray-500 hover:text-(--clr-primary) transition cursor-pointer">
 									<Cart s={30} color="currentColor" />
+									{data.cart.length && <span className="text-xs bg-red-500 rounded-full top-1/2 left-1/2 translate-10">{data.cart.length}</span>}
 								</Link>
-								<Link href={"/wishlist"} className="p-2 text-gray-500 hover:text-(--clr-primary) transition cursor-pointer">
+								<Link href={"/wish_list"} className="relative p-2 text-gray-500 hover:text-(--clr-primary) transition cursor-pointer">
 									<Wish s={40} color="currentColor" />
+									{data.wish_list.length && <span className="text-xs bg-red-500 rounded-full top-1/2 left-1/2 translate-10">{data.wish_list.length}</span>}
 								</Link>
-								<Button css="py-2 px-4 text-xl text-foreground hover:bg-(--clr-primary) transition cursor-pointer" content={name || "Profile"} />
+								<Button css="py-2 px-4 text-xl text-foreground hover:bg-(--clr-primary) transition cursor-pointer" content={data.name || "Profile"} />
 							</>
 						) : (
 							<>
