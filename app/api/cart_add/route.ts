@@ -20,13 +20,15 @@ export async function POST(req: Request) {
 
 	const { id } = await req.json();
 
-	if (!id) return NextResponse.json({ message: "Item not found" }, { status: 400 });
+	if (typeof id != "number" || id < 0) return NextResponse.json({ message: "Item not found" }, { status: 400 });
 
 	const service = await get_services(id);
 
 	if (!service) return NextResponse.json({ message: "Item not found" }, { status: 400 });
 
 	const db = client.db("hosty").collection("users");
+
+	if (await db.findOne({ email: payload!.email, cart: service })) return NextResponse.json({ message: "Item already in cart" }, { status: 400 });
 
 	await db.updateOne({ email: payload!.email }, { $addToSet: { cart: service } });
 

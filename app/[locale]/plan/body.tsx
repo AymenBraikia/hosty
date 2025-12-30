@@ -7,6 +7,10 @@ import Server from "../components/svg/server";
 import Star from "../components/svg/star";
 import Correct from "../components/svg/correct";
 import Arrow from "../components/svg/arrow";
+import { domain, hostService } from "../types/product";
+import { useContext, useState } from "react";
+import user_data from "../context/user_data";
+import Notification from "../components/notification";
 
 interface service {
 	type: "Cloud VPS" | "Cloud VDS" | "Dedicated Server";
@@ -25,7 +29,6 @@ interface service {
 let i = 0;
 
 const services: service[] = [
-
 	{
 		type: "Cloud VPS",
 		id: i++,
@@ -516,6 +519,10 @@ export default function Body() {
 	const id = searchParams.get("id");
 
 	const data = services.find((s) => s.id == Number(id));
+	const user_info = useContext(user_data) as { wish_list: [domain | hostService]; cart: [domain | hostService]; name: string } | undefined;
+
+	const [notification_visibility, set_notification_visibility] = useState<boolean>(false);
+	const [notification_err, set_notification_err] = useState<string>("");
 
 	return (
 		<section className="w-dvw min-h-dvh flex flex-col justify-start items-start p-32">
@@ -532,11 +539,11 @@ export default function Body() {
 					<h2 className="text-4xl font-black z-10">{data?.type}</h2>
 					<p className="text_shine text-xl z-10">{data?.description}</p>
 					<h1 className="text-6xl font-bold z-10">
-						${data?.price} <span className="text-gray-500 font-normal text-3xl">/mo</span>
+						${data?.price} <span className="text-gray-500 font-medium text-3xl">/mo</span>
 					</h1>
 					<hr className="border-gray-600 w-full z-10" />
 
-					<AtcBtn />
+					<AtcBtn notification_State={set_notification_visibility} notification_Err={set_notification_err} available={user_info?.cart.find((e) => e.id == data?.id) ? false : true} product_id={data?.id} />
 				</div>
 				<div className="flex flex-col justify-start items-start w-1/2 gap-4">
 					<h4 className="text-2xl font-bold flex justify-start items-center gap-3">
@@ -635,6 +642,7 @@ export default function Body() {
 					</div>
 				</div>
 			</div>
+			<Notification err={notification_err} notification_visible={notification_visibility} />
 		</section>
 	);
 }

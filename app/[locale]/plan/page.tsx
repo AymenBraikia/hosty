@@ -1,14 +1,19 @@
 import Body from "./body";
 import Footer from "../components/footer";
 import Header from "../components/header";
-
+import getUser from "@/lib/getUser";
+import { use } from "react";
+import Provider from "../context/user_data_provider";
 
 export default function Home() {
-    return (
-        <div className="flex flex-col overflow-hidden">
-            <Header />
-            <Body />
-            <Footer />
-        </div>
-    );
+	const data = use(getUser());
+	return (
+		<div className="flex flex-col overflow-hidden">
+			<Provider data={data}>
+				<Header />
+				<Body />
+			</Provider>
+			<Footer />
+		</div>
+	);
 }

@@ -32,8 +32,8 @@ export async function POST(req: Request) {
 				first_name: first_name,
 				last_name: last_name,
 				password: password,
-				cart: new Set<hostService | domain>([]),
-				wish_list: new Set<hostService | domain>([]),
+				cart: [],
+				wish_list: [],
 			});
 
 			const payload = {

@@ -78,11 +78,19 @@ export default function Header(props: { promotion?: { url?: string; content: str
 							<>
 								<Link href={"/cart"} className="relative p-2 text-gray-500 hover:text-(--clr-primary) transition cursor-pointer">
 									<Cart s={30} color="currentColor" />
-									{data.cart.length && <span className="text-xs bg-red-500 rounded-full top-1/2 left-1/2 translate-10">{data.cart.length}</span>}
+									{data.cart.length ? (
+										<span className="w-fit min-w-4.5 flex justify-center items-center aspect-square text-white text-xs bg-(--clr-primary) rounded-full absolute top-1/2 left-1/2 -translate-y-6 translate-x-2 font-bold">{data.cart.length}</span>
+									) : (
+										<></>
+									)}
 								</Link>
 								<Link href={"/wish_list"} className="relative p-2 text-gray-500 hover:text-(--clr-primary) transition cursor-pointer">
 									<Wish s={40} color="currentColor" />
-									{data.wish_list.length && <span className="text-xs bg-red-500 rounded-full top-1/2 left-1/2 translate-10">{data.wish_list.length}</span>}
+									{data.wish_list.length ? (
+										<span className="w-fit min-w-4.5 flex justify-center items-center aspect-square text-white text-xs bg-(--clr-primary) rounded-full absolute top-1/2 left-1/2 -translate-y-6 translate-x-2 font-bold">{data.wish_list.length}</span>
+									) : (
+										<></>
+									)}
 								</Link>
 								<Button css="py-2 px-4 text-xl text-foreground hover:bg-(--clr-primary) transition cursor-pointer" content={data.name || "Profile"} />
 							</>
