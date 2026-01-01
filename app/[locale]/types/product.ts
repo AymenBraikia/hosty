@@ -8,8 +8,10 @@ export interface hostService {
 	discount?: number;
 	perks?: string[];
 	specs?: { cpu: number; ram: number; storage: string; bandwidth: string };
+	amount: number;
 }
 export interface domain {
+	type: "Domain";
 	id: number;
 	name: string;
 	extension: string;
@@ -17,4 +19,5 @@ export interface domain {
 	price: number;
 	discount?: number;
 	perks?: string[];
+	amount: number;
 }

@@ -11,7 +11,7 @@ export default function Home() {
 		<div className="flex flex-col overflow-hidden">
 			<Provider data={data}>
 				<Header />
-			<Body />
+				<Body />
 			</Provider>
 			<Footer />
 		</div>

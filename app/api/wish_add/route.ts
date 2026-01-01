@@ -28,9 +28,10 @@ export async function POST(req: Request) {
 
 	const db = client.db("hosty").collection("users");
 
+	if (await db.findOne({ email: payload!.email, wish_list: service })) return NextResponse.json({ message: "Item already in wish list" }, { status: 400 });
 	if (await db.findOne({ email: payload!.email, cart: service })) return NextResponse.json({ message: "Item already in cart" }, { status: 400 });
 
-	await db.updateOne({ email: payload!.email }, { $addToSet: { cart: { ...service, amount: 1 } } });
+	await db.updateOne({ email: payload!.email }, { $addToSet: { wish_list: { ...service, amount: 1 } } });
 
-	return NextResponse.json({ message: "Item added to cart" }, { status: 200 });
+	return NextResponse.json({ message: "Item added to wish list" }, { status: 200 });
 }
