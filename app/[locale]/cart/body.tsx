@@ -94,8 +94,8 @@ export default function Body() {
 										</div>
 										<div className="flex justify-between items-center gap-4 text-gray-500">
 											<p className="font-bold text-xl text-foreground">${e.price}</p>
-											{/* dont touch its trash btn */}
-											<Button action={() => set_items(items.filter((s) => s.id != e.id))} content="" children_el={<Trash s={25} color="currentColor" css="hover:text-red-500 transition cursor-pointer" />} />
+
+											<Button action={async () => (await remove(e.id)) && set_items(items.filter((s) => s.id != e.id))} content="" children_el={<Trash s={25} color="currentColor" css="hover:text-red-500 transition cursor-pointer" />} />
 										</div>
 									</div>
 								);
@@ -139,6 +139,20 @@ async function updateAmount(id: number, amount: number = 1) {
 		headers: {
 			"Content-Type": "application/json",
 		},
-		body: JSON.stringify({ id: id, amount: amount }),
+		body: JSON.stringify({ id, amount }),
 	});
+}
+async function remove(id: number): Promise<boolean> {
+	const res = await fetch("/api/cart_remove", {
+		method: "POST",
+		headers: {
+			"Content-Type": "application/json",
+		},
+		body: JSON.stringify({ id }),
+	});
+
+	console.clear();
+	console.log(await res.json());
+
+	return res.status == 200;
 }

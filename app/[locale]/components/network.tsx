@@ -1,19 +1,12 @@
-import { useEffect, useRef } from "react";
 import Shield from "./svg/shield";
 import Thunder from "./svg/thunder";
 import Web from "./svg/web";
-import { DarkWorldMap } from "@/lib/world_map";
 import { useTranslations } from "next-intl";
+import World_map from "./worldMap";
 
 export default function Network() {
 	const t = useTranslations("network");
-	const hasInitialized = useRef(false);
-	useEffect(() => {
-		if (!hasInitialized.current) {
-			new DarkWorldMap("worldMap");
-			hasInitialized.current = true;
-		}
-	}, []);
+	
 	return (
 		<section className="w-dvw min-h-dvh bg-(--clr-surface) flex max-lg:flex-col justify-center items-center px-16 max-lg:p-16 max-md:px-6 gap-16">
 			<div className="flex flex-col justify-center items-start gap-4 w-1/2 max-lg:w-full">
@@ -43,7 +36,7 @@ export default function Network() {
 				</div>
 			</div>
 			<div className="w-1/2 max-lg:w-full max-h-[500px]  h-2/3 bg-(--clr-surface2) flex justify-center items-center rounded-2xl border-2 border-(--clr-surface-light2) relative">
-				<canvas className="w-full h-full rounded-2xl" id="worldMap"></canvas>
+				<World_map/>
 			</div>
 		</section>
 	);

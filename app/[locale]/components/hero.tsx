@@ -1,16 +1,9 @@
-import { useRef } from "react";
-import Button from "./button";
-import { useRouter } from "next/navigation";
-import Search from "./svg/search";
-import Arrow from "./svg/arrow";
 import Terminal from "./terminal";
 import Correct from "./svg/correct";
-import { useTranslations } from "next-intl";
+import { getTranslations } from "next-intl/server";
 
-export default function Hero() {
-	const inp = useRef<HTMLInputElement>(null);
-	const router = useRouter();
-	const t = useTranslations("hero");
+export default async function Hero() {
+	const t = await getTranslations("hero");
 
 	return (
 		<section className="w-full px-16 max-sm:px-4 relative h-dvh flex justify-center items-center gap-8 select-none">
@@ -26,18 +19,6 @@ export default function Hero() {
 				</div>
 				<p className="text-gray-400 text-xl max-w-full tracking-tight text_shine max-md:text-2xl max-sm:text-xl">{t("description")}</p>
 
-				<div className="min-w-full max-sm:flex-col border-gray-700 border rounded-2xl flex justify-between gap-4 px-6 py-3 bg-(--clr-background-opacity)">
-					<div className="flex justify-center items-center w-full gap-4 text-gray-400">
-						<Search s={30} color="currentColor" />
-						<input ref={inp} className="outline-0 w-full" type="text" placeholder={t("search.placeholder")} />
-					</div>
-					<Button
-						children_el={<Arrow color="currentColor" s={30} />}
-						content={t("search.button")}
-						css="outline-0 bg_anim text-xl flex justify-center items-center gap-0 hover:gap-2"
-						action={() => inp.current?.value && router.push(`/domain/?domain=${inp.current.value}`)}
-					/>
-				</div>
 				<ul className="flex max-sm:text-xs max-sm:flex-wrap gap-7 text-gray-400">
 					<li className="flex justify-start items-center gap-1.5">
 						<Correct s={18} color="var(--clr-primary)" /> {t("features.ssl")}

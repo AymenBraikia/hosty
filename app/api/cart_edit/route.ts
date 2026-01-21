@@ -7,7 +7,6 @@ import { NextResponse } from "next/server";
 
 export async function POST(req: Request) {
 	const { id, amount } = await req.json();
-	console.clear();
 
 	const cookieStore = await cookies();
 

@@ -11,6 +11,7 @@ import { domain, hostService } from "../types/product";
 import { useContext, useState } from "react";
 import user_data from "../context/user_data";
 import Notification from "../components/notification";
+import AddWishBtn from "../components/addToWish";
 
 interface service {
 	type: "Cloud VPS" | "Cloud VDS" | "Dedicated Server";
@@ -544,6 +545,12 @@ export default function Body() {
 					<hr className="border-gray-600 w-full z-10" />
 
 					<AtcBtn notification_State={set_notification_visibility} notification_Err={set_notification_err} available={user_info?.cart.find((e) => e.id == data?.id) ? false : true} product_id={data?.id} />
+					<AddWishBtn
+						notification_State={set_notification_visibility}
+						notification_Err={set_notification_err}
+						available={user_info?.wish_list.find((e) => e.id == data?.id) ? false : user_info?.cart.find((e) => e.id == data?.id) ? false : true}
+						product_id={data?.id}
+					/>
 				</div>
 				<div className="flex flex-col justify-start items-start w-1/2 gap-4">
 					<h4 className="text-2xl font-bold flex justify-start items-center gap-3">

@@ -4,6 +4,8 @@ import createNextIntlPlugin from "next-intl/plugin";
 const withNextIntl = createNextIntlPlugin();
 const nextConfig: NextConfig = {
 	devIndicators: false,
+	compress: true,
+	reactStrictMode: true,
 	turbopack: {
 		root: ".",
 	},

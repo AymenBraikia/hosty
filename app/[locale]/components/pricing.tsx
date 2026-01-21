@@ -1,3 +1,4 @@
+"use client"
 import { useState } from "react";
 import Button from "./button";
 import Cpu from "./svg/cpu";

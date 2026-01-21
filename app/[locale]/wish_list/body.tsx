@@ -33,7 +33,7 @@ export default function Body() {
 										</div>
 										<div className="flex justify-between items-center gap-4 text-gray-500">
 											<p className="font-bold text-xl text-foreground">${e.price}</p>
-											<AtcBtn available={true} />
+											<AtcBtn available={data?.cart.find((i) => e.id == i.id) ? false : true} css={{ color: "var(--foreground)" }} />
 											<Button action={() => set_items(items.filter((s) => s.id != e.id))} content="" children_el={<Trash s={25} color="currentColor" css="hover:text-red-500 transition cursor-pointer" />} />
 										</div>
 									</div>
