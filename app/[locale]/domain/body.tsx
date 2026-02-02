@@ -21,10 +21,7 @@ export default function Body() {
 	const [domain, setDomain] = useState<string | null>(searchParams.get("domain"));
 
 	useEffect(() => {
-		if (domain)
-			(async () => {
-				setDomains(await (await fetch("/api/domain_check?domain=" + domain)).json());
-			})();
+		if (domain) (async () => setDomains(await (await fetch("/api/domain_check?domain=" + domain)).json()))();
 	}, []);
 	return (
 		<section className={`flex flex-col justify-center items-center min-h-dvh gap-8 ${domain ? "pt-32" : ""}`}>
@@ -72,7 +69,7 @@ export default function Body() {
 										<span className="font-bold text-3xl">${d.renew}/yr</span>
 									)}
 
-									<AtcBtn css={{ width: "fit-content" }} />
+									<AtcBtn css={{ width: "fit-content" }} product_id={domain + d.ext} available={d.available} />
 								</div>
 							</div>
 						))

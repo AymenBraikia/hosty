@@ -1,11 +1,12 @@
 import { hostService } from "@/app/[locale]/types/product";
-import { client } from "@/lib/db";
+import clientPromise from "@/lib/db";
 import get_services from "@/lib/get_service_data";
 import { verifyJwt } from "@/lib/jwt";
 import { cookies } from "next/headers";
 import { NextResponse } from "next/server";
 
 export async function POST(req: Request) {
+	const client = await clientPromise;
 	const { id, amount } = await req.json();
 
 	const cookieStore = await cookies();

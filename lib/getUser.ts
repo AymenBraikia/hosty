@@ -1,12 +1,13 @@
 "use server";
 
 import { domain, hostService } from "@/app/[locale]/types/product";
-import { client } from "@/lib/db";
+import clientPromise from "@/lib/db";
 import { verifyJwt } from "@/lib/jwt";
 import { cookies } from "next/headers";
 
 export default async function getUser(): Promise<{ cart: [domain | hostService]; wish_list: [domain | hostService]; name: string } | undefined> {
 	const cookieStore = await cookies();
+	const client = await clientPromise;
 
 	const token = cookieStore.get("accessToken")?.value;
 
@@ -18,6 +19,9 @@ export default async function getUser(): Promise<{ cart: [domain | hostService];
 
 		if (!payload) return;
 	}
+
+	console.clear();
+	console.log(payload);
 
 	const db = client.db("hosty").collection("users");
 

@@ -10,8 +10,6 @@ export function verifyJwt(token: string): JwtPayload | null {
 	try {
 		return jwt.verify(token, SECRET_KEY) as JwtPayload;
 	} catch (error) {
-		console.clear();
-		console.log("JWT verification failed:");
 		console.error(error);
 		return null;
 	}

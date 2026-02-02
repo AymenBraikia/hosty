@@ -1,6 +1,6 @@
 import { CSSProperties, Dispatch, SetStateAction, useRef, useState } from "react";
 
-export default function AtcBtn(props?: { css?: CSSProperties; product_id?: number; available?: boolean; notification_State?: Dispatch<SetStateAction<boolean>>; notification_Err?: Dispatch<SetStateAction<string>> }) {
+export default function AtcBtn(props?: { css?: CSSProperties; product_id?: number | string; available?: boolean; notification_State?: Dispatch<SetStateAction<boolean>>; notification_Err?: Dispatch<SetStateAction<string>> }) {
 	const btn = useRef<HTMLButtonElement>(null);
 
 	const [fetching, set_fetching] = useState<boolean>(false);
@@ -14,13 +14,16 @@ export default function AtcBtn(props?: { css?: CSSProperties; product_id?: numbe
 				if (btn.current) btn.current.style.scale = "0.9";
 			}}
 			onMouseUp={async () => {
+				console.log("1");
+
 				if (!props) return;
 				if (!props?.available) return;
+				console.log("2");
 
 				set_fetching(true);
 				if (btn.current) btn.current.style.scale = "1";
 
-				if (typeof props.product_id != "number") return;
+				if (!props.product_id) return;
 
 				const res = await atc(props.product_id);
 
@@ -49,10 +52,10 @@ export default function AtcBtn(props?: { css?: CSSProperties; product_id?: numbe
 	);
 }
 
-async function atc(id: number) {
+async function atc(id: number | string) {
 	return await fetch("/api/cart_add", {
 		headers: { "Content-Type": "application/json" },
-		body: JSON.stringify({ id: id }),
+		body: JSON.stringify(typeof id == "number" ? { id } : { domain: id }),
 		method: "post",
 	});
 }

@@ -33,8 +33,8 @@ export default function Body() {
 										</div>
 										<div className="flex justify-between items-center gap-4 text-gray-500">
 											<p className="font-bold text-xl text-foreground">${e.price}</p>
-											<AtcBtn available={data?.cart.find((i) => e.id == i.id) ? false : true} css={{ color: "var(--foreground)" }} />
-											<Button action={() => set_items(items.filter((s) => s.id != e.id))} content="" children_el={<Trash s={25} color="currentColor" css="hover:text-red-500 transition cursor-pointer" />} />
+											<AtcBtn available={true} product_id={e.id} css={{ color: "var(--foreground)" }} />
+											<Button action={async () => (await remove(e.id)) && set_items(items.filter((s) => s.id != e.id))} content="" children_el={<Trash s={25} color="currentColor" css="hover:text-red-500 transition cursor-pointer" />} />
 										</div>
 									</div>
 								);
@@ -51,4 +51,15 @@ export default function Body() {
 			)}
 		</div>
 	);
+}
+async function remove(id: number): Promise<boolean> {
+	const res = await fetch("/api/wish_remove", {
+		method: "POST",
+		headers: {
+			"Content-Type": "application/json",
+		},
+		body: JSON.stringify({ id }),
+	});
+
+	return res.status == 200;
 }

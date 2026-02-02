@@ -1,11 +1,17 @@
-import { NextConfig } from "next";
+import type { NextConfig } from "next";
 import createNextIntlPlugin from "next-intl/plugin";
 
 const withNextIntl = createNextIntlPlugin();
+
 const nextConfig: NextConfig = {
 	devIndicators: false,
 	compress: true,
 	reactStrictMode: true,
+
+	compiler: {
+		// removeConsole: true,
+	},
+
 	turbopack: {
 		root: ".",
 	},

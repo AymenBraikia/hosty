@@ -116,7 +116,7 @@ export default function Body() {
 								<p>Total</p>
 								<p>${total}</p>
 							</div>
-							<Button content="Proceed to Checkout" css="bg_anim2 w-full" />
+							<Button url="/checkout" content="Proceed to Checkout" css="bg_anim2 w-full" />
 						</div>
 					</div>
 				</>
@@ -150,9 +150,6 @@ async function remove(id: number): Promise<boolean> {
 		},
 		body: JSON.stringify({ id }),
 	});
-
-	console.clear();
-	console.log(await res.json());
 
 	return res.status == 200;
 }

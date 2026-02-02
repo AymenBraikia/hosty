@@ -15,7 +15,7 @@ export default async function Hero() {
 
 				<div className="text-6xl font-black max-lg:text-5xl max-md:text-5xl">
 					<h1>{t("headline")}</h1>
-					<h1 className="text_anim">{t("subheadline")}</h1>
+					<h3 className="text_anim">{t("subheadline")}</h3>
 				</div>
 				<p className="text-gray-400 text-xl max-w-full tracking-tight text_shine max-md:text-2xl max-sm:text-xl">{t("description")}</p>
 

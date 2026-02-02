@@ -1,4 +1,4 @@
-import { client } from "@/lib/db";
+import clientPromise from "@/lib/db";
 import { signJwtAccessToken } from "@/lib/jwt";
 import { NextResponse } from "next/server";
 import { cookies } from "next/headers";
@@ -10,6 +10,7 @@ const reg = {
 
 export async function POST(req: Request) {
 	try {
+		const client = await clientPromise;
 		const cookieStore = await cookies();
 
 		const body = await req.json();

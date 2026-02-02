@@ -1,8 +1,7 @@
-import { client } from "@/lib/db";
+import clientPromise from "@/lib/db";
 import { signJwtAccessToken } from "@/lib/jwt";
 import { NextResponse } from "next/server";
 import { cookies } from "next/headers";
-import { domain, hostService } from "@/app/[locale]/types/product";
 
 const reg = {
 	email: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
@@ -11,6 +10,7 @@ const reg = {
 
 export async function POST(req: Request) {
 	try {
+		const client = await clientPromise;
 		const cookieStore = await cookies();
 
 		const body = await req.json();
@@ -34,6 +34,9 @@ export async function POST(req: Request) {
 				password: password,
 				cart: [],
 				wish_list: [],
+				services: [],
+				created_at: new Date(),
+				first_purchase: true,
 			});
 
 			const payload = {
