@@ -2,7 +2,7 @@ import { svg_props } from "@/app/[locale]/types/svg_icon";
 
 export default function Magento(props: svg_props) {
 	return (
-		<svg className={props.css} width={`${props.s || props.w}px` || "50px"} height={`${props.s || props.h}px` || "50px"} fill={props.color || "black"} viewBox="0 0 512 512" enableBackground="new 0 0 512 512">
+		<svg className={props.css} width={`${props.s || props.w}px` || "50px"} height={`${props.s || props.h}px` || "50px"} fill={props.color || "currentColor"} viewBox="0 0 512 512" enableBackground="new 0 0 512 512">
 			<g id="5151e0c8492e5103c096af88a51f602c">
 				<path
 					display="inline"

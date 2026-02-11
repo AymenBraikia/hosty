@@ -2,7 +2,17 @@ import { svg_props } from "@/app/[locale]/types/svg_icon";
 
 export default function Cpu(props: svg_props) {
 	return (
-		<svg className={props.css} width={`${props.s || props.w}px` || "50px"} height={`${props.s || props.h}px` || "50px"} stroke={props.color || "black"} viewBox="0 0 24 24" fill="none" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+		<svg
+			className={props.css}
+			width={`${props.s || props.w}px` || "50px"}
+			height={`${props.s || props.h}px` || "50px"}
+			stroke={props.color || "currentColor"}
+			viewBox="0 0 24 24"
+			fill="none"
+			strokeWidth="2"
+			strokeLinecap="round"
+			strokeLinejoin="round"
+		>
 			<path d="M12 20v2"></path>
 			<path d="M12 2v2"></path>
 			<path d="M17 20v2"></path>
