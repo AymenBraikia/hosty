@@ -1,18 +1,19 @@
 "use client";
 import { useRef, useState } from "react";
 
-export default function Check_box(props: { action?: (state: boolean) => void; display_status?: boolean; state: boolean; label?: string; styles?: React.CSSProperties; css?: string }) {
+export default function Check_box(props: { action?: (state: boolean) => Promise<boolean>; display_status?: boolean; state: boolean; label?: string; styles?: React.CSSProperties; css?: string }) {
 	const btn = useRef<HTMLDivElement>(null);
 	const [active, set_active] = useState<boolean>(props.state);
 
 	return (
 		<div
 			ref={btn as React.RefObject<HTMLDivElement>}
-			className={`p-3 cursor-pointer transition flex gap-2 justify-start items-center ${active ? "text-(--clr-primary)" : "text-gray-400"} ${props.css}`}
+			className={`p-3 cursor-pointer transition flex gap-2 items-center font-bold ${active ? "text-(--clr-primary)" : "text-gray-400"} ${props.css}`}
 			style={props.styles}
-			onClick={() => {
-				set_active(!active);
-				if (props.action) props.action(active);
+			onClick={async () => {
+				if (props.action) {
+					if (await props.action(!active)) set_active(!active);
+				} else set_active(!active);
 			}}
 		>
 			{props.label}

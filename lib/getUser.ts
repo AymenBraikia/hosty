@@ -20,9 +20,6 @@ export default async function getUser(): Promise<{ cart: [domain | hostService];
 		if (!payload) return;
 	}
 
-	console.clear();
-	console.log(payload);
-
 	const db = client.db("hosty").collection("users");
 
 	const user = (await db.findOne({ email: payload!.email })) as unknown as { cart: [domain | hostService]; wish_list: [domain | hostService]; first_name: string };

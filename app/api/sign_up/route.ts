@@ -37,6 +37,10 @@ export async function POST(req: Request) {
 				services: [],
 				created_at: new Date(),
 				first_purchase: true,
+				twoFactorAuth: {
+					enabled: false,
+					secret: null,
+				},
 			});
 
 			const payload = {
@@ -68,9 +72,7 @@ export async function POST(req: Request) {
 		}
 
 		return NextResponse.json({ redirect: red || "/dashboard" }, { status: 200 });
-	} catch (e) {
-		console.clear();
-		console.log(e);
+	} catch {
 		return NextResponse.json({ error: "Internal Server Error" }, { status: 500 });
 	}
 }

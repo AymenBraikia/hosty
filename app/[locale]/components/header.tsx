@@ -92,7 +92,7 @@ export default function Header(props: { promotion?: { url?: string; content: str
 										<></>
 									)}
 								</Link>
-								<Button css="py-2 px-4 text-xl text-foreground hover:bg-(--clr-primary) transition cursor-pointer" content={data.name || "Profile"} />
+								<Button url="/dashboard" css="py-2 px-4 text-xl text-foreground hover:bg-(--clr-primary) transition cursor-pointer" content={data.name || "Dashboard"} />
 							</>
 						) : (
 							<>
