@@ -29,6 +29,7 @@ export async function POST(req: Request) {
 
 			await collection.insertOne({
 				email: email,
+				verified_email: false,
 				first_name: first_name,
 				last_name: last_name,
 				password: password,
@@ -40,6 +41,11 @@ export async function POST(req: Request) {
 				twoFactorAuth: {
 					enabled: false,
 					secret: null,
+				},
+				notifications: {
+					billing: true,
+					maintenance: true,
+					marketing: true,
 				},
 			});
 

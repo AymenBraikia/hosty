@@ -13,7 +13,6 @@ import { useLocale } from "next-intl";
 import Cart from "./svg/cart";
 import Wish from "./svg/wish";
 import user_data from "../context/user_data";
-import { domain, hostService } from "../types/product";
 
 export default function Header(props: { promotion?: { url?: string; content: string; expire_date: number } }) {
 	const [size, setSize] = useState<number>(() => (typeof window !== "undefined" ? innerWidth : 0));
@@ -30,7 +29,7 @@ export default function Header(props: { promotion?: { url?: string; content: str
 
 	const lang = useLocale();
 
-	const data = useContext(user_data) as { wish_list: [domain | hostService]; cart: [domain | hostService]; name: string } | undefined;
+	const data = useContext(user_data);
 
 	return (
 		<header className="w-dvw h-fit p-2.5 bg-(--clr-background-opacity) backdrop-blur-3xl fixed left-0 top-0 flex justify-between items-center px-20 z-50 max-md:px-6">
@@ -92,7 +91,7 @@ export default function Header(props: { promotion?: { url?: string; content: str
 										<></>
 									)}
 								</Link>
-								<Button url="/dashboard" css="py-2 px-4 text-xl text-foreground hover:bg-(--clr-primary) transition cursor-pointer" content={data.name || "Dashboard"} />
+								<Button url="/dashboard" css="py-2 px-4 text-xl text-foreground hover:bg-(--clr-primary) transition cursor-pointer" content={"Dashboard"} />
 							</>
 						) : (
 							<>

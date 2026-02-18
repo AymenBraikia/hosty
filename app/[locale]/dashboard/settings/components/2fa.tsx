@@ -1,20 +1,25 @@
 "use client";
 import Check_box from "../../../components/cbox";
-import { useState } from "react";
+import { useContext, useState } from "react";
 import QRCodeStyling from "qr-code-styling";
 import Image from "next/image";
 import dynamic from "next/dynamic";
 import Button from "@/app/[locale]/components/button";
 import Input from "../input";
+import settings from "@/app/[locale]/context/settings";
 const Popup = dynamic(() => import("@/app/[locale]/components/popup"), {
 	ssr: false,
 });
 
 export default function TFA() {
+	const data = useContext(settings)!;
+
 	const [pop_active, set_pop_activity] = useState<boolean>(false);
 	const [tfa_uri, set_tfa_uri] = useState<string | null>(null);
 	const [err, set_err] = useState<string>("");
-	const [action, set_action] = useState<"enable" | "disable">("enable");
+	const [action, set_action] = useState<"enable" | "disable">(data.tfa_enabled ? "disable" : "enable");
+	const [checkbox_state, set_checkbox_state] = useState<boolean>(data.tfa_enabled);
+
 	return (
 		<div className="flex flex-col justify-center items-start bg-(--clr-surface2) rounded-2xl border border-(--clr-surface-light2) p-4">
 			<Check_box
@@ -22,24 +27,24 @@ export default function TFA() {
 					set_pop_activity(true);
 
 					if (state) {
-						set_action("enable")
+						set_action("enable");
 						const qr = await generate_qr();
-						
+
 						const blob = (await qr.getRawData("svg")) as Blob;
-						
+
 						const reader = new FileReader();
 
 						reader.readAsDataURL(blob);
 						reader.onloadend = () => set_tfa_uri(reader.result as string);
 					} else {
-						set_action("disable")
+						set_action("disable");
 						set_tfa_uri(null);
 					}
-					return true;
 				}}
 				label="Two-Factor Authentication"
-				state={false}
+				state={checkbox_state}
 			/>
+
 			<p className="text-gray-400 text-xs">Recommended: Secure your account with 2FA</p>
 
 			<Popup open={pop_active}>
@@ -81,8 +86,10 @@ export default function TFA() {
 										action={async () => {
 											const result = await auto_submit_tfa();
 											if (!result) return;
-											if (!result.error) set_pop_activity(false);
-											else {
+											if (!result.error) {
+												set_pop_activity(false);
+												set_checkbox_state(!checkbox_state);
+											} else {
 												set_err(result.error);
 												setTimeout(() => set_err(""), 3e3);
 											}
@@ -91,8 +98,10 @@ export default function TFA() {
 									<Button
 										action={async () => {
 											const result = await submit_tfa();
-											if (!result.error) set_pop_activity(false);
-											else {
+											if (!result.error) {
+												set_pop_activity(false);
+												set_checkbox_state(!checkbox_state);
+											} else {
 												set_err(result.error);
 												setTimeout(() => set_err(""), 3e3);
 											}
@@ -132,8 +141,10 @@ export default function TFA() {
 										action={async () => {
 											const result = await auto_disable_tfa();
 											if (!result) return;
-											if (!result.error) set_pop_activity(false);
-											else {
+											if (!result.error) {
+												set_pop_activity(false);
+												set_checkbox_state(!checkbox_state);
+											} else {
 												set_err(result.error);
 												setTimeout(() => set_err(""), 3e3);
 											}
@@ -142,8 +153,10 @@ export default function TFA() {
 									<Button
 										action={async () => {
 											const result = await disable_tfa();
-											if (!result.error) set_pop_activity(false);
-											else {
+											if (!result.error) {
+												set_pop_activity(false);
+												set_checkbox_state(!checkbox_state);
+											} else {
 												set_err(result.error);
 												setTimeout(() => set_err(""), 3e3);
 											}
@@ -227,4 +240,18 @@ async function disable_tfa(): Promise<{ success: boolean; error?: string }> {
 	const req: { success: boolean; error?: string } = await (await fetch("/api/disable_2fa", { body: JSON.stringify({ code }), method: "post", headers: { "Content-Type": "application/json" } })).json();
 
 	return req;
+}
+
+function createDeferred(pre_function: () => unknown) {
+	let resolve!: (value: boolean) => void;
+	let reject!: (reason?: unknown) => void;
+
+	const promise = new Promise<boolean>((res, rej) => {
+		pre_function();
+
+		resolve = res;
+		reject = rej;
+	});
+
+	return { promise, resolve, reject };
 }

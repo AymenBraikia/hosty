@@ -1,5 +1,5 @@
 // "use client";
 import { createContext } from "react";
-import { domain, hostService } from "../types/product";
+import UserData from "../types/user_ctx";
 
-export default createContext<{ wish_list: [domain | hostService]; cart: [domain | hostService]; name: string } | undefined>(undefined);
+export default createContext<UserData | undefined>(undefined);
