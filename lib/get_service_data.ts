@@ -1,7 +1,7 @@
-import { client } from "./db";
+import clientPromise from "./db";
 import { Document, WithId } from "mongodb";
 
-const collection = client.db("hosty").collection("services");
+const collection = (await clientPromise).db("hosty").collection("services");
 export default async function get_services(ids: number | number[]) {
 	const results = new Set<WithId<Document>>([]);
 
