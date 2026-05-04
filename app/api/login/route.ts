@@ -59,9 +59,7 @@ export async function POST(req: Request) {
 		}
 
 		return NextResponse.json({ redirect: red || "/dashboard" }, { status: 200 });
-	} catch (e) {
-		console.clear();
-		console.log(e);
+	} catch {
 		return NextResponse.json({ error: "Internal Server Error" }, { status: 500 });
 	}
 }

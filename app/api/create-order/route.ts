@@ -3,6 +3,7 @@ import { getAccessToken } from "@/lib/paypal";
 import { verifyJwt } from "@/lib/jwt";
 import { cookies } from "next/headers";
 import clientPromise from "@/lib/db";
+import { UpdateFilter } from "mongodb";
 
 const VAT_RATE = 0.1; // 10% VAT
 const first_purchase_discount = 0.3; // 30% discount for first purchase
@@ -44,17 +45,17 @@ export async function POST() {
 	const ref_id = `ORDER-${Math.random().toString(36).substring(2, 10).toUpperCase()}`;
 
 	// calculate total amount
-	const total_amount_cents: number = cart.reduce((prev: number, item: { price: number; amount: number }) => prev + item.price * item.amount, 0) * 100;
-	const total_amount: number = Math.floor(total_amount_cents) / 100;
+	const total_amount_cents: number = Math.round(cart.reduce((prev: number, item: { price: number; amount: number }) => prev + item.price * item.amount, 0) * 100);
+	const total_amount: number = total_amount_cents / 100;
 	// calculate VAT tax
-	const vat_amount_cents: number = total_amount * VAT_RATE * 100;
-	const vat_amount: number = Math.floor(vat_amount_cents) / 100;
+	const vat_amount_cents: number = Math.round(total_amount * VAT_RATE * 100);
+	const vat_amount: number = vat_amount_cents / 100;
 	// calculate discount
-	const discount_amount_cents: number = first_purchase ? total_amount * first_purchase_discount * 100 : 0;
-	const discount_amount: number = Math.floor(discount_amount_cents) / 100;
+	const discount_amount_cents: number = Math.round(first_purchase ? total_amount * first_purchase_discount * 100 : 0);
+	const discount_amount: number = discount_amount_cents / 100;
 	// calculate final amount to pay
-	const amount_to_pay_cents = total_amount_cents + vat_amount_cents - discount_amount_cents;
-	const amount_to_pay = Math.floor(amount_to_pay_cents) / 100;
+	const amount_to_pay_cents = Math.round(total_amount_cents + vat_amount_cents - discount_amount_cents);
+	const amount_to_pay = amount_to_pay_cents / 100;
 
 	const res = await fetch("https://api-m.sandbox.paypal.com/v2/checkout/orders", {
 		method: "POST",
@@ -88,6 +89,7 @@ export async function POST() {
 						landing_page: "LOGIN",
 						shipping_preference: "NO_SHIPPING",
 						user_action: "PAY_NOW",
+
 						return_url: "http://localhost:3000/dashboard/",
 						cancel_url: "http://localhost:3000/cart/",
 					},
@@ -110,6 +112,21 @@ export async function POST() {
 		status: "Pending",
 		created_at: new Date(),
 	});
+	if (order.id) {
+		const activity = { title: "Purchase", description: "Purchasing: " + items.map((e) => e.name), date: new Date().toDateString(), status: 0, id: ref_id };
 
-	return NextResponse.json({ id: order.id });
+		await client
+			.db("hosty")
+			.collection("users")
+			.findOneAndUpdate(
+				{ email: user.email },
+				{
+					$push: {
+						recent_activity: activity,
+					} as UpdateFilter<Document>,
+				},
+			);
+
+		return NextResponse.json({ id: order.id });
+	} else return NextResponse.json({ error: order });
 }

@@ -14,11 +14,9 @@ export default function AtcBtn(props?: { css?: CSSProperties; product_id?: numbe
 				if (btn.current) btn.current.style.scale = "0.9";
 			}}
 			onMouseUp={async () => {
-				console.log("1");
 
 				if (!props) return;
 				if (!props?.available) return;
-				console.log("2");
 
 				set_fetching(true);
 				if (btn.current) btn.current.style.scale = "1";

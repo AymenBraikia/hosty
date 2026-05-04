@@ -21,12 +21,27 @@ export async function POST(req: Request) {
 
 	// optional: validate amount, currency, status
 	if (data.status !== "COMPLETED") {
-		console.log("Payment not completed:", data);
 		await client
 			.db("hosty")
 			.collection("orders")
 			.updateOne({ id: data.purchase_units[0].reference_id }, { $set: { status: "Failed", capture_id: data.id } });
 		// order failed
+
+		await client
+			.db("hosty")
+			.collection("users")
+			.findOneAndUpdate(
+				{ email: data.user_email },
+				{
+					$set: {
+						"recent_activity.$[activity].status": 1,
+					},
+				},
+				{
+					arrayFilters: [{ "activity.id": data.id }],
+				},
+			);
+
 		return NextResponse.json({ error: "Payment not completed" }, { status: 400 });
 	}
 
@@ -43,6 +58,7 @@ export async function POST(req: Request) {
 			return {
 				...item,
 				status: "Active",
+				active: true,
 				started_at: new Date(),
 				expires_at: item.type == "Domain" ? new Date(new Date().setFullYear(new Date().getFullYear() + item.amount)) : new Date(new Date().setMonth(new Date().getMonth() + item.amount)),
 			};
@@ -67,6 +83,21 @@ export async function POST(req: Request) {
 		);
 
 	if (!user) return NextResponse.json({ error: "User not found" }, { status: 404 });
+
+	await client
+		.db("hosty")
+		.collection("users")
+		.findOneAndUpdate(
+			{ email: order.user_email },
+			{
+				$set: {
+					"recent_activity.$[activity].status": 2,
+				},
+			},
+			{
+				arrayFilters: [{ "activity.id": order.id }],
+			},
+		);
 
 	return NextResponse.json({ success: true, data });
 }

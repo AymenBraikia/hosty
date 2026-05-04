@@ -13,6 +13,7 @@ import { useLocale } from "next-intl";
 import Cart from "./svg/cart";
 import Wish from "./svg/wish";
 import user_data from "../context/user_data";
+import UserData from "../types/user_ctx";
 
 export default function Header(props: { promotion?: { url?: string; content: string; expire_date: number } }) {
 	const [size, setSize] = useState<number>(() => (typeof window !== "undefined" ? innerWidth : 0));
@@ -29,7 +30,7 @@ export default function Header(props: { promotion?: { url?: string; content: str
 
 	const lang = useLocale();
 
-	const data = useContext(user_data);
+	const data = useContext(user_data) as UserData;
 
 	return (
 		<header className="w-dvw h-fit p-2.5 bg-(--clr-background-opacity) backdrop-blur-3xl fixed left-0 top-0 flex justify-between items-center px-20 z-50 max-md:px-6">
@@ -145,8 +146,6 @@ export default function Header(props: { promotion?: { url?: string; content: str
 				// 					}}
 				// 					default={lang}
 				// 				/>
-				// 				<Button css="hover:bg-(--clr-accent) hover:shadow-[0_0_10px_0_var(--clr-accent)]" action={() => console.log("clicked my account")} content="Log in" />
-				// 				<Button css="hover:bg-(--clr-accent2) hover:shadow-[0_0_10px_0_var(--clr-accent2)]" action={() => console.log("clicked my account")} content="Get Started" />
 				// 			</div>
 
 				// 			<div onClick={() => setNavState(!navState)} className="absolute right-20 top-8 cursor-pointer">

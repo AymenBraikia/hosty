@@ -6,7 +6,6 @@ export default function AddWishBtn(props?: { css?: CSSProperties; product_id?: n
 	const [fetching, set_fetching] = useState<boolean>(false);
 	const [availability, set_availability] = useState<boolean>(true);
 
-	console.log(props?.available);
 
 	return (
 		<button

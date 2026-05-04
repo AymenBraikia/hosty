@@ -36,6 +36,7 @@ export async function POST(req: Request) {
 				cart: [],
 				wish_list: [],
 				services: [],
+				recent_activity: [],
 				created_at: new Date(),
 				first_purchase: true,
 				twoFactorAuth: {

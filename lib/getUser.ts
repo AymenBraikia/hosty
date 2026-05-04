@@ -9,6 +9,12 @@ import { cookies } from "next/headers";
 interface UserData {
 	cart: (domain | hostService)[];
 	wish_list: (domain | hostService)[];
+	services: (domain | hostService)[];
+	recent_activity: { title: string; description: string; date: string; status: number; id: string }[];
+}
+
+function serializeDoc(doc: unknown) {
+	return JSON.parse(JSON.stringify(doc));
 }
 
 export default async function getUser(): Promise<UserData | undefined> {
@@ -16,19 +22,20 @@ export default async function getUser(): Promise<UserData | undefined> {
 	const client = await clientPromise;
 
 	const token = cookieStore.get("accessToken")?.value;
-
-	let payload = null;
-
 	if (!token) return;
-	else {
-		payload = verifyJwt(token);
 
-		if (!payload) return;
-	}
+	const payload = verifyJwt(token);
+	if (!payload) return;
 
 	const db = client.db("hosty").collection("users");
+	const user = await db.findOne<User>({ email: payload.email });
 
-	const user = await db.findOne<User>({ email: payload!.email });
+	if (!user) return;
 
-	return user ? { cart: user.cart, wish_list: user.wish_list } : undefined;
+	return serializeDoc({
+		cart: user.cart,
+		wish_list: user.wish_list,
+		services: user.services,
+		recent_activity: user.recent_activity,
+	});
 }

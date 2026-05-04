@@ -31,7 +31,6 @@ export async function POST(request: Request) {
 
 	try {
 		const result = verify_2fa(secret, code);
-		console.log(result, secret, code);
 
 		if (result) {
 			await client

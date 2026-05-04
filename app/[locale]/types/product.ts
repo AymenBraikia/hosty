@@ -9,6 +9,7 @@ export interface hostService {
 	perks?: string[];
 	specs?: { cpu: number; ram: number; storage: string; bandwidth: string };
 	amount: number;
+	active: boolean;
 }
 export interface domain {
 	type: "Domain";
@@ -21,6 +22,7 @@ export interface domain {
 	discount?: number;
 	perks?: string[];
 	amount: number;
+	active: boolean;
 }
 
 export interface order {
