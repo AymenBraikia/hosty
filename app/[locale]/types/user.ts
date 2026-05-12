@@ -1,4 +1,4 @@
-import { domain, hostService } from "./product";
+import { domainSub, hostServiceSub } from "./product";
 
 export default interface User {
 	email: string;
@@ -6,9 +6,9 @@ export default interface User {
 	first_name: string;
 	last_name: string;
 	password: string;
-	cart: (hostService | domain)[];
-	wish_list: (domain | hostService)[];
-	services: (domain | hostService)[];
+	cart: (domainSub | hostServiceSub)[];
+	wish_list: (domainSub | hostServiceSub)[];
+	services: (domainSub | hostServiceSub)[];
 	recent_activity: { title: string; description: string; date: string; status: number; id: string }[];
 	created_at: Date;
 	first_purchase: boolean;
@@ -21,4 +21,7 @@ export default interface User {
 		maintenance: boolean;
 		marketing: boolean;
 	};
+	total_spent: number;
+	monthly_spendings: number;
+	admin: boolean;
 }

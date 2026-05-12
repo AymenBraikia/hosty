@@ -2,6 +2,7 @@ import clientPromise from "@/lib/db";
 import { signJwtAccessToken } from "@/lib/jwt";
 import { NextResponse } from "next/server";
 import { cookies } from "next/headers";
+import User from "@/app/[locale]/types/user";
 
 const reg = {
 	email: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
@@ -18,7 +19,7 @@ export async function POST(req: Request) {
 
 		if (!email || !password) return NextResponse.json({ error: "Missing fields" }, { status: 400 });
 
-		const collection = client.db("hosty").collection("users");
+		const collection = client.db("hosty").collection<User>("users");
 
 		if (!reg.email.test(email)) return NextResponse.json({ error: "Invalid email format" }, { status: 400 });
 
@@ -32,7 +33,8 @@ export async function POST(req: Request) {
 
 			const payload = {
 				email: email,
-				full_name: user.full_name,
+				full_name: user.first_name + " " + user.last_name,
+				admin: user.admin,
 			};
 
 			const accessToken = signJwtAccessToken(payload);

@@ -4,6 +4,7 @@ import { verifyJwt } from "@/lib/jwt";
 import { cookies } from "next/headers";
 import clientPromise from "@/lib/db";
 import { UpdateFilter } from "mongodb";
+import { Bill } from "@/app/[locale]/types/product";
 
 const VAT_RATE = 0.1; // 10% VAT
 const first_purchase_discount = 0.3; // 30% discount for first purchase
@@ -41,6 +42,7 @@ export async function POST() {
 			},
 		};
 	});
+	// const items = cart;
 
 	const ref_id = `ORDER-${Math.random().toString(36).substring(2, 10).toUpperCase()}`;
 
@@ -67,14 +69,14 @@ export async function POST() {
 			intent: "CAPTURE",
 			purchase_units: [
 				{
-					reference_id: ref_id, // unique id to track the product
+					reference_id: ref_id,
 					description: "Hosty Hosting Services",
 					custom_id: ref_id,
 					items,
 
 					amount: {
 						currency_code: "USD",
-						value: amount_to_pay, // SERVER decides price
+						value: amount_to_pay,
 						breakdown: {
 							item_total: { currency_code: "USD", value: total_amount },
 							tax_total: { currency_code: "USD", value: vat_amount },
@@ -114,6 +116,7 @@ export async function POST() {
 	});
 	if (order.id) {
 		const activity = { title: "Purchase", description: "Purchasing: " + items.map((e) => e.name), date: new Date().toDateString(), status: 0, id: ref_id };
+		const bill: Bill = { paid: false, description: "Purchasing: " + items.map((e) => e.name), date: new Date().toDateString(), price: amount_to_pay, id: ref_id };
 
 		await client
 			.db("hosty")
@@ -123,6 +126,7 @@ export async function POST() {
 				{
 					$push: {
 						recent_activity: activity,
+						billing: bill,
 					} as UpdateFilter<Document>,
 				},
 			);

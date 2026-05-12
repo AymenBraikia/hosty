@@ -422,7 +422,7 @@ body {
 .loading {
   position: relative;
   overflow: hidden;
-  border-radius: 15px;
+  /* border-radius: 15px; */
   background-color: transparent !important;
 }
 

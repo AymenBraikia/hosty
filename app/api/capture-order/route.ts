@@ -1,8 +1,9 @@
 import { NextResponse } from "next/server";
 import { getAccessToken } from "@/lib/paypal";
 import clientPromise from "@/lib/db";
-import { order } from "@/app/[locale]/types/product";
+import { hostService, order } from "@/app/[locale]/types/product";
 import { UpdateFilter } from "mongodb";
+import User from "@/app/[locale]/types/user";
 
 export async function POST(req: Request) {
 	const client = await clientPromise;
@@ -48,7 +49,7 @@ export async function POST(req: Request) {
 	// order success
 	const order = (await client
 		.db("hosty")
-		.collection("orders")
+		.collection<order>("orders")
 		.findOneAndUpdate({ id: data.purchase_units[0].reference_id }, { $set: { status: "Completed", capture_id: data.id } })) as order | null;
 
 	if (!order) return NextResponse.json({ error: "Order not found" }, { status: 404 });
@@ -59,15 +60,15 @@ export async function POST(req: Request) {
 				...item,
 				status: "Active",
 				active: true,
-				started_at: new Date(),
-				expires_at: item.type == "Domain" ? new Date(new Date().setFullYear(new Date().getFullYear() + item.amount)) : new Date(new Date().setMonth(new Date().getMonth() + item.amount)),
+				started_at: new Date().toDateString(),
+				expires_at: item.type == "Domain" ? new Date(new Date().setFullYear(new Date().getFullYear() + item.years)).toDateString() : new Date(new Date().setMonth(new Date().getMonth() + item.amount)).toDateString(),
 			};
 		}
 	});
 
 	const user = await client
 		.db("hosty")
-		.collection("users")
+		.collection<User>("users")
 		.findOneAndUpdate(
 			{ email: order.user_email },
 			{
@@ -75,11 +76,22 @@ export async function POST(req: Request) {
 					first_purchase: false,
 					cart: [],
 				},
-				$push: {
-					services: { $each: services },
-				} as UpdateFilter<Document>,
 			},
 			{ returnDocument: "after" },
+		);
+
+	await client
+		.db("hosty")
+		.collection<hostService[]>("services")
+		.updateMany(
+			{
+				id: {
+					$in: services.map((e) => {
+						if (e.type != "Domain") return e.id;
+					}),
+				},
+			},
+			{ $push: { users: order.user_email } },
 		);
 
 	if (!user) return NextResponse.json({ error: "User not found" }, { status: 404 });
@@ -92,7 +104,13 @@ export async function POST(req: Request) {
 			{
 				$set: {
 					"recent_activity.$[activity].status": 2,
+					"billing.$[activity].paid": true,
+					monthly_spendings: user.monthly_spendings + order.amount_to_pay,
+					total_spent: user.total_spent + order.amount_to_pay,
 				},
+				$push: {
+					services: { $each: order.items },
+				} as UpdateFilter<Document>,
 			},
 			{
 				arrayFilters: [{ "activity.id": order.id }],

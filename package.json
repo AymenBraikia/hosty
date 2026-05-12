@@ -2,6 +2,7 @@
 	"name": "hosty",
 	"version": "0.1.0",
 	"private": true,
+	"type": "module",
 	"scripts": {
 		"dev": "next dev",
 		"build": "next build",
@@ -22,6 +23,7 @@
 		"qrcode": "^1.5.4",
 		"react": "19.2.0",
 		"react-dom": "19.2.0",
+		"recharts": "^3.8.1",
 		"tailwind-merge": "^3.4.0",
 		"timers": "^0.1.1",
 		"tls": "^0.0.1",

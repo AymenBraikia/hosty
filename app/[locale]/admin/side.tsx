@@ -1,6 +1,6 @@
 "use client";
 
-import { usePathname, useRouter } from "next/navigation";
+import { usePathname } from "next/navigation";
 import Button from "../components/button";
 import Billing from "../components/svg/billing";
 import Out from "../components/svg/out";
@@ -10,15 +10,14 @@ import Tiles from "../components/svg/tiles";
 import Web from "../components/svg/web";
 
 const navItems = [
-	{ icon: Tiles, label: "Overview", url: "/dashboard" },
-	{ icon: Server, label: "Instances", url: "/dashboard/instances" },
-	{ icon: Web, label: "Domains", url: "/dashboard/domains" },
-	{ icon: Billing, label: "Billing", url: "/dashboard/billing" },
-	{ icon: Settings, label: "Settings", url: "/dashboard/settings" },
+	{ icon: Tiles, label: "Analytics", url: "/admin" },
+	{ icon: Server, label: "Inventory", url: "/admin/inventory" },
+	{ icon: Web, label: "Recent Orders", url: "/admin/orders" },
+	{ icon: Billing, label: "Users", url: "/admin/users" },
+	{ icon: Settings, label: "System", url: "/admin/system" },
 ];
 
 export default function Side() {
-	const router = useRouter();
 	const pathname = usePathname();
 
 	return (
@@ -44,7 +43,7 @@ export default function Side() {
 
 				<li className="w-full text-red-400 flex justify-start items-center gap-4 rounded-2xl px-4 transition hover:bg-(--clr-surface)">
 					<Out s={32} color="currentColor" />
-					<Button css="w-full flex justify-start items-center" action={async () => await fetch("/api/sign_out", { method: "POST" })} content="Sign Out" url="/login" />
+					<Button css="w-full flex justify-start items-center" content="Exit Admin" url="/" />
 				</li>
 			</ul>
 		</nav>

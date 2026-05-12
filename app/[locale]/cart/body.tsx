@@ -25,7 +25,7 @@ export default function Body() {
 						<div className="flex justify-start items-start flex-col gap-8 w-full h-[75dvh] overflow-auto">
 							{items.map((e) => {
 								return (
-									<div key={e.id} className="w-full p-4 flex justify-between items-center border border-(--clr-surface-light2) rounded-2xl">
+									<div key={e.type == "Domain" ? e.name : e.id} className="w-full p-4 flex justify-between items-center border border-(--clr-surface-light2) rounded-2xl">
 										<div className="flex justify-start items-start gap-4">
 											<div className="w-13 aspect-square bg-(--clr-surface) flex justify-center items-center rounded-2xl">
 												<Server s={32} color="var(--clr-primary)" css="p-1" />

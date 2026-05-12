@@ -5,7 +5,7 @@ import { routing } from "./i18n/routing";
 
 const handleI18nRouting = createMiddleware(routing);
 
-const protectedRoutes = ["/dashboard", "/profile", "/settings", "/cart", "/checkout"];
+const protectedRoutes = ["/dashboard", "/profile", "/settings", "/cart", "/checkout", "/admin"];
 
 // export default function proxy(request: NextRequest) {
 // 	const { pathname } = request.nextUrl;
@@ -63,14 +63,15 @@ export default function proxy(request: NextRequest) {
 		const loginUrl = new URL(loginPath, request.url);
 		if (!token) {
 			loginUrl.searchParams.set("redirect", pathname);
-
 			return NextResponse.redirect(loginUrl);
 		} else
 			try {
-				if (!verifyJwt(token)) {
+				const payload = verifyJwt(token);
+				if (!payload) {
 					loginUrl.searchParams.set("redirect", pathname);
 					return NextResponse.redirect(loginUrl);
 				}
+				if (request.nextUrl.pathname.startsWith("/en/admin") || request.nextUrl.pathname.startsWith("/api/admin")) if (!payload.admin) return NextResponse.redirect(new URL("/not_found", request.url));
 			} catch {
 				loginUrl.searchParams.set("redirect", pathname);
 

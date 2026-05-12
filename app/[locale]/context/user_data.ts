@@ -1,4 +1,4 @@
 import { createContext } from "react";
-import UserData from "../types/user_ctx";
+import { admin_data } from "../types/product";
 
-export default createContext<UserData | undefined>(undefined);
+export default createContext<admin_data | undefined>(undefined);

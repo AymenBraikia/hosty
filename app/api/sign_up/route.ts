@@ -2,6 +2,7 @@ import clientPromise from "@/lib/db";
 import { signJwtAccessToken } from "@/lib/jwt";
 import { NextResponse } from "next/server";
 import { cookies } from "next/headers";
+import User from "@/app/[locale]/types/user";
 
 const reg = {
 	email: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
@@ -36,6 +37,8 @@ export async function POST(req: Request) {
 				cart: [],
 				wish_list: [],
 				services: [],
+				domains: [],
+				billing: [],
 				recent_activity: [],
 				created_at: new Date(),
 				first_purchase: true,
@@ -48,12 +51,15 @@ export async function POST(req: Request) {
 					maintenance: true,
 					marketing: true,
 				},
-			});
+				total_spent: 0,
+				monthly_spendings: 0,
+				admin: false,
+			} as User);
 
 			const payload = {
 				email: email,
-				first_name: first_name,
-				last_name: last_name,
+				full_name: first_name + " " + last_name,
+				admin: false,
 			};
 
 			const accessToken = signJwtAccessToken(payload);
