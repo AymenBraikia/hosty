@@ -462,3 +462,18 @@ body {
 
   }
 }
+
+.danger {
+  transition: .3s ease all !important;
+  color: rgb(255, 80, 80);
+}
+.danger:hover {
+  color: rgb(255, 80, 80);
+  background-color: rgba(255, 20, 20, 0.2);
+}
+
+.bg_gray{
+  color: rgb(170, 170, 170);
+  background-color: rgba(170, 170, 170, 0.2);
+  padding: 12px 16px;
+}

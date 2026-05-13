@@ -88,6 +88,8 @@ export interface admin_data {
 	users: {
 		full_name: string;
 		email: string;
+		verified: boolean;
+		admin: boolean;
 		active_subscription: {
 			id: number;
 			price: number;

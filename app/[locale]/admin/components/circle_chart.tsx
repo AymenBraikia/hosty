@@ -35,7 +35,7 @@ export default function CircleChart({ data, product = "" }: propsType) {
 				<div className="absolute left-1/2 top-1/2 -translate-1/2 w-[calc(100%-50px)] aspect-square flex justify-center items-center rounded-full bg-(--clr-surface2)">{format(total) + " " + product}</div>
 			</div>
 			<div className="w-full flex justify-evenly items-center flex-wrap gap-4">
-				{data.map((e, i) => (
+				{data.map((e) => (
 					<div key={e.color + e.value} className="w-[calc(50%-16px)] flex justify-start items-center gap-2">
 						<div className="w-4 aspect-square rounded-full" style={{ backgroundColor: e.color }}></div>
 						<div>

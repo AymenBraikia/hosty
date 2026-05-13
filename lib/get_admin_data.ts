@@ -16,7 +16,6 @@ interface Stats {
 	last_spendings: number;
 	last_system_last_load: number;
 	profit_history: number[];
-	
 }
 
 const services_collection = (await clientPromise).db("hosty").collection<hostService>("services");
@@ -32,6 +31,8 @@ export default async function get_admin_data(): Promise<admin_data | undefined> 
 	const users = all_users.map((u) => ({
 		full_name: u.first_name + " " + u.last_name,
 		email: u.email,
+		verified: u.verified_email,
+		admin: u.admin,
 		active_subscription: u.services.map((s) => ({
 			id: s.id,
 			price: s.price,
@@ -87,7 +88,7 @@ export default async function get_admin_data(): Promise<admin_data | undefined> 
 		last_rating,
 		last_spendings,
 		last_system_last_load,
-		profit_history
+		profit_history,
 	};
 
 	return data;

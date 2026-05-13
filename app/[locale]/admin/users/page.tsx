@@ -1,7 +1,9 @@
-import getUser from "@/lib/getUser";
-import { use } from "react";
+import Body from "./body";
 
 export default function Home() {
-    const data = use(getUser());
-    return <div className="flex flex-col overflow-hidden"></div>;
+	return (
+		<div className="flex flex-col overflow-hidden">
+			<Body />
+		</div>
+	);
 }

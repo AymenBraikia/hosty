@@ -20,7 +20,7 @@ export default function Button(props: { type?: "submit" | "button" | "reset" | "
 			onMouseLeave={() => {
 				if (btn.current) btn.current.style.scale = "1";
 			}}
-			className={`font-bold p-3 cursor-pointer rounded-2xl bg-transparent duration-100 text-center text-2xl text-gray-400 hover:text-foreground ${props.css}`}
+			className={`font-bold p-3 cursor-pointer rounded-2xl bg-transparent duration-100 text-center text-2xl text-gray-400 hover:text-foreground ${props.css ? props.css : ""}`}
 			style={props.styles}
 			onClick={router.back}
 		>
