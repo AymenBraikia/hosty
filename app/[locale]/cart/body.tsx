@@ -5,11 +5,11 @@ import Server from "../components/svg/server";
 import Trash from "../components/svg/trash";
 import Cart from "../components/svg/cart";
 import user_data from "../context/user_data";
-import { domain, hostService } from "../types/product";
+import { domainSub, hostServiceSub } from "../types/product";
 import Notification from "../components/notification";
 
 export default function Body() {
-	const data = useContext(user_data) as { wish_list: (domain | hostService)[]; cart: (domain | hostService)[]; name: string } | undefined;
+	const data = useContext(user_data) as { wish_list: (domainSub | hostServiceSub)[]; cart: (domainSub | hostServiceSub)[]; name: string } | undefined;
 	const [items, set_items] = useState(data?.cart || []);
 	const [err, set_err] = useState<string>("");
 	const [notifciation_visibility, set_notifciation_visibility] = useState<boolean>(false);
@@ -31,7 +31,8 @@ export default function Body() {
 												<Server s={32} color="var(--clr-primary)" css="p-1" />
 											</div>
 											<div className="flex flex-col justify-center items-start">
-												<h6 className="text-xl font-bold">{e.type == "Domain" ? e.name : "Hosting Service"}</h6>
+												{/* <h6 className="text-xl font-bold">{e.type == "Domain" ? e.name : "Hosting Service"}</h6> */}
+												<h6 className="text-xl font-bold">Hosting Service</h6>
 												<p className="text_shine">{e.type}</p>
 											</div>
 										</div>

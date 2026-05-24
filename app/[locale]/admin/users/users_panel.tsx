@@ -1,6 +1,6 @@
 "use client";
 import { useContext, useRef, useState } from "react";
-import { admin_data } from "../../types/product";
+import { admin_data, OS } from "../../types/product";
 import admin_ctx from "../../context/admin_data";
 import Button from "../../components/button";
 interface user {
@@ -14,6 +14,7 @@ interface user {
 		type: "Domain" | "Cloud VDS" | "Cloud VPS" | "Dedicated Server";
 		started: string | Date;
 		expire: string | Date;
+		renew: boolean;
 		role: "admin" | "owner";
 	}[];
 	total_spent: number;
@@ -24,6 +25,8 @@ interface sub {
 	type: "Domain" | "Cloud VDS" | "Cloud VPS" | "Dedicated Server";
 	started: string | Date;
 	expire: string | Date;
+	renew: boolean;
+	os?: OS;
 	role: "admin" | "owner";
 }
 
@@ -97,12 +100,25 @@ export default function Users_panel() {
 
 function Service({ s }: { s: sub }) {
 	const start_date = new Date(s.started);
-	const exp_date = new Date(s.expire);
+	const [exp_date] = useState<Date>(new Date(s.expire));
+
+	const [y, set_y] = useState<number>(exp_date.getFullYear());
+	const [m, set_m] = useState<number>(exp_date.getMonth() + 1);
+	const [d, set_d] = useState<number>(exp_date.getDate());
+	const [role, set_role] = useState<"owner" | "admin">(s.role);
+
+	const [renew, set_renew] = useState<boolean>(s.renew);
+
+	const y_input = useRef<HTMLInputElement>(null);
+	const m_input = useRef<HTMLInputElement>(null);
+	const d_input = useRef<HTMLInputElement>(null);
 
 	const [edit, set_edit] = useState<boolean>(false);
 
+	const now = new Date();
+
 	return (
-		<div className="bg-(--clr-surface2) p-4 rounded-2xl w-full font-bold text-gray-400">
+		<div className="bg-(--clr-surface2) p-4 rounded-2xl w-full font-bold text-gray-400 flex flex-col justify-center items-start gap-2">
 			<Button content="Edit" action={() => set_edit(true)} />
 			<div className="w-full flex justify-between items-center px-4">
 				<p>ID</p>
@@ -113,71 +129,171 @@ function Service({ s }: { s: sub }) {
 				<p>{s.type}</p>
 			</div>
 			<div className="w-full flex justify-between items-center px-4">
+				<p>Operating System</p>
+				<p>{s.os}</p>
+			</div>
+			<div className="w-full flex justify-between items-center px-4">
 				<p>Price</p>
 				<p>${s.price}</p>
 			</div>
+			{s.role == "owner" && (
+				<div className="w-full flex justify-between items-center px-4">
+					<p>Renew</p>
+					{edit ? <Button css={renew ? "bg_green" : "bg_red"} content={renew ? "Enabled" : "Disabled"} action={() => set_renew(!renew)} /> : <p className={renew ? "text-green-400" : "text-red-400"}>{renew ? "Enabled" : "Disabled"}</p>}
+				</div>
+			)}
 			<div className="w-full flex justify-between items-center px-4">
 				<p>Role</p>
-				<p>{s.role}</p>
+				{edit ? <Button content={role} css="bg_gray" styles={{ padding: "5px 20px" }} action={() => (role == "owner" ? set_role("admin") : set_role("owner"))} /> : <p>{role}</p>}
 			</div>
 			<div className="w-full flex justify-between items-center px-4">
 				<p>Purchase Date</p>
-				<p>{start_date.getFullYear() + "-" + start_date.getMonth() + "-" + start_date.getDay()}</p>
+				<p>{start_date.getFullYear() + "-" + (start_date.getMonth() + 1) + "-" + start_date.getDate()}</p>
 			</div>
 			<div className="w-full flex justify-between items-center px-4">
 				<p>Ending Date</p>
-				<p>{exp_date.getFullYear() + "-" + exp_date.getMonth() + "-" + exp_date.getDay()}</p>
+				{edit ? (
+					<div className="flex justify-center items-center gap-1">
+						<input
+							className="bg-(--clr-surface-light) transition rounded-[5px] border-2 border-gray-500/0 focus:border-gray-500 text-center outline-0 w-12 text-[16px]"
+							type="text"
+							value={y}
+							onChange={(e) => {
+								if (!y_input.current) return;
+								e.preventDefault();
+								const min_d = now.getDate();
+								const min_m = now.getMonth() + 1;
+								const min_y = now.getFullYear();
+								const is_current_year = min_y == y;
+
+								const newVal = Math.min(min_y + 20, Math.max(min_y, +y_input.current.value.replace(/\D/g, "")));
+								set_y(newVal);
+
+								const new_m = is_current_year && Math.max(min_m, m);
+
+								if (new_m) {
+									set_m(new_m);
+									const is_current_month = min_m == new_m;
+									if (is_current_month) set_d(Math.min(new_m % 2 ? 30 : 31, Math.max(min_d, d)));
+								}
+							}}
+							ref={y_input}
+							placeholder="yy"
+						/>
+						-
+						<input
+							className="bg-(--clr-surface-light) transition rounded-[5px] border-2 border-gray-500/0 focus:border-gray-500 text-center outline-0 w-8 text-[16px]"
+							type="text"
+							value={m}
+							onChange={(e) => {
+								if (!m_input.current) return;
+								e.preventDefault();
+
+								const min_d = now.getDate();
+								const min_m = now.getMonth() + 1;
+								const is_current_year = now.getFullYear() == y;
+
+								const extractDigits = +m_input.current.value.replace(/\D/g, "");
+
+								const newVal = Math.min(12, is_current_year ? Math.max(min_m, extractDigits) : extractDigits);
+								set_m(newVal);
+
+								const is_current_month = min_m == newVal;
+								const new_d = is_current_year && is_current_month && Math.max(min_d, d);
+
+								if (new_d) set_d(Math.min(newVal % 2 ? 30 : 31, new_d));
+							}}
+							ref={m_input}
+							placeholder="mm"
+						/>
+						-
+						<input
+							className="bg-(--clr-surface-light) transition rounded-[5px] border-2 border-gray-500/0 focus:border-gray-500 text-center outline-0 w-8 text-[16px]"
+							type="text"
+							value={d}
+							onChange={(e) => {
+								if (!d_input.current) return;
+								e.preventDefault();
+
+								const extractDigits = +d_input.current.value.replace(/\D/g, "");
+
+								const is_current_year = now.getFullYear() == y;
+								const is_current_month = now.getMonth() + 1 == m;
+
+								const newVal = is_current_year && is_current_month ? Math.max(now.getDate(), extractDigits) : extractDigits;
+								set_d(Math.min(m % 2 ? 30 : 31, newVal));
+							}}
+							ref={d_input}
+							placeholder="dd"
+						/>
+					</div>
+				) : (
+					<p>{exp_date.getFullYear() + "-" + (exp_date.getMonth() + 1) + "-" + exp_date.getDate()}</p>
+				)}
 			</div>
 			<div className="w-full flex justify-between items-center px-4">
 				<p>Time left</p>
-				<p>{calcTime(start_date, exp_date)}</p>
+				<p>{calcTime(now, exp_date)}</p>
 			</div>
 			{edit && (
-				<Button
-					content="Save"
-					action={() => {
-						set_edit(false);
-					}}
-				/>
+				<div className="flex justify-center items-center gap-4">
+					<Button
+						content="Save"
+						action={() => {
+							set_edit(false);
+							exp_date.setFullYear(y, m, d);
+
+							fetch("/admin/updateUser/service", {
+								method: "post",
+								headers: { "Content-Type": "application/json" },
+								body: JSON.stringify({
+									id: s.id,
+									exp_date,
+									role: role,
+									renew,
+								}),
+							});
+						}}
+					/>
+					<Button
+						content="Cancel"
+						action={() => {
+							set_edit(false);
+							set_y(exp_date.getFullYear());
+							set_m(exp_date.getMonth() + 1);
+							set_d(exp_date.getDate());
+							set_role(s.role);
+							set_renew(s.renew);
+						}}
+					/>
+				</div>
 			)}
 		</div>
 	);
 }
 
 function calcTime(d1: Date, d2: Date): string {
-	let results = "";
+	const p = (n: number, u: string) => `${n} ${u}${n !== 1 ? "s" : ""}`;
+	const parts: string[] = [];
 
-	const year_in_ms = 365 * 24 * 60 * 60 * 1e3;
-	const month_in_ms = 30 * 24 * 60 * 60 * 1e3;
-	const day_in_ms = 24 * 60 * 60 * 1e3;
-	const hour_in_ms = 60 * 60 * 1e3;
-	const min_in_ms = 60 * 1e3;
+	const ms = [
+		["year", 365.25 * 24 * 60 * 60 * 1e3],
+		["month", 30.44 * 24 * 60 * 60 * 1e3],
+		["day", 24 * 60 * 60 * 1e3],
+		["hour", 60 * 60 * 1e3],
+		["minute", 60 * 1e3],
+		["second", 1e3],
+	] as const;
 
 	let dt = Math.abs(d1.getTime() - d2.getTime());
-	if (dt >= year_in_ms) {
-		results += Math.floor(dt / year_in_ms) + " year ";
-		dt %= year_in_ms;
-	}
-	if (dt >= month_in_ms) {
-		results += Math.floor(dt / month_in_ms) + " month ";
-		dt %= month_in_ms;
-	}
-	if (dt >= day_in_ms) {
-		results += Math.floor(dt / day_in_ms) + " days ";
-		dt %= day_in_ms;
-	}
-	if (dt >= hour_in_ms) {
-		results += Math.floor(dt / hour_in_ms) + " hour ";
-		dt %= hour_in_ms;
-	}
-	if (dt >= min_in_ms) {
-		results += Math.floor(dt / min_in_ms) + " min ";
-		dt %= min_in_ms;
-	}
-	if (dt >= 1e3) {
-		results += Math.floor(dt / 1e3) + " second";
-		dt %= 1e3;
+
+	for (const [unit, size] of ms) {
+		if (dt >= size) {
+			const n = Math.floor(dt / size);
+			parts.push(p(n, unit));
+			dt %= size;
+		}
 	}
 
-	return results;
+	return parts.join(" ") || "0 seconds";
 }

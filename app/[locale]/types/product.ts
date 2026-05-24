@@ -7,13 +7,14 @@ export interface hostService {
 	badge?: string;
 	discount?: number;
 	perks?: string[];
-	specs?: { cpu: number; ram: number; storage: string; bandwidth: string };
+	specs: { cpu: number; ram: number; storage: string; bandwidth: string };
 	traffic: number[];
 	usage: number;
 	active: boolean;
 	available: boolean;
 	users: string[];
 	ip: string;
+	os: "Ubuntu 18.04" | "Ubuntu 20.04" | "Ubuntu 22.04" | "Ubuntu 24.04" | "Debian 10" | "Debian 11" | "Debian 12" | "Windows Server 2012" | "Windows Server 2016" | "Windows Server 2019" | "Windows Server 2022" | "Windows Server 2025";
 }
 export interface domain {
 	type: "Domain";
@@ -29,15 +30,18 @@ export interface domain {
 
 export interface hostServiceSub extends hostService {
 	amount: number;
-	started_at: Date | string;
-	expire_at: Date | string;
+	started_at?: Date | string;
+	expire_at?: Date | string;
+	renew: boolean;
 	role: "owner" | "admin";
 }
 
 export interface domainSub extends domain {
 	years: number;
+	amount: number;
 	started_at: Date | string;
 	expire_at: Date | string;
+	renew: boolean;
 	role: "owner" | "admin";
 }
 
@@ -97,6 +101,7 @@ export interface admin_data {
 			started: string | Date;
 			expire: string | Date;
 			role: "owner" | "admin";
+			renew: boolean;
 		}[];
 		total_spent: number;
 	}[];
@@ -111,3 +116,5 @@ export interface admin_data {
 	last_spendings: number;
 	last_system_last_load: number;
 }
+
+export type OS = "Ubuntu 18.04" | "Ubuntu 20.04" | "Ubuntu 22.04" | "Ubuntu 24.04" | "Debian 10" | "Debian 11" | "Debian 12" | "Windows Server 2012" | "Windows Server 2016" | "Windows Server 2019" | "Windows Server 2022" | "Windows Server 2025";

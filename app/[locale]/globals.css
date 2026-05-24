@@ -463,16 +463,31 @@ body {
   }
 }
 
+.bg_green {
+  color: #05df72;
+  background-color: #05df7233;
+  padding: 10px 20px;
+  border-radius: 15px;
+}
+
+.bg_red {
+  color: #ff6467;
+  background-color: #ff646733;
+  padding: 10px 20px;
+  border-radius: 15px;
+}
+
 .danger {
   transition: .3s ease all !important;
   color: rgb(255, 80, 80);
 }
+
 .danger:hover {
   color: rgb(255, 80, 80);
   background-color: rgba(255, 20, 20, 0.2);
 }
 
-.bg_gray{
+.bg_gray {
   color: rgb(170, 170, 170);
   background-color: rgba(170, 170, 170, 0.2);
   padding: 12px 16px;

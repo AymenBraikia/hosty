@@ -1,9 +1,10 @@
+import { hostService } from "@/app/[locale]/types/product";
 import clientPromise from "./db";
-import { Document, WithId } from "mongodb";
+import { WithId } from "mongodb";
 
-const collection = (await clientPromise).db("hosty").collection("services");
-export default async function get_services(ids: number | number[]) {
-	const results = new Set<WithId<Document>>([]);
+const collection = (await clientPromise).db("hosty").collection<hostService>("services");
+export default async function get_services(ids: number | number[]): Promise<Set<WithId<hostService>> | WithId<hostService> | null> {
+	const results = new Set<WithId<hostService>>([]);
 
 	if (typeof ids === "number") {
 		return await collection.findOne({ id: ids });

@@ -60,8 +60,8 @@ export async function POST(req: Request) {
 				...item,
 				status: "Active",
 				active: true,
-				started_at: new Date().toDateString(),
-				expires_at: item.type == "Domain" ? new Date(new Date().setFullYear(new Date().getFullYear() + item.years)).toDateString() : new Date(new Date().setMonth(new Date().getMonth() + item.amount)).toDateString(),
+				started_at: new Date(),
+				expires_at: item.type == "Domain" ? new Date(new Date().setFullYear(new Date().getFullYear() + item.years)) : new Date(new Date().setMonth(new Date().getMonth() + item.amount)),
 			};
 		}
 	});
@@ -109,7 +109,14 @@ export async function POST(req: Request) {
 					total_spent: user.total_spent + order.amount_to_pay,
 				},
 				$push: {
-					services: { $each: order.items },
+					services: {
+						$each: [...order.items].map((e) => ({
+							...e,
+							renew: true,
+							started_at: new Date(),
+							expire_at: e.type == "Domain" ? new Date(new Date().setFullYear(new Date().getFullYear() + e.years)) : new Date(new Date().setMonth(new Date().getMonth() + e.amount)),
+						})),
+					},
 				} as UpdateFilter<Document>,
 			},
 			{

@@ -29,632 +29,6 @@ export default async function add_services(service: hostService | hostService[])
 	else return null;
 }
 
-let i = 0;
-
-const services: hostService[] = [
-	{
-		type: "Cloud VPS",
-		id: i++,
-		specs: { cpu: 1, ram: 1, bandwidth: "1 TB", storage: "25GB SSD" },
-		price: 4.99,
-		description: "Entry-level sandbox environment perfect for personal blogs, VPNs, or lightweight testing. Features instant provisioning.",
-		active: true,
-		usage: Math.floor(Math.random() * 100),
-		available: true,
-		ip: gen_random_ip(),
-		users: [],
-		traffic: [],
-	},
-	{
-		type: "Cloud VPS",
-		id: i++,
-		specs: { cpu: 1, ram: 2, bandwidth: "1 TB", storage: "25GB SSD" },
-		price: 5.49,
-		description: "Cost-effective solution with expanded memory, designed for low-traffic websites and micro-services.",
-		active: true,
-		usage: Math.floor(Math.random() * 100),
-		available: true,
-		ip: gen_random_ip(),
-		users: [],
-		traffic: [],
-	},
-	{
-		type: "Cloud VPS",
-		id: i++,
-		specs: { cpu: 1, ram: 2, bandwidth: "2 TB", storage: "40GB SSD" },
-		price: 6.99,
-		description: "Enhanced storage capability for content-rich sites. Runs on our high-availability cloud infrastructure.",
-		active: true,
-		usage: Math.floor(Math.random() * 100),
-		available: true,
-		ip: gen_random_ip(),
-		users: [],
-		traffic: [],
-	},
-	{
-		type: "Cloud VPS",
-		id: i++,
-		specs: { cpu: 2, ram: 4, bandwidth: "2 TB", storage: "50GB SSD" },
-		price: 7.99,
-		description: "Multi-core processing power suitable for small e-commerce stores and moderately active databases.",
-		active: true,
-		usage: Math.floor(Math.random() * 100),
-		available: true,
-		ip: gen_random_ip(),
-		users: [],
-		traffic: [],
-	},
-	{
-		type: "Cloud VPS",
-		id: i++,
-		specs: { cpu: 2, ram: 2, bandwidth: "2 TB", storage: "50GB SSD" },
-		price: 8.99,
-		description: "Balanced CPU performance for computational tasks requiring consistent processing speeds.",
-		active: true,
-		usage: Math.floor(Math.random() * 100),
-		available: true,
-		ip: gen_random_ip(),
-		users: [],
-		traffic: [],
-	},
-	{
-		type: "Cloud VPS",
-		id: i++,
-		specs: { cpu: 2, ram: 4, bandwidth: "3 TB", storage: "80GB SSD" },
-		price: 9.99,
-		discount: 20,
-		badge: "Starter Deal",
-		description: "Our Starter Deal offers the perfect launchpad for growing businesses, combining generous SSD space with reliable throughput.",
-		active: true,
-		usage: Math.floor(Math.random() * 100),
-		available: true,
-		ip: gen_random_ip(),
-		users: [],
-		traffic: [],
-	},
-	{
-		type: "Cloud VPS",
-		id: i++,
-		specs: { cpu: 2, ram: 4, bandwidth: "3 TB", storage: "80GB SSD" },
-		price: 11.99,
-		description: "Standard production tier offering a robust environment for web hosting and development pipelines.",
-		active: true,
-		usage: Math.floor(Math.random() * 100),
-		available: true,
-		ip: gen_random_ip(),
-		users: [],
-		traffic: [],
-	},
-	{
-		type: "Cloud VPS",
-		id: i++,
-		specs: { cpu: 4, ram: 4, bandwidth: "4 TB", storage: "120GB SSD" },
-		price: 15.99,
-		description: "Quad-core performance designed to handle spikes in traffic and concurrent user sessions effortlessly.",
-		active: true,
-		usage: Math.floor(Math.random() * 100),
-		available: true,
-		ip: gen_random_ip(),
-		users: [],
-		traffic: [],
-	},
-	{
-		type: "Cloud VPS",
-		id: i++,
-		specs: { cpu: 4, ram: 4, bandwidth: "4 TB", storage: "120GB SSD" },
-		price: 15.99,
-		description: "Reliable hosting solution with redundant storage, ideal for media streaming or file repository servers.",
-		active: true,
-		usage: Math.floor(Math.random() * 100),
-		available: true,
-		ip: gen_random_ip(),
-		users: [],
-		traffic: [],
-	},
-	{
-		type: "Cloud VPS",
-		id: i++,
-		specs: { cpu: 4, ram: 8, bandwidth: "5 TB", storage: "160GB SSD" },
-		price: 17.99,
-		discount: 15,
-		badge: "Popular Choice",
-		description: "A customer favorite balancing RAM and CPU. Perfect for CMS platforms like WordPress or Magento with heavy plugins.",
-		active: true,
-		usage: Math.floor(Math.random() * 100),
-		available: true,
-		ip: gen_random_ip(),
-		users: [],
-		traffic: [],
-	},
-	{
-		type: "Cloud VPS",
-		id: i++,
-		specs: { cpu: 4, ram: 8, bandwidth: "5 TB", storage: "160GB SSD" },
-		price: 19.99,
-		description: "Our best-selling configuration. Provides ample resources for scaling applications without performance bottlenecks.",
-		most_popular: true,
-		active: true,
-		usage: Math.floor(Math.random() * 100),
-		available: true,
-		ip: gen_random_ip(),
-		users: [],
-		traffic: [],
-	},
-	{
-		type: "Cloud VPS",
-		id: i++,
-		specs: { cpu: 6, ram: 8, bandwidth: "6 TB", storage: "200GB SSD" },
-		price: 24.99,
-		description: "High-performance tier for data-intensive operations. Includes automated backups and DDoS protection.",
-		active: true,
-		usage: Math.floor(Math.random() * 100),
-		available: true,
-		ip: gen_random_ip(),
-		users: [],
-		traffic: [],
-	},
-	{
-		type: "Cloud VPS",
-		id: i++,
-		specs: { cpu: 6, ram: 8, bandwidth: "6 TB", storage: "200GB SSD" },
-		price: 24.99,
-		description: "Optimized for backend API services, offering low-latency connectivity and high storage I/O.",
-		active: true,
-		usage: Math.floor(Math.random() * 100),
-		available: true,
-		ip: gen_random_ip(),
-		users: [],
-		traffic: [],
-	},
-	{
-		type: "Cloud VPS",
-		id: i++,
-		specs: { cpu: 8, ram: 16, bandwidth: "8 TB", storage: "250GB SSD" },
-		price: 34.99,
-		description: "Powerhouse VPS for demanding workloads. Ideal for game servers, large databases, and enterprise apps.",
-		most_popular: true,
-		active: true,
-		usage: Math.floor(Math.random() * 100),
-		available: true,
-		ip: gen_random_ip(),
-		users: [],
-		traffic: [],
-	},
-	{
-		type: "Cloud VPS",
-		id: i++,
-		specs: { cpu: 8, ram: 16, bandwidth: "8 TB", storage: "250GB SSD" },
-		price: 34.99,
-		description: "Enterprise-grade virtualization delivering consistent performance for mission-critical deployments.",
-		active: true,
-		usage: Math.floor(Math.random() * 100),
-		available: true,
-		ip: gen_random_ip(),
-		users: [],
-		traffic: [],
-	},
-	{
-		type: "Cloud VPS",
-		id: i++,
-		specs: { cpu: 12, ram: 24, bandwidth: "10 TB", storage: "320GB SSD" },
-		price: 49.99,
-		description: "Massive parallel processing capabilities for big data analysis and complex rendering tasks.",
-		active: true,
-		usage: Math.floor(Math.random() * 100),
-		available: true,
-		ip: gen_random_ip(),
-		users: [],
-		traffic: [],
-	},
-	{
-		type: "Cloud VPS",
-		id: i++,
-		specs: { cpu: 12, ram: 24, bandwidth: "10 TB", storage: "320GB SSD" },
-		price: 49.99,
-		description: "Designed for resellers and agencies needing to host multiple clients on a single, powerful instance.",
-		active: true,
-		usage: Math.floor(Math.random() * 100),
-		available: true,
-		ip: gen_random_ip(),
-		users: [],
-		traffic: [],
-	},
-	{
-		type: "Cloud VPS",
-		id: i++,
-		specs: { cpu: 16, ram: 32, bandwidth: "12 TB", storage: "400GB SSD" },
-		price: 69.99,
-		description: "The ultimate VPS solution. Replaces small dedicated servers with the flexibility of cloud scalability.",
-		active: true,
-		usage: Math.floor(Math.random() * 100),
-		available: true,
-		ip: gen_random_ip(),
-		users: [],
-		traffic: [],
-	},
-
-	// =====================
-	// Cloud VDS (by price)
-	// =====================
-	{
-		type: "Cloud VDS",
-		id: i++,
-		specs: { cpu: 4, ram: 8, bandwidth: "5 TB", storage: "200GB NVMe" },
-		price: 39.99,
-		description: "Dedicated CPU threads and NVMe storage ensure zero steal time and lightning-fast disk access.",
-		active: true,
-		usage: Math.floor(Math.random() * 100),
-		available: true,
-		ip: gen_random_ip(),
-		users: [],
-		traffic: [],
-	},
-	{
-		type: "Cloud VDS",
-		id: i++,
-		specs: { cpu: 6, ram: 12, bandwidth: "6 TB", storage: "250GB NVMe" },
-		price: 49.99,
-		description: "Isolated resources on KVM virtualization, providing the stability required for production environments.",
-		active: true,
-		usage: Math.floor(Math.random() * 100),
-		available: true,
-		ip: gen_random_ip(),
-		users: [],
-		traffic: [],
-	},
-	{
-		type: "Cloud VDS",
-		id: i++,
-		specs: { cpu: 8, ram: 16, bandwidth: "8 TB", storage: "320GB NVMe" },
-		price: 54.99,
-		discount: 10,
-		badge: "Best Value",
-		description: "Unbeatable price-to-performance ratio. Dedicated hardware resources without the management overhead.",
-		active: true,
-		usage: Math.floor(Math.random() * 100),
-		available: true,
-		ip: gen_random_ip(),
-		users: [],
-		traffic: [],
-	},
-	{
-		type: "Cloud VDS",
-		id: i++,
-		specs: { cpu: 8, ram: 16, bandwidth: "8 TB", storage: "320GB NVMe" },
-		price: 59.99,
-		description: "Top-tier VDS choice for high-traffic portals. Guaranteed allocation ensures your neighbors never impact your speed.",
-		most_popular: true,
-		active: true,
-		usage: Math.floor(Math.random() * 100),
-		available: true,
-		ip: gen_random_ip(),
-		users: [],
-		traffic: [],
-	},
-	{
-		type: "Cloud VDS",
-		id: i++,
-		specs: { cpu: 10, ram: 20, bandwidth: "10 TB", storage: "400GB NVMe" },
-		price: 74.99,
-		description: "Bridge the gap between VPS and Dedicated. High-frequency computing for CI/CD pipelines and compilation.",
-		active: true,
-		usage: Math.floor(Math.random() * 100),
-		available: true,
-		ip: gen_random_ip(),
-		users: [],
-		traffic: [],
-	},
-	{
-		type: "Cloud VDS",
-		id: i++,
-		specs: { cpu: 12, ram: 24, bandwidth: "12 TB", storage: "500GB NVMe" },
-		price: 89.99,
-		description: "Half-terabyte of ultra-fast NVMe storage coupled with dedicated cores for I/O heavy applications.",
-		active: true,
-		usage: Math.floor(Math.random() * 100),
-		available: true,
-		ip: gen_random_ip(),
-		users: [],
-		traffic: [],
-	},
-	{
-		type: "Cloud VDS",
-		id: i++,
-		specs: { cpu: 12, ram: 24, bandwidth: "12 TB", storage: "500GB NVMe" },
-		price: 89.99,
-		description: "Secure, single-tenant environment ideal for financial applications or sensitive data processing.",
-		active: true,
-		usage: Math.floor(Math.random() * 100),
-		available: true,
-		ip: gen_random_ip(),
-		users: [],
-		traffic: [],
-	},
-	{
-		type: "Cloud VDS",
-		id: i++,
-		specs: { cpu: 16, ram: 32, bandwidth: "15 TB", storage: "640GB NVMe" },
-		price: 119.99,
-		description: "Heavy-duty VDS capable of sustaining thousands of concurrent connections. Includes premium network routing.",
-		most_popular: true,
-		active: true,
-		usage: Math.floor(Math.random() * 100),
-		available: true,
-		ip: gen_random_ip(),
-		users: [],
-		traffic: [],
-	},
-	{
-		type: "Cloud VDS",
-		id: i++,
-		specs: { cpu: 16, ram: 32, bandwidth: "15 TB", storage: "640GB NVMe" },
-		price: 119.99,
-		description: "Enterprise infrastructure configured for maximum reliability. 99.99% SLA guaranteed.",
-		active: true,
-		usage: Math.floor(Math.random() * 100),
-		available: true,
-		ip: gen_random_ip(),
-		users: [],
-		traffic: [],
-	},
-	{
-		type: "Cloud VDS",
-		id: i++,
-		specs: { cpu: 20, ram: 48, bandwidth: "18 TB", storage: "800GB NVMe" },
-		price: 149.99,
-		description: "Extreme performance tier with massive RAM allocation for in-memory caching (Redis/Memcached) and databases.",
-		active: true,
-		usage: Math.floor(Math.random() * 100),
-		available: true,
-		ip: gen_random_ip(),
-		users: [],
-		traffic: [],
-	},
-	{
-		type: "Cloud VDS",
-		id: i++,
-		specs: { cpu: 24, ram: 64, bandwidth: "20 TB", storage: "1TB NVMe" },
-		price: 179.99,
-		description: "Server-grade power with 1TB of NVMe. Perfect for SaaS providers needing scalable, dedicated architecture.",
-		active: true,
-		usage: Math.floor(Math.random() * 100),
-		available: true,
-		ip: gen_random_ip(),
-		users: [],
-		traffic: [],
-	},
-	{
-		type: "Cloud VDS",
-		id: i++,
-		specs: { cpu: 24, ram: 64, bandwidth: "20 TB", storage: "1TB NVMe" },
-		price: 179.99,
-		description: "Deployed in Tier IV data centers with redundant power and networking for failsafe operations.",
-		active: true,
-		usage: Math.floor(Math.random() * 100),
-		available: true,
-		ip: gen_random_ip(),
-		users: [],
-		traffic: [],
-	},
-	{
-		type: "Cloud VDS",
-		id: i++,
-		specs: { cpu: 32, ram: 96, bandwidth: "25 TB", storage: "1.5TB NVMe" },
-		price: 249.99,
-		description: "A monster VDS for virtualization enthusiasts. Run multiple nested VMs or containers with ease.",
-		active: true,
-		usage: Math.floor(Math.random() * 100),
-		available: true,
-		ip: gen_random_ip(),
-		users: [],
-		traffic: [],
-	},
-	{
-		type: "Cloud VDS",
-		id: i++,
-		specs: { cpu: 40, ram: 128, bandwidth: "30 TB", storage: "2TB NVMe" },
-		price: 329.99,
-		description: "Our highest VDS tier. Equivalent to a powerful dedicated server but with the flexibility of the cloud.",
-		active: true,
-		usage: Math.floor(Math.random() * 100),
-		available: true,
-		ip: gen_random_ip(),
-		users: [],
-		traffic: [],
-	},
-
-	// =========================
-	// Dedicated Server (by price)
-	// =========================
-	{
-		type: "Dedicated Server",
-		id: i++,
-		specs: { cpu: 8, ram: 16, bandwidth: "10 TB", storage: "1TB HDD" },
-		price: 79.99,
-		description: "Bare metal control at an entry-level price. High capacity HDD storage suitable for backup and archival.",
-		active: true,
-		usage: Math.floor(Math.random() * 100),
-		available: true,
-		ip: gen_random_ip(),
-		users: [],
-		traffic: [],
-	},
-	{
-		type: "Dedicated Server",
-		id: i++,
-		specs: { cpu: 8, ram: 32, bandwidth: "12 TB", storage: "2TB HDD" },
-		price: 99.99,
-		description: "Popular storage server. Full root access to physical hardware, ideal for private clouds and media libraries.",
-		most_popular: true,
-		active: true,
-		usage: Math.floor(Math.random() * 100),
-		available: true,
-		ip: gen_random_ip(),
-		users: [],
-		traffic: [],
-	},
-	{
-		type: "Dedicated Server",
-		id: i++,
-		specs: { cpu: 12, ram: 32, bandwidth: "15 TB", storage: "2×1TB HDD" },
-		price: 129.99,
-		description: "Dual-drive configuration allowing for RAID 1 setups to ensure data integrity and redundancy.",
-		active: true,
-		usage: Math.floor(Math.random() * 100),
-		available: true,
-		ip: gen_random_ip(),
-		users: [],
-		traffic: [],
-	},
-	{
-		type: "Dedicated Server",
-		id: i++,
-		specs: { cpu: 16, ram: 64, bandwidth: "20 TB", storage: "2×480GB SSD" },
-		price: 159.99,
-		discount: 20,
-		badge: "Limited Offer",
-		description: "High-speed SSD dedicated server. Significantly faster boot and load times for application hosting.",
-		active: true,
-		usage: Math.floor(Math.random() * 100),
-		available: true,
-		ip: gen_random_ip(),
-		users: [],
-		traffic: [],
-	},
-	{
-		type: "Dedicated Server",
-		id: i++,
-		specs: { cpu: 16, ram: 64, bandwidth: "20 TB", storage: "2×480GB SSD" },
-		price: 169.99,
-		description: "Robust physical infrastructure with IPMI access. Perfect for virtualization nodes (Proxmox/ESXi).",
-		active: true,
-		usage: Math.floor(Math.random() * 100),
-		available: true,
-		ip: gen_random_ip(),
-		users: [],
-		traffic: [],
-	},
-	{
-		type: "Dedicated Server",
-		id: i++,
-		specs: { cpu: 24, ram: 64, bandwidth: "25 TB", storage: "2×480GB SSD" },
-		price: 199.99,
-		description: "High core-count server for parallel processing. Handles extensive background jobs and worker queues.",
-		active: true,
-		usage: Math.floor(Math.random() * 100),
-		available: true,
-		ip: gen_random_ip(),
-		users: [],
-		traffic: [],
-	},
-	{
-		type: "Dedicated Server",
-		id: i++,
-		specs: { cpu: 24, ram: 64, bandwidth: "25 TB", storage: "2×480GB SSD" },
-		price: 199.99,
-		description: "Professional grade hardware with unmetered internal network, suitable for clustering.",
-		active: true,
-		usage: Math.floor(Math.random() * 100),
-		available: true,
-		ip: gen_random_ip(),
-		users: [],
-		traffic: [],
-	},
-	{
-		type: "Dedicated Server",
-		id: i++,
-		specs: { cpu: 32, ram: 128, bandwidth: "30 TB", storage: "2×960GB SSD" },
-		price: 229.99,
-		discount: 25,
-		badge: "Enterprise Deal",
-		description: "Enterprise powerhouse with massive RAM and nearly 2TB of fast SSD storage. Built for heavy-duty production.",
-		active: true,
-		usage: Math.floor(Math.random() * 100),
-		available: true,
-		ip: gen_random_ip(),
-		users: [],
-		traffic: [],
-	},
-	{
-		type: "Dedicated Server",
-		id: i++,
-		specs: { cpu: 40, ram: 128, bandwidth: "35 TB", storage: "2×1TB NVMe" },
-		price: 299.99,
-		description: "Next-gen storage performance. NVMe drives provide millions of IOPS for the most demanding databases.",
-		active: true,
-		usage: Math.floor(Math.random() * 100),
-		available: true,
-		ip: gen_random_ip(),
-		users: [],
-		traffic: [],
-	},
-	{
-		type: "Dedicated Server",
-		id: i++,
-		specs: { cpu: 40, ram: 128, bandwidth: "35 TB", storage: "2×1TB NVMe" },
-		price: 299.99,
-		description: "Physically isolated hardware ensuring complete privacy and security for compliance-heavy industries.",
-		active: true,
-		usage: Math.floor(Math.random() * 100),
-		available: true,
-		ip: gen_random_ip(),
-		users: [],
-		traffic: [],
-	},
-	{
-		type: "Dedicated Server",
-		id: i++,
-		specs: { cpu: 32, ram: 128, bandwidth: "30 TB", storage: "2TB NVMe" },
-		price: 329.99,
-		description: "Optimized for latency-sensitive applications. Direct hardware access with premium bandwidth routing.",
-		active: true,
-		usage: Math.floor(Math.random() * 100),
-		available: true,
-		ip: gen_random_ip(),
-		users: [],
-		traffic: [],
-	},
-	{
-		type: "Dedicated Server",
-		id: i++,
-		specs: { cpu: 48, ram: 192, bandwidth: "40 TB", storage: "2×2TB NVMe" },
-		price: 369.99,
-		description: "Extreme multi-core performance. Ideal for machine learning inference, video transcoding, and scientific modeling.",
-		active: true,
-		usage: Math.floor(Math.random() * 100),
-		available: true,
-		ip: gen_random_ip(),
-		users: [],
-		traffic: [],
-	},
-	{
-		type: "Dedicated Server",
-		id: i++,
-		specs: { cpu: 56, ram: 256, bandwidth: "50 TB", storage: "4TB NVMe" },
-		price: 449.99,
-		description: "Data center in a box. Massive memory and storage capacity for running entire company infrastructures.",
-		active: true,
-		usage: Math.floor(Math.random() * 100),
-		available: true,
-		ip: gen_random_ip(),
-		users: [],
-		traffic: [],
-	},
-	{
-		type: "Dedicated Server",
-		id: i++,
-		specs: { cpu: 64, ram: 512, bandwidth: "60 TB", storage: "2×4TB NVMe" },
-		price: 599.99,
-		description: "The ultimate flagship server. Unmatched computational power and storage speed for top-tier enterprise needs.",
-		active: true,
-		usage: Math.floor(Math.random() * 100),
-		available: true,
-		ip: gen_random_ip(),
-		users: [],
-		traffic: [],
-	},
-];
-
 function gen_random_ip(): string {
 	let result = "";
 	result += Math.floor(Math.random() * 255) + ".";
@@ -664,8 +38,159 @@ function gen_random_ip(): string {
 	return result;
 }
 
+type osList = "Ubuntu 18.04" | "Ubuntu 20.04" | "Ubuntu 22.04" | "Ubuntu 24.04" | "Debian 10" | "Debian 11" | "Debian 12" | "Windows Server 2012" | "Windows Server 2016" | "Windows Server 2019" | "Windows Server 2022" | "Windows Server 2025";
+
+function get_os(): osList {
+	const possible_os: osList[] = [
+		"Ubuntu 18.04",
+		"Ubuntu 20.04",
+		"Ubuntu 22.04",
+		"Ubuntu 24.04",
+		"Debian 10",
+		"Debian 11",
+		"Debian 12",
+		"Windows Server 2012",
+		"Windows Server 2016",
+		"Windows Server 2019",
+		"Windows Server 2022",
+		"Windows Server 2025",
+	];
+
+	return possible_os[Math.floor(Math.random() * possible_os.length)];
+}
+
+// Global iterator matching your original array format
+let i = 0;
+const services: hostService[] = [];
+
+// ============================================================================
+// 1. CLOUD VPS: 200 Services (From Ultra-Budget Nano Plans to Pro Environments)
+// ============================================================================
+for (let chunk = 0; chunk < 200; chunk++) {
+	let ram: number;
+	let storage: string;
+	let cpu: number;
+	let price: number;
+	let desc: string;
+
+	if (chunk < 40) {
+		// Ultra-Budget Tiers (Perfect for students, hobbies, tiny scripts, lightweight proxies)
+		cpu = 1;
+		ram = chunk < 10 ? 0.128 : chunk < 20 ? 0.256 : chunk < 30 ? 0.512 : 1;
+		storage = `${5 + (chunk % 5) * 3}GB SSD`; // Micro storage range: 5GB to 17GB
+		price = parseFloat((0.99 + chunk * 0.1).toFixed(2)); // Plans starting at just $0.99
+		desc = "Nano-virtualization cell optimized for minimal crontabs, single lightweight proxy nodes, or sandboxed CLI testing.";
+	} else if (chunk < 140) {
+		// Balanced Mid-Tier (For average daily workloads and standard web apps)
+		cpu = 1 + Math.floor((chunk - 40) / 35); // 1 to 3 Cores
+		ram = 2 + (chunk % 4) * 2; // 2GB, 4GB, 6GB, 8GB
+		storage = `${20 + (chunk % 6) * 12}GB SSD`; // Highly granular: 20GB up to 80GB SSD
+		price = parseFloat((4.99 + (chunk - 40) * 0.2).toFixed(2));
+		desc = "Standard virtual production tier balancing efficient solid-state file storage with dedicated core infrastructure.";
+	} else {
+		// Premium VPS Tier (For professional testing, heavy builds, active development APIs)
+		cpu = 4 + Math.floor((chunk - 140) / 20); // 4 to 6 Cores
+		ram = 12 + (chunk % 3) * 4; // 12GB, 16GB, 20GB
+		storage = `${90 + (chunk % 5) * 25}GB SSD`; // 90GB up to 190GB SSD
+		price = parseFloat((24.99 + (chunk - 140) * 0.45).toFixed(2));
+		desc = "Advanced high-tier compute node designed to manage concurrent API endpoints, background worker pipelines, and active databases.";
+	}
+
+	const item: hostService = {
+		type: "Cloud VPS",
+		id: i++,
+		specs: { cpu, ram, bandwidth: `${500 + chunk * 30}GB`, storage },
+		price,
+		description: desc,
+		active: true,
+		usage: Math.floor(Math.random() * 100),
+		available: true,
+		ip: gen_random_ip(),
+		users: [],
+		traffic: [],
+		os: get_os(),
+	};
+
+	// Mark specific sweet spots for marketing visual badges
+	if (chunk === 0) item.badge = "Free Trial Available";
+	if (chunk === 45) {
+		item.most_popular = true;
+		item.badge = "Best Budget Value";
+	}
+
+	services.push(item);
+}
+
+// ============================================================================
+// 2. CLOUD VDS: 150 Services (Dedicated Performance with Scaled Storage Slices)
+// ============================================================================
+for (let chunk = 0; chunk < 150; chunk++) {
+	// Focuses on strong performance variables without forcing high disk packages on customers
+	const cpu = 2 + Math.floor(chunk / 20); // 2 to 9 Dedicated Cores
+	const ram = 4 + (chunk % 6) * 4; // Dedicated RAM blocks: 4GB up to 24GB
+	const storage = `${30 + (chunk % 10) * 15}GB NVMe`; // Highly responsive but cost-saving storage footprint: 30GB to 165GB NVMe
+	const price = parseFloat((29.99 + chunk * 1.1).toFixed(2));
+
+	const item: hostService = {
+		type: "Cloud VDS",
+		id: i++,
+		specs: { cpu, ram, bandwidth: `${2 + Math.floor(chunk / 12)}TB`, storage },
+		price,
+		description: `Dedicated performance slice environment #${chunk + 1}. Features isolated bare-metal hypervisor kernels and absolute physical resource priority.`,
+		active: true,
+		usage: Math.floor(Math.random() * 100),
+		available: true,
+		ip: gen_random_ip(),
+		users: [],
+		traffic: [],
+		os: get_os(),
+	};
+
+	if (chunk === 25) {
+		item.badge = "Developer Choice";
+		item.most_popular = true;
+	}
+
+	services.push(item);
+}
+
+// ============================================================================
+// 3. DEDICATED SERVERS: 100 Services (High-Performance Bare Metal Architecture)
+// ============================================================================
+for (let chunk = 0; chunk < 100; chunk++) {
+	const cpu = 4 + (chunk % 8) * 8; // Physical infrastructure scaling from 4 to 60 hardware cores
+	const ram = 16 + (chunk % 5) * 32; // Memory capacities moving smoothly from 16GB to 144GB RAM
+
+	// Intentionally balanced storage logic so purchasers don't always overpay for gigantic storage allocations
+	const storage =
+		chunk % 2 === 0
+			? `${120 + (chunk % 4) * 120}GB NVMe Enterprise` // Low volume, blazing fast setups: 120GB to 480GB NVMe
+			: `${1 + Math.floor(chunk / 25)}TB Enterprise HDD`; // Industrial storage footprints for data heavy environments: 1TB to 4TB HDD
+
+	const price = parseFloat((69.99 + chunk * 4.25).toFixed(2));
+
+	const item: hostService = {
+		type: "Dedicated Server",
+		id: i++,
+		specs: { cpu, ram, bandwidth: `${10 + chunk}TB`, storage },
+		price,
+		description: `Isolated physical bare metal custom production rack configuration #${chunk + 1}. Unrestricted hardware hypervisor management profiles.`,
+		active: true,
+		usage: Math.floor(Math.random() * 100),
+		available: Math.random() > 0.03, // Realistically mocks random hardware tier stock availability
+		ip: gen_random_ip(),
+		users: [],
+		traffic: [],
+		os: get_os(),
+	};
+
+	if (chunk > 85) item.badge = "Enterprise Enterprise Tier";
+	services.push(item);
+}
+
+// Execute the final collection injection
 (async () => {
 	await add_services(services);
-	console.log("finished inserting the services.");
+	console.log(`Successfully finished processing and inserting ${services.length} inclusive service configurations.`);
 	process.exit(0);
 })();

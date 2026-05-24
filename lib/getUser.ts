@@ -10,6 +10,8 @@ interface UserData {
 	cart: (domain | hostService)[];
 	wish_list: (domain | hostService)[];
 	services: (domain | hostService)[];
+	name: string;
+	email: string;
 	recent_activity: { title: string; description: string; date: string; status: number; id: string }[];
 }
 
@@ -37,5 +39,7 @@ export default async function getUser(): Promise<UserData | undefined> {
 		wish_list: user.wish_list,
 		services: user.services,
 		recent_activity: user.recent_activity,
+		name: user.first_name,
+		email: user.email,
 	});
 }

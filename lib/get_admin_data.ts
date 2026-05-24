@@ -37,9 +37,11 @@ export default async function get_admin_data(): Promise<admin_data | undefined> 
 			id: s.id,
 			price: s.price,
 			type: s.type,
-			started: s.started_at,
-			expire: s.expire_at,
+			started: s.started_at!,
+			expire: s.expire_at!,
 			role: s.role,
+			renew: s.renew,
+			os: "os" in s ? s.os : null,
 		})),
 		total_spent: u.total_spent,
 	}));
