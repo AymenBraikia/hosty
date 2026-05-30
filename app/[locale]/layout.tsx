@@ -109,8 +109,8 @@ export const metadata: Metadata = {
 	category: "Technology",
 	generator: "Next.js",
 	icons: {
-		icon: "/favicon.ico",
-		shortcut: "/favicon.ico",
+		icon: "/logo.png",
+		shortcut: "/logo.png",
 		apple: "/apple-icon.png",
 	},
 	openGraph: {

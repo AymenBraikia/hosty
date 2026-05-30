@@ -1,14 +1,11 @@
 "use server";
 
-import clientPromise from "@/lib/db";
 import getUser from "@/lib/getUser";
 import { revalidatePath } from "next/cache";
-import User from "../types/user";
 import get_services from "@/lib/get_service_data";
 import { hostService } from "../types/product";
 import { WithId } from "mongodb";
-
-const users_coll = (await clientPromise).db("hosty").collection<User>("users");
+import { userCollection } from "@/app/db/collections";
 
 export async function addToWish(data: FormData): Promise<void> {
 	const user = await getUser();
@@ -24,7 +21,7 @@ export async function addToWish(data: FormData): Promise<void> {
 		const product = (await get_services(id)) as WithId<hostService>;
 		if (!product) return reject("product does not exist");
 
-		await users_coll.updateOne({ email: user.email }, { $push: { wish_list: { ...product, amount: 1, renew: true, role: "owner" } } });
+		await userCollection.updateOne({ email: user.email }, { $push: { wish_list: { ...product, amount: 1, renew: true, role: "owner" } } });
 		revalidatePath("/");
 
 		return resolve();

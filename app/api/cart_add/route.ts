@@ -1,6 +1,5 @@
 import { domainSub, hostService } from "@/app/[locale]/types/product";
-import User from "@/app/[locale]/types/user";
-import clientPromise from "@/lib/db";
+import { userCollection } from "@/app/db/collections";
 import { exts } from "@/lib/domain_pricing";
 import get_services from "@/lib/get_service_data";
 import { verifyJwt } from "@/lib/jwt";
@@ -12,7 +11,6 @@ const domainRegex = /^(?=.{1,253}$)(?!-)(?:[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA
 
 export async function POST(req: Request) {
 	const cookieStore = await cookies();
-	const client = await clientPromise;
 
 	const token = cookieStore.get("accessToken")?.value;
 
@@ -26,7 +24,6 @@ export async function POST(req: Request) {
 	}
 
 	const { id, domain } = await req.json();
-	const db = client.db("hosty").collection<User>("users");
 
 	// domain
 	if (typeof domain == "string" && domain.match(domainRegex)) {
@@ -38,9 +35,9 @@ export async function POST(req: Request) {
 			years: 1,
 		} as domainSub;
 
-		if (await db.findOne({ email: payload!.email, cart: service })) return NextResponse.json({ message: "Item already in cart" }, { status: 400 });
+		if (await userCollection.findOne({ email: payload!.email, cart: service })) return NextResponse.json({ message: "Item already in cart" }, { status: 400 });
 
-		await db.updateOne({ email: payload!.email }, { $addToSet: { cart: { ...service, years: 1 } }, $pull: { wish_list: { id } } });
+		await userCollection.updateOne({ email: payload!.email }, { $addToSet: { cart: { ...service, years: 1 } }, $pull: { wish_list: { id } } });
 
 		return NextResponse.json({ message: "Item added to cart" }, { status: 200 });
 	}
@@ -53,9 +50,12 @@ export async function POST(req: Request) {
 	if (!service) return NextResponse.json({ message: "Item not found" }, { status: 400 });
 	if (service instanceof Set) return NextResponse.json({ message: "Item not found" }, { status: 400 });
 
-	if (await db.findOne({ email: payload!.email, "cart.id": service.id })) return NextResponse.json({ message: "Item already in cart" }, { status: 400 });
+	if (await userCollection.findOne({ email: payload!.email, "cart.id": service.id })) return NextResponse.json({ message: "Item already in cart" }, { status: 400 });
 
-	await db.updateOne({ email: payload!.email }, { $addToSet: { cart: { ...service, amount: 1, started_at: new Date(), expire_at: new Date(Date.now() + 1e3 * 60 * 60 * 24 * 30), role: "owner" } }, $pull: { wish_list: { id } } });
+	await userCollection.updateOne(
+		{ email: payload!.email },
+		{ $addToSet: { cart: { ...service, amount: 1, started_at: new Date(), expire_at: new Date(Date.now() + 1e3 * 60 * 60 * 24 * 30), role: "owner", renew: true } }, $pull: { wish_list: { id } } },
+	);
 
 	return NextResponse.json({ message: "Item added to cart" }, { status: 200 });
 }

@@ -34,6 +34,7 @@ export interface hostServiceSub extends hostService {
 	expire_at?: Date | string;
 	renew: boolean;
 	role: "owner" | "admin";
+	suspended: boolean;
 }
 
 export interface domainSub extends domain {
@@ -93,6 +94,7 @@ export interface admin_data {
 		full_name: string;
 		email: string;
 		verified: boolean;
+		suspended: boolean;
 		admin: boolean;
 		active_subscription: {
 			id: number;
@@ -102,6 +104,7 @@ export interface admin_data {
 			expire: string | Date;
 			role: "owner" | "admin";
 			renew: boolean;
+			suspended: boolean;
 		}[];
 		total_spent: number;
 	}[];

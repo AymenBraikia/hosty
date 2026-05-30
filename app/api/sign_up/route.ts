@@ -1,8 +1,8 @@
-import clientPromise from "@/lib/db";
 import { signJwtAccessToken } from "@/lib/jwt";
 import { NextResponse } from "next/server";
 import { cookies } from "next/headers";
 import User from "@/app/[locale]/types/user";
+import { userCollection } from "@/app/db/collections";
 
 const reg = {
 	email: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
@@ -11,7 +11,6 @@ const reg = {
 
 export async function POST(req: Request) {
 	try {
-		const client = await clientPromise;
 		const cookieStore = await cookies();
 
 		const body = await req.json();
@@ -19,17 +18,17 @@ export async function POST(req: Request) {
 
 		if (!email || !password || !first_name || !last_name) return NextResponse.json({ error: "Missing fields" }, { status: 400 });
 
-		const collection = client.db("hosty").collection("users");
 
 		if (!reg.email.test(email)) return NextResponse.json({ error: "Invalid email format" }, { status: 400 });
 
 		if (!reg.password.test(password)) return NextResponse.json({ error: "Password does not meet complexity requirements" }, { status: 400 });
 
 		try {
-			if (await collection.findOne({ email: email })) return NextResponse.json({ error: "User already exists" }, { status: 400 });
+			if (await userCollection.findOne({ email: email })) return NextResponse.json({ error: "User already exists" }, { status: 400 });
 
-			await collection.insertOne({
+			await userCollection.insertOne({
 				email: email,
+				suspended: false,
 				verified_email: false,
 				first_name: first_name,
 				last_name: last_name,

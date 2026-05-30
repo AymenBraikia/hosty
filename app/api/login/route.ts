@@ -1,8 +1,7 @@
-import clientPromise from "@/lib/db";
 import { signJwtAccessToken } from "@/lib/jwt";
 import { NextResponse } from "next/server";
 import { cookies } from "next/headers";
-import User from "@/app/[locale]/types/user";
+import { userCollection } from "@/app/db/collections";
 
 const reg = {
 	email: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
@@ -11,7 +10,6 @@ const reg = {
 
 export async function POST(req: Request) {
 	try {
-		const client = await clientPromise;
 		const cookieStore = await cookies();
 
 		const body = await req.json();
@@ -19,14 +17,13 @@ export async function POST(req: Request) {
 
 		if (!email || !password) return NextResponse.json({ error: "Missing fields" }, { status: 400 });
 
-		const collection = client.db("hosty").collection<User>("users");
 
 		if (!reg.email.test(email)) return NextResponse.json({ error: "Invalid email format" }, { status: 400 });
 
 		if (!reg.password.test(password)) return NextResponse.json({ error: "Password does not meet complexity requirements" }, { status: 400 });
 
 		try {
-			const user = await collection.findOne({ email: email });
+			const user = await userCollection.findOne({ email: email });
 			if (!user) return NextResponse.json({ error: "Invalid email or password" }, { status: 400 });
 
 			if (password != user.password) return NextResponse.json({ error: "Invalid email or password" }, { status: 400 });

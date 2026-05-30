@@ -2,15 +2,14 @@ import { NextResponse } from "next/server";
 import { getAccessToken } from "@/lib/paypal";
 import { verifyJwt } from "@/lib/jwt";
 import { cookies } from "next/headers";
-import clientPromise from "@/lib/db";
 import { UpdateFilter } from "mongodb";
-import { Bill } from "@/app/[locale]/types/product";
+import { Bill, domainSub, hostServiceSub } from "@/app/[locale]/types/product";
+import { ordersCollection, userCollection } from "@/app/db/collections";
 
 const VAT_RATE = 0.1; // 10% VAT
 const first_purchase_discount = 0.3; // 30% discount for first purchase
 
 export async function POST() {
-	const client = await clientPromise;
 	const token = await getAccessToken();
 
 	const cookieStore = await cookies();
@@ -24,7 +23,7 @@ export async function POST() {
 
 		if (!payload) return NextResponse.json({ redirect: "/login" }, { status: 401 });
 	}
-	const user = await client.db("hosty").collection("users").findOne({ email: payload!.email });
+	const user = await userCollection.findOne({ email: payload!.email });
 
 	if (!user) return NextResponse.json({ error: "User not found" }, { status: 404 });
 
@@ -103,10 +102,16 @@ export async function POST() {
 	const order = await res.json();
 
 	// register the order in the database with status "Pending"
-	await client.db("hosty").collection("orders").insertOne({
+	await ordersCollection.insertOne({
 		id: ref_id,
 		user_email: payload.email,
-		items: cart,
+		items: cart.map((i) => {
+			const started_at = new Date();
+			const expire_at = new Date();
+
+			expire_at.setMonth(expire_at.getMonth() + i.amount);
+			return i.type == "Domain" ? { ...i, started_at, expire_at, renew: true, role: "owner", years: i.amount, extension: i.name!, active: true, name: i.name! } as domainSub: { ...i, started_at, expire_at, renew: true, role: "owner", active: true } as hostServiceSub;
+		}),
 		total_amount,
 		vat_amount,
 		discount_amount,
@@ -118,18 +123,15 @@ export async function POST() {
 		const activity = { title: "Purchase", description: "Purchasing: " + items.map((e) => e.name), date: new Date().toDateString(), status: 0, id: ref_id };
 		const bill: Bill = { paid: false, description: "Purchasing: " + items.map((e) => e.name), date: new Date().toDateString(), price: amount_to_pay, id: ref_id };
 
-		await client
-			.db("hosty")
-			.collection("users")
-			.findOneAndUpdate(
-				{ email: user.email },
-				{
-					$push: {
-						recent_activity: activity,
-						billing: bill,
-					} as UpdateFilter<Document>,
-				},
-			);
+		await userCollection.findOneAndUpdate(
+			{ email: user.email },
+			{
+				$push: {
+					recent_activity: activity,
+					billing: bill,
+				} as UpdateFilter<Document>,
+			},
+		);
 
 		return NextResponse.json({ id: order.id });
 	} else return NextResponse.json({ error: order });

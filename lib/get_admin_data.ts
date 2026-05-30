@@ -1,36 +1,15 @@
-import { admin_data, hostService, order } from "@/app/[locale]/types/product";
-import clientPromise from "./db";
-import User from "@/app/[locale]/types/user";
-
-interface Stats {
-	type: "stats";
-	last_revenue: number;
-	total_profit: number;
-	total_sales: number;
-	spendings: number;
-	rating: number;
-	traffic: number;
-	last_uptime: number;
-	last_active_nodes: number;
-	last_rating: number;
-	last_spendings: number;
-	last_system_last_load: number;
-	profit_history: number[];
-}
-
-const services_collection = (await clientPromise).db("hosty").collection<hostService>("services");
-const orders_collection = (await clientPromise).db("hosty").collection<order>("orders");
-const users_collection = (await clientPromise).db("hosty").collection<User>("users");
-const stats_collection = (await clientPromise).db("hosty").collection<Stats>("stats");
+import { admin_data } from "@/app/[locale]/types/product";
+import { ordersCollection, servicesCollection, statsCollection, userCollection } from "@/app/db/collections";
 
 export default async function get_admin_data(): Promise<admin_data | undefined> {
 	const timestamp = Date.now();
-	const all_users = await users_collection.find({}).toArray();
-	const stats = await stats_collection.findOne({ type: "stats" });
+	const all_users = await userCollection.find({}).toArray();
+	const stats = await statsCollection.findOne({ type: "stats" });
 
 	const users = all_users.map((u) => ({
 		full_name: u.first_name + " " + u.last_name,
 		email: u.email,
+		suspended: u.suspended,
 		verified: u.verified_email,
 		admin: u.admin,
 		active_subscription: u.services.map((s) => ({
@@ -42,11 +21,12 @@ export default async function get_admin_data(): Promise<admin_data | undefined> 
 			role: s.role,
 			renew: s.renew,
 			os: "os" in s ? s.os : null,
+			suspended: s.suspended,
 		})),
 		total_spent: u.total_spent,
 	}));
 
-	const inventory = await services_collection.find({}).toArray();
+	const inventory = await servicesCollection.find({}).toArray();
 	const nodes = inventory.filter((s) => s.users.length);
 
 	const active_nodes = nodes.length;
@@ -68,7 +48,7 @@ export default async function get_admin_data(): Promise<admin_data | undefined> 
 	const last_active_nodes = stats!.last_active_nodes;
 	const last_rating = stats!.last_rating;
 	const revenue = all_users.reduce((prev, current) => prev + current.monthly_spendings, 0);
-	const recent_orders = (await orders_collection.find({}).toArray()).filter((o) => timestamp - o.created_at.getTime() < 1e3 * 60 * 60 * 24 * 30).map((o) => ({ id: o.id, amount: o.amount_to_pay, date: o.created_at, status: o.status }));
+	const recent_orders = (await ordersCollection.find({}).toArray()).filter((o) => timestamp - o.created_at.getTime() < 1e3 * 60 * 60 * 24 * 30).map((o) => ({ id: o.id, amount: o.amount_to_pay, date: o.created_at, status: o.status }));
 
 	const data = {
 		inventory,

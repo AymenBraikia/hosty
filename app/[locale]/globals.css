@@ -463,18 +463,29 @@ body {
   }
 }
 
+.bg_green,
+.bg_orange,
+.bg_red {
+  padding: 10px 20px;
+  border-radius: 15px;
+}
+
 .bg_green {
   color: #05df72;
   background-color: #05df7233;
-  padding: 10px 20px;
-  border-radius: 15px;
+
+}
+
+.bg_orange {
+  color: #ff8903;
+  background-color: #ff890333;
+
 }
 
 .bg_red {
   color: #ff6467;
   background-color: #ff646733;
-  padding: 10px 20px;
-  border-radius: 15px;
+
 }
 
 .danger {

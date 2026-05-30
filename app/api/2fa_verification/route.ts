@@ -1,4 +1,4 @@
-import clientPromise from "@/lib/db";
+import { userCollection } from "@/app/db/collections";
 import { verifyJwt } from "@/lib/jwt";
 import { verify_2fa } from "@/lib/verify_2fa";
 import { cookies } from "next/headers";
@@ -6,7 +6,6 @@ import { NextResponse } from "next/server";
 
 export async function POST(request: Request) {
 	const { code } = await request.json();
-	const client = await clientPromise;
 
 	const cookieStore = await cookies();
 
@@ -21,7 +20,7 @@ export async function POST(request: Request) {
 		if (!payload) return NextResponse.json({ redirect: "/login" }, { status: 401 });
 	}
 
-	const user = await client.db("hosty").collection("users").findOne({ email: payload.email });
+	const user = await userCollection.findOne({ email: payload.email });
 	const secret = user?.twoFactorAuth?.secret;
 
 	if (!secret) return NextResponse.json({ error: "2FA not set up" }, { status: 400 });

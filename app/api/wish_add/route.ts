@@ -1,11 +1,12 @@
-import clientPromise from "@/lib/db";
+import { hostService } from "@/app/[locale]/types/product";
+import { userCollection } from "@/app/db/collections";
 import get_services from "@/lib/get_service_data";
 import { verifyJwt } from "@/lib/jwt";
+import { WithId } from "mongodb";
 import { cookies } from "next/headers";
 import { NextResponse } from "next/server";
 
 export async function POST(req: Request) {
-	const client = await clientPromise;
 	const cookieStore = await cookies();
 
 	const token = cookieStore.get("accessToken")?.value;
@@ -23,16 +24,14 @@ export async function POST(req: Request) {
 
 	if (typeof id != "number" || id < 0) return NextResponse.json({ message: "Item not found" }, { status: 400 });
 
-	const service = await get_services(id);
+	const service = (await get_services(id)) as WithId<hostService>;
 
 	if (!service) return NextResponse.json({ message: "Item not found" }, { status: 400 });
 
-	const db = client.db("hosty").collection("users");
+	if (await userCollection.findOne({ email: payload!.email, wish_list: { $elemMatch: { id: service } } })) return NextResponse.json({ message: "Item already in wish list" }, { status: 400 });
+	if (await userCollection.findOne({ email: payload!.email, cart: { $elemMatch: { id: service.id } } })) return NextResponse.json({ message: "Item already in cart" }, { status: 400 });
 
-	if (await db.findOne({ email: payload!.email, wish_list: service })) return NextResponse.json({ message: "Item already in wish list" }, { status: 400 });
-	if (await db.findOne({ email: payload!.email, cart: service })) return NextResponse.json({ message: "Item already in cart" }, { status: 400 });
-
-	await db.updateOne({ email: payload!.email }, { $addToSet: { wish_list: { ...service, amount: 1 } } });
+	await userCollection.updateOne({ email: payload!.email }, { $addToSet: { wish_list: { ...service } } });
 
 	return NextResponse.json({ message: "Item added to wish list" }, { status: 200 });
 }

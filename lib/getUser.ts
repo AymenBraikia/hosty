@@ -2,7 +2,7 @@
 
 import { domain, hostService } from "@/app/[locale]/types/product";
 import User from "@/app/[locale]/types/user";
-import clientPromise from "@/lib/db";
+import { userCollection } from "@/app/db/collections";
 import { verifyJwt } from "@/lib/jwt";
 import { cookies } from "next/headers";
 
@@ -21,7 +21,6 @@ function serializeDoc(doc: unknown) {
 
 export default async function getUser(): Promise<UserData | undefined> {
 	const cookieStore = await cookies();
-	const client = await clientPromise;
 
 	const token = cookieStore.get("accessToken")?.value;
 	if (!token) return;
@@ -29,8 +28,7 @@ export default async function getUser(): Promise<UserData | undefined> {
 	const payload = verifyJwt(token);
 	if (!payload) return;
 
-	const db = client.db("hosty").collection("users");
-	const user = await db.findOne<User>({ email: payload.email });
+	const user = await userCollection.findOne<User>({ email: payload.email });
 
 	if (!user) return;
 

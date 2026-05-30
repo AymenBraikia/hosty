@@ -1,19 +1,18 @@
 "use server";
 import { authenticator } from "otplib";
-import clientPromise from "@/lib/db";
 import { cookies } from "next/headers";
 import { NextResponse } from "next/server";
 import { verifyJwt } from "@/lib/jwt";
+import { userCollection } from "@/app/db/collections";
 
 async function generate_qrcode(email: string): Promise<string | null> {
-	const client = (await clientPromise).db("hosty").collection("users");
 
-	const user = await client.findOne({ email: email });
+	const user = await userCollection.findOne({ email: email });
 	if (!user) return null;
 
 	const secret = authenticator.generateSecret();
 
-	await client.updateOne({ email: email }, { $set: { "twoFactorAuth.secret": secret } });
+	await userCollection.updateOne({ email: email }, { $set: { "twoFactorAuth.secret": secret } });
 
 	const uri = authenticator.keyuri(user.email, "hosty", secret);
 	return uri;
