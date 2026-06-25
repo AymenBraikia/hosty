@@ -1,4 +1,4 @@
-import { Bill, domainSub, hostService, hostServiceSub } from "./product";
+import { Bill,  hostService, hostServiceSub } from "./product";
 
 export default interface User {
 	email: string;

@@ -8,22 +8,22 @@ import { WithId } from "mongodb";
 import { userCollection } from "@/app/db/collections";
 
 export async function addToWish(data: FormData): Promise<void> {
-	const user = await getUser();
+    const user = await getUser();
 
-	if (!user) return;
+    if (!user) return;
 
-	if (!data) return;
-	const id = +data.get("id")! as number;
+    if (!data) return;
+    const id = +data.get("id")! as number;
 
-	return await new Promise(async (resolve, reject) => {
-		if ([...user.cart, ...user.wish_list].find((e) => e.id == id)) return reject("product already in cart or wish list");
+    return await new Promise(async (resolve, reject) => {
+        if ([...user.cart, ...user.wish_list].find((e) => e.id == id)) return reject("product already in cart or wish list");
 
-		const product = (await get_services(id)) as WithId<hostService>;
-		if (!product) return reject("product does not exist");
+        const product = (await get_services(id)) as WithId<hostService>;
+        if (!product) return reject("product does not exist");
 
-		await userCollection.updateOne({ email: user.email }, { $push: { wish_list: { ...product, amount: 1, renew: true, role: "owner" } } });
-		revalidatePath("/");
+        await userCollection.updateOne({ email: user.email }, { $push: { wish_list: product } });
+        revalidatePath("/");
 
-		return resolve();
-	});
+        return resolve();
+    });
 }

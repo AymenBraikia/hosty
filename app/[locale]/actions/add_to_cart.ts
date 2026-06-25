@@ -21,7 +21,7 @@ export async function addToCart(data: FormData): Promise<void> {
 		const product = (await get_services(id)) as WithId<hostService>;
 		if (!product) return reject("product does not exist");
 
-		await userCollection.updateOne({ email: user.email }, { $push: { cart: { ...product, amount: 1, renew: true, role: "owner" } } });
+		await userCollection.updateOne({ email: user.email }, { $push: { cart: product } });
 		revalidatePath("/");
 
 		return resolve();
