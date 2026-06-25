@@ -1,7 +1,7 @@
 import { CSSProperties } from "react";
 import { addToCart } from "../actions/add_to_cart";
 
-export default function AtcBtn({ css, product_id, available }: { css?: CSSProperties; product_id: number; available?: boolean }) {
+export default function AtcBtn({ css, product_id, available }: { css?: CSSProperties; product_id: number|string; available?: boolean }) {
 	return (
 		<form action={available ? addToCart : undefined} className="w-full">
 			<input type="hidden" name="id" value={product_id} />
