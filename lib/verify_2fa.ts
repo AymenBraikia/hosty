@@ -1,5 +1,5 @@
-import { authenticator } from "otplib";
+import { verify } from "otplib";
 
-export function verify_2fa(secret: string, code: string): boolean {
-    return authenticator.verify({ secret, token: code });
+export async function verify_2fa(secret: string, code: string): Promise<boolean> {
+    return (await verify({ secret, token: code })).valid;
 }

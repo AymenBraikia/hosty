@@ -29,7 +29,7 @@ export async function POST(request: Request) {
 	if (!user.twoFactorAuth.enabled) return NextResponse.json({ error: "2FA already disabled" }, { status: 400 });
 
 	try {
-		const result = verify_2fa(secret, code);
+		const result = await verify_2fa(secret, code);
 
 		if (result) {
 			await userCollection.updateOne({ email: payload.email }, { $set: { "twoFactorAuth.enabled": false, "twoFactorAuth.secret": null } });

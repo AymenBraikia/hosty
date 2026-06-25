@@ -25,7 +25,7 @@ export async function POST(request: Request) {
 
 	if (!secret) return NextResponse.json({ error: "2FA not set up" }, { status: 400 });
 
-	const result = verify_2fa(secret, code);
+	const result = await verify_2fa(secret, code);
 
 	return result ? NextResponse.json({ success: true }, { status: 200 }) : NextResponse.json({ success: false, error: "Invalid code" }, { status: 400 });
 }
