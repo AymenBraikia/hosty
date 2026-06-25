@@ -18,14 +18,14 @@ export interface hostService {
 }
 export interface domain {
 	type: "Domain";
-	id: number;
 	name: string;
-	extension: string;
 	price: number;
+	extension: string;
+	active: boolean;
 	description?: string;
 	discount?: number;
 	perks?: string[];
-	active: boolean;
+	id: number;
 }
 
 export interface hostServiceSub extends hostService {

@@ -1,6 +1,6 @@
 import clientPromise from "@/lib/db";
 import User from "../[locale]/types/user";
-import { domain, hostService, order } from "../[locale]/types/product";
+import { hostService, order } from "../[locale]/types/product";
 
 export const clientDB = await clientPromise;
 
