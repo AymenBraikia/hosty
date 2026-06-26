@@ -7,31 +7,31 @@ import { cookies } from "next/headers";
 import { NextResponse } from "next/server";
 
 export async function POST(req: Request) {
-	const cookieStore = await cookies();
+    const cookieStore = await cookies();
 
-	const token = cookieStore.get("accessToken")?.value;
+    const token = cookieStore.get("accessToken")?.value;
 
-	let payload = null;
+    let payload = null;
 
-	if (!token) return NextResponse.json({ redirect: "/login" }, { status: 401 });
-	else {
-		payload = verifyJwt(token);
+    if (!token) return NextResponse.json({ redirect: "/login" }, { status: 401 });
+    else {
+        payload = verifyJwt(token);
 
-		if (!payload) return NextResponse.json({ redirect: "/login" }, { status: 401 });
-	}
+        if (!payload) return NextResponse.json({ redirect: "/login" }, { status: 401 });
+    }
 
-	const { id } = await req.json();
+    const { id } = await req.json();
 
-	if (typeof id != "number" || id < 0) return NextResponse.json({ message: "Item not found" }, { status: 400 });
+    if (typeof id != "number" || id < 0) return NextResponse.json({ message: "Item not found" }, { status: 400 });
 
-	const service = (await get_services(id)) as WithId<hostService>;
+    const service = (await get_services(id)) as WithId<hostService>;
 
-	if (!service) return NextResponse.json({ message: "Item not found" }, { status: 400 });
+    if (!service) return NextResponse.json({ message: "Item not found" }, { status: 400 });
 
-	if (await userCollection.findOne({ email: payload!.email, wish_list: { $elemMatch: { id: service } } })) return NextResponse.json({ message: "Item already in wish list" }, { status: 400 });
-	if (await userCollection.findOne({ email: payload!.email, cart: { $elemMatch: { id: service.id } } })) return NextResponse.json({ message: "Item already in cart" }, { status: 400 });
+    if (await userCollection.findOne({ email: payload!.email, "wish_list.compute": { id: service.id } })) return NextResponse.json({ message: "Item already in wish list" }, { status: 400 });
+    if (await userCollection.findOne({ email: payload!.email, "cart.compute": { id: service.id } })) return NextResponse.json({ message: "Item already in cart" }, { status: 400 });
 
-	await userCollection.updateOne({ email: payload!.email }, { $addToSet: { wish_list: { ...service } } });
+    await userCollection.updateOne({ email: payload!.email }, { $addToSet: { "wish_list.compute": service } });
 
-	return NextResponse.json({ message: "Item added to wish list" }, { status: 200 });
+    return NextResponse.json({ message: "Item added to wish list" }, { status: 200 });
 }

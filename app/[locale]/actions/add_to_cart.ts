@@ -8,22 +8,23 @@ import { WithId } from "mongodb";
 import { userCollection } from "@/app/db/collections";
 
 export async function addToCart(data: FormData): Promise<void> {
-	const user = await getUser();
+    const user = await getUser();
 
-	if (!user) return;
+    if (!user) return;
 
-	if (!data) return;
-	const id = +data.get("id")! as number;
+    if (!data) return;
+    const id = +data.get("id")! as number;
+    const domain = data.get("domain");
 
-	return await new Promise(async (resolve, reject) => {
-		if (user.cart.find((e) => e.id == id)) return reject("product already in cart");
+    return await new Promise(async (resolve, reject) => {
+        if (user.cart.find((e) => ("id" in e ? e.id == id : e.name == domain))) return reject("product already in cart");
 
-		const product = (await get_services(id)) as WithId<hostService>;
-		if (!product) return reject("product does not exist");
+        const product = (await get_services(id)) as WithId<hostService>;
+        if (!product) return reject("product does not exist");
 
-		await userCollection.updateOne({ email: user.email }, { $push: { cart: product } });
-		revalidatePath("/");
+        await userCollection.updateOne({ email: user.email }, { $push: { "cart.compute": product } });
+        revalidatePath("/");
 
-		return resolve();
-	});
+        return resolve();
+    });
 }

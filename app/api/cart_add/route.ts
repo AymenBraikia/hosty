@@ -1,4 +1,4 @@
-import { domain, domainSub, hostService } from "@/app/[locale]/types/product";
+import { domainOrder, hostService, hostServiceOrder } from "@/app/[locale]/types/product";
 import { userCollection } from "@/app/db/collections";
 import { exts } from "@/lib/domain_pricing";
 import get_services from "@/lib/get_service_data";
@@ -27,29 +27,21 @@ export async function POST(req: Request) {
 
     // domain
     if (typeof domain == "string" && domain.match(domainRegex)) {
-        const started_at = new Date();
-        const expire_at = new Date();
-        expire_at.setFullYear(expire_at.getFullYear() + 1);
-
         const service = {
             type: "Domain",
             name: domain.split(".")[0],
             price: exts.find((e) => domain.endsWith(e.tld))?.firstYear || 0,
             description: "Domain Registration",
-            years: 1,
             amount: 1,
             role: "owner",
             renew: true,
-            started_at,
-            expire_at,
-            id: -1,
             active: true,
             extension: domain.split(".")[1],
-        } as domainSub;
+        } as domainOrder;
 
         if (await userCollection.findOne({ email: payload!.email, "cart.name": service.name })) return NextResponse.json({ message: "Item already in cart" }, { status: 400 });
 
-        await userCollection.updateOne({ email: payload!.email }, { $addToSet: { cart: { ...service } }, $pull: { wish_list: { id } } });
+        await userCollection.updateOne({ email: payload!.email }, { $addToSet: { "cart.domains": service }, $pull: { "wish_list.domains": { name: service.name } } });
 
         return NextResponse.json({ message: "Item added to cart" }, { status: 200 });
     }
@@ -57,17 +49,16 @@ export async function POST(req: Request) {
     // host service
     if (typeof id != "number" || id < 0) return NextResponse.json({ message: "Item not found" }, { status: 400 });
 
-    const service = (await get_services(id)) as hostService | Set<WithId<Document>> | null;
+    const data = (await get_services(id)) as hostService | Set<WithId<Document>> | null;
 
-    if (!service) return NextResponse.json({ message: "Item not found" }, { status: 400 });
-    if (service instanceof Set) return NextResponse.json({ message: "Item not found" }, { status: 400 });
+    if (!data) return NextResponse.json({ message: "Item not found" }, { status: 400 });
+    if (data instanceof Set) return NextResponse.json({ message: "Item not found" }, { status: 400 });
 
-    if (await userCollection.findOne({ email: payload!.email, "cart.id": service.id })) return NextResponse.json({ message: "Item already in cart" }, { status: 400 });
+    if (await userCollection.findOne({ email: payload!.email, "cart.id": data.id })) return NextResponse.json({ message: "Item already in cart" }, { status: 400 });
 
-    await userCollection.updateOne(
-        { email: payload!.email },
-        { $addToSet: { cart: { ...service, amount: 1, started_at: new Date(), expire_at: new Date(Date.now() + 1e3 * 60 * 60 * 24 * 30), role: "owner", renew: true, suspended: false } }, $pull: { wish_list: { id } } },
-    );
+    const service: hostServiceOrder = { ...data, amount: 1, renew: true, role: "owner" };
+
+    await userCollection.updateOne({ email: payload!.email }, { $addToSet: { "cart.compute": service }, $pull: { "wish_list.compute": { id } } });
 
     return NextResponse.json({ message: "Item added to cart" }, { status: 200 });
 }
