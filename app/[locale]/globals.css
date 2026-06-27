@@ -2,50 +2,48 @@
 
 :root {
     --background: #020617;
-    --foreground: #F1F5F9;
+    --foreground: #f1f5f9;
     --clr-foreground-opacity: #f1f5f912;
     --clr-foreground-opacity2: #f1f5f94a;
     --clr-background-opacity: #00000012;
     --clr-background-opacity2: #00000052;
 
+    /* --background: #F1F5F9; */
+    --background2: #d3d4d6;
+    --background3: #bdbdbd;
+    /* --foreground: #020617; */
+    --foreground2: #474747;
+    --foreground3: #767676;
 
-  /* --background: #F1F5F9; */
-  --background2: #d3d4d6;
-  --background3: #bdbdbd;
-  /* --foreground: #020617; */
-  --foreground2: #474747;
-  --foreground3: #767676;
+    --clr-primary: #0ea5e9;
+    --clr-primary-opacity: rgba(14, 165, 233, 0.2);
 
+    --gradient: linear-gradient(135deg, #0ea5e9 0%, #6366f1 100%);
+    --gradient2: linear-gradient(135deg, #38bdf8 0%, #2dd4bf 100%);
 
-  --clr-primary: #0EA5E9;
-  --clr-primary-opacity: rgba(14, 165, 233, 0.2);
+    --clr-accent: #6366f1;
+    --clr-accent-opacity: rgba(99, 102, 241, 0.2);
 
-  --gradient: linear-gradient(135deg, #0EA5E9 0%, #6366F1 100%);
-  --gradient2: linear-gradient(135deg, #38BDF8 0%, #2DD4BF 100%);
+    --clr-accent2: #2dd4bf;
+    --clr-accent2-opacity: rgba(45, 212, 191, 0.2);
 
-  --clr-accent: #6366F1;
-  --clr-accent-opacity: rgba(99, 102, 241, 0.2);
+    --clr-surface: #111827;
+    --clr-surface2: #070a11;
+    --clr-surface-light: #18202c;
+    --clr-surface-light2: #1f2937;
 
-  --clr-accent2: #2DD4BF;
-  --clr-accent2-opacity: rgba(45, 212, 191, 0.2);
-
-  --clr-surface: #111827;
-  --clr-surface2: #070a11;
-  --clr-surface-light: #18202C;
-  --clr-surface-light2: #1F2937;
-
-  --clr-border-opacity: rgba(241, 245, 249, 0.11);
-  /* --clr-background-opacity: rgba(241, 245, 249, 0.07);
+    --clr-border-opacity: rgba(241, 245, 249, 0.11);
+    /* --clr-background-opacity: rgba(241, 245, 249, 0.07);
   --clr-background-opacity2: rgba(241, 245, 249, 0.29);
   --clr-foreground-opacity: rgba(0, 0, 0, 0.07);
   --clr-foreground-opacity2: rgba(0, 0, 0, 0.32); */
 }
 
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+    --color-background: var(--background);
+    --color-foreground: var(--foreground);
+    --font-sans: var(--font-geist-sans);
+    --font-mono: var(--font-geist-mono);
 }
 
 /* @media (prefers-color-scheme: dark) {
@@ -60,326 +58,328 @@
 } */
 
 ::-webkit-scrollbar {
-  display: none;
+    display: none;
 }
 
 ::selection {
-  background-color: var(--clr-accent);
-  color: white;
+    background-color: var(--clr-accent);
+    color: white;
 }
 
 * {
-  scroll-behavior: smooth;
+    scroll-behavior: smooth;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: var(--font-main), Arial, Helvetica, sans-serif;
+    background: var(--background);
+    color: var(--foreground);
+    font-family: var(--font-main), Arial, Helvetica, sans-serif;
 }
 
 .terminal {
-  background: var(--clr-surface2);
-  color: var(--foreground);
-  font-family: var(--font-terminal);
-  border-radius: 0.5rem;
-  position: relative;
+    background: var(--clr-surface2);
+    color: var(--foreground);
+    font-family: var(--font-terminal);
+    border-radius: 0.5rem;
+    position: relative;
 }
 
 .code-font {
-  font-family: var(--font-terminal) !important;
+    font-family: var(--font-terminal) !important;
 }
 
 .terminal::before {
-  content: '';
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: 80%;
-  height: 80%;
-  background: var(--gradient);
-  border-radius: inherit;
-  pointer-events: none;
-  z-index: -1;
-  filter: blur(50px);
-  animation: bg_anim 5s ease infinite;
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 80%;
+    height: 80%;
+    background: var(--gradient);
+    border-radius: inherit;
+    pointer-events: none;
+    z-index: -1;
+    filter: blur(50px);
+    animation: bg_anim 5s ease infinite;
 }
 
 .transition {
-  transition: .3s ease;
+    transition: 0.3s ease;
 }
 
 .shine {
-  overflow: hidden;
+    overflow: hidden;
 }
 
 .shine::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: -75%;
-  width: 50%;
-  height: 100%;
-  background: linear-gradient(120deg,
-      rgba(255, 255, 255, 0) 0%,
-      rgba(255, 255, 255, 0.663) 50%,
-      rgba(255, 255, 255, 0) 100%);
-  transform: skewX(-25deg);
-  animation: shine 3s ease 0s infinite;
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -75%;
+    width: 50%;
+    height: 100%;
+    background: linear-gradient(120deg, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0.663) 50%, rgba(255, 255, 255, 0) 100%);
+    transform: skewX(-25deg);
+    animation: shine 3s ease 0s infinite;
 }
 
 @keyframes shine {
-  from {
-    left: -75%;
-  }
+    from {
+        left: -75%;
+    }
 
-  to {
-    left: 125%;
-  }
+    to {
+        left: 125%;
+    }
 }
 
 .blinker {
-  width: 8px;
-  height: 16px;
-  animation: blink 1s ease 0s infinite;
-  background-color: var(--clr-primary);
-
+    width: 8px;
+    height: 16px;
+    animation: blink 1s ease 0s infinite;
+    background-color: var(--clr-primary);
 }
 
 .blink {
-  animation: blink 2s ease 0s infinite;
+    animation: blink 2s ease 0s infinite;
 }
 
 @keyframes blink {
-  50% {
-    opacity: 0.01;
-  }
+    50% {
+        opacity: 0.01;
+    }
 }
 
 .pulse {
-  position: relative;
-  overflow: visible;
+    position: relative;
+    overflow: visible;
 }
 
 .pulse::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: currentColor;
-  opacity: 1;
-  border-radius: inherit;
-  animation: pulse_anim 1.5s ease .5s infinite;
-  box-shadow: 0 0 10px currentColor;
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: currentColor;
+    opacity: 1;
+    border-radius: inherit;
+    animation: pulse_anim 1.5s ease 0.5s infinite;
+    box-shadow: 0 0 10px currentColor;
 }
 
 @keyframes pulse_anim {
-  100% {
-    transform: scale(2);
-    opacity: 0.01;
-  }
+    100% {
+        transform: scale(2);
+        opacity: 0.01;
+    }
 }
 
 .underline_anim {
-  position: relative;
-  overflow: hidden;
-
+    position: relative;
+    overflow: hidden;
 }
 
 .underline_anim::after {
-  content: '';
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  width: 100%;
-  height: 2px;
-  background: var(--clr-accent);
-  transform: translateX(-100%);
-  transition: transform .3s ease;
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background: var(--clr-accent);
+    transform: translateX(-100%);
+    transition: transform 0.3s ease;
 }
 
 .underline_anim:hover::after {
-  transform: translateX(0);
+    transform: translateX(0);
 }
 
 .fade_in {
-  animation: fade_in 0.3s ease 0s forwards;
-  opacity: 0.01;
-
+    animation: fade_in 0.3s ease 0s forwards;
+    opacity: 0.01;
 }
 
 @keyframes fade_in {
-  to {
-    opacity: 1;
-  }
+    to {
+        opacity: 1;
+    }
 }
 
 .fade_out {
-  animation: fade_out 0.3s ease 0s forwards;
-  opacity: 1;
-
+    animation: fade_out 0.3s ease 0s forwards;
+    opacity: 1;
 }
 
 @keyframes fade_out {
-  to {
-    opacity: 0.01;
-  }
+    to {
+        opacity: 0.01;
+    }
 }
 
 .no_scrollbar::-webkit-scrollbar {
-  display: none;
+    display: none;
 }
 
 .text_anim2,
 .text_anim {
-  background-size: 200% 200%;
-  animation: bg_anim 5s ease infinite;
-  background-clip: text;
-  color: transparent;
+    background-size: 100% auto;
+    animation: bg_anim 5s ease infinite;
+    background-clip: text;
+    color: transparent;
 }
 
 .text_anim {
-  background-image: var(--gradient);
+    background-image: var(--gradient);
 }
 
 .text_anim2 {
-  background-image: var(--gradient2);
+    background-image: var(--gradient2);
 }
 
 .bg_anim2,
 .bg_anim {
-  background-size: 200% 200%;
-  animation: bg_anim 5s ease infinite;
+    background-size: 200% 200%;
+    animation: bg_anim 5s ease infinite;
 }
 
 .bg_anim {
-  background-image: var(--gradient);
+    background-image: var(--gradient);
 }
 
 .bg_anim2 {
-  background-image: var(--gradient2);
+    background-image: var(--gradient2);
 }
 
 @keyframes bg_anim {
-  0% {
-    background-position: 0% 50%;
-  }
+    0% {
+        background-position: 0% 50%;
+    }
 
-  50% {
-    background-position: 100% 50%;
-  }
+    50% {
+        background-position: 100% 50%;
+    }
 
-  100% {
-    background-position: 0% 50%;
-  }
+    100% {
+        background-position: 0% 50%;
+    }
 }
 
 .float_anim {
-  animation: float_anim 3s ease infinite;
+    animation: float_anim 3s ease infinite;
 }
 
 @keyframes float_anim {
+    0%,
+    100% {
+        transform: translateY(0);
+    }
 
-  0%,
-  100% {
-    transform: translateY(0);
-  }
-
-  50% {
-    transform: translateY(-10px);
-  }
+    50% {
+        transform: translateY(-10px);
+    }
 }
 
 .text_shine {
-  background: linear-gradient(to right, #99a1af59 0%, white 50%, #99a1af59 100%);
-  background-size: 200% auto;
-  background-clip: text;
-  color: transparent;
-  animation: text_shine_anim 15s linear infinite;
+    background: linear-gradient(to right, #99a1af59 0%, white 50%, #99a1af59 100%);
+    background-size: 100% auto;
+    background-clip: text;
+    color: transparent;
+    animation: text_shine_anim 15s linear infinite;
+}
+
+@media (min-width: 1024px) {
+    .text_anim,
+    .text_anim2 {
+        background-size: 200% 200%;
+        animation: bg_anim 5s ease infinite;
+    }
+
+    .text_shine {
+        background-size: 200% auto;
+        animation: text_shine_anim 15s linear infinite;
+    }
 }
 
 @keyframes text_shine_anim {
-  0% {
-    background-position: 200% center;
-  }
+    0% {
+        background-position: 200% center;
+    }
 
-  100% {
-    background-position: -200% center;
-  }
+    100% {
+        background-position: -200% center;
+    }
 }
 
-
 @keyframes marquee {
-  from {
-    transform: translateX(0);
-  }
+    from {
+        transform: translateX(0);
+    }
 
-  to {
-    transform: translateX(-50%);
-  }
+    to {
+        transform: translateX(-50%);
+    }
 }
 
 @layer utilities {
-  .animate-marquee {
-    animation: marquee 30s linear infinite;
-
-  }
+    .animate-marquee {
+        animation: marquee 30s linear infinite;
+    }
 }
 
 .bg-light {
-  background-color: var(--clr-surface-light);
+    background-color: var(--clr-surface-light);
 }
 
 .bg-light2 {
-  background-color: var(--clr-surface-light2);
+    background-color: var(--clr-surface-light2);
 }
 
 .border-gradient {
-  position: relative;
+    position: relative;
 }
 
 .border-gradient::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  left: -0.25px;
-  top: -0.25px;
-  padding: 1.5px;
-  width: 100%;
-  height: 100%;
-  border-radius: inherit;
-  background-size: 200% 200% !important;
-  background: var(--gradient);
-  mask:
-    linear-gradient(#fff 0 0) content-box,
-    linear-gradient(#fff 0 0);
-  mask-composite: xor;
-  mask-composite: exclude;
-  z-index: -1;
-  animation: bg_anim 5s ease infinite;
+    content: "";
+    position: absolute;
+    inset: 0;
+    left: -0.25px;
+    top: -0.25px;
+    padding: 1.5px;
+    width: 100%;
+    height: 100%;
+    border-radius: inherit;
+    background-size: 200% 200% !important;
+    background: var(--gradient);
+    mask:
+        linear-gradient(#fff 0 0) content-box,
+        linear-gradient(#fff 0 0);
+    mask-composite: xor;
+    mask-composite: exclude;
+    z-index: -1;
+    animation: bg_anim 5s ease infinite;
 }
 
 .plan_btn {
-  font-weight: 900;
-  background-color: var(--clr-surface-light);
-  border: 2px solid var(--clr-surface-light2);
+    font-weight: 900;
+    background-color: var(--clr-surface-light);
+    border: 2px solid var(--clr-surface-light2);
 }
 
-
 .plan_btn:hover {
-  background-color: var(--clr-surface-light2);
+    background-color: var(--clr-surface-light2);
 }
 
 .deploy {
-  background: var(--color-foreground);
-  color: var(--color-background);
+    background: var(--color-foreground);
+    color: var(--color-background);
 }
 
 .deploy:hover {
-  box-shadow: 0 0 10px 0 var(--color-foreground);
+    box-shadow: 0 0 10px 0 var(--color-foreground);
 }
 
 /* .shadow_anim:hover {
@@ -397,117 +397,112 @@ body {
   }
 } */
 
-
 .shadow_anim {
-  position: relative;
-  overflow: visible;
+    position: relative;
+    overflow: visible;
 }
 
 .shadow_anim::before {
-  content: "";
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: 100%;
-  height: 100%;
-  border-radius: inherit;
-  pointer-events: none;
-  z-index: -1;
-  filter: blur(0);
-  background-size: 200% 200%;
-  animation: bg_anim 5s ease infinite;
-  background-image: var(--gradient);
-  transition: .3s ease;
-  opacity: 1;
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 100%;
+    height: 100%;
+    border-radius: inherit;
+    pointer-events: none;
+    z-index: -1;
+    filter: blur(0);
+    background-size: 200% 200%;
+    animation: bg_anim 5s ease infinite;
+    background-image: var(--gradient);
+    transition: 0.3s ease;
+    opacity: 1;
 }
 
 .shadow_anim:hover::before {
-  filter: blur(15px);
-  opacity: 0.5;
+    filter: blur(15px);
+    opacity: 0.5;
 }
 
 .loading {
-  position: relative;
-  overflow: hidden;
-  /* border-radius: 15px; */
-  background-color: transparent !important;
+    position: relative;
+    overflow: hidden;
+    /* border-radius: 15px; */
+    background-color: transparent !important;
 }
 
 .loading::before {
-  content: "";
-  position: absolute;
-  left: 0;
-  top: 0;
-  width: 50px;
-  height: 100%;
-  transform: skewX(15deg) translateX(-300%);
-  background-color: white;
-  filter: blur(45px);
-  animation: loading 1s ease 0s infinite;
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 50px;
+    height: 100%;
+    transform: skewX(15deg) translateX(-300%);
+    background-color: white;
+    filter: blur(45px);
+    animation: loading 1s ease 0s infinite;
 }
 
 @keyframes loading {
-  from {
-    transform: skewX(15deg) translateX(-300%);
-    left: 0;
-  }
+    from {
+        transform: skewX(15deg) translateX(-300%);
+        left: 0;
+    }
 
-  to {
-    transform: skewX(15deg) translateX(200%);
-    left: 100%;
-  }
+    to {
+        transform: skewX(15deg) translateX(200%);
+        left: 100%;
+    }
 }
 
 .loading2 {
-  opacity: 1;
-  animation: loading2 3s ease 0s infinite;
+    opacity: 1;
+    animation: loading2 3s ease 0s infinite;
 }
 
 @keyframes loading2 {
-  50% {
-    opacity: 0.5;
-
-  }
+    50% {
+        opacity: 0.5;
+    }
 }
 
 .bg_green,
 .bg_orange,
 .bg_red {
-  padding: 10px 20px;
-  border-radius: 15px;
+    padding: 10px 20px;
+    border-radius: 15px;
 }
 
 .bg_green {
-  color: #05df72;
-  background-color: #05df7233;
-
+    color: #05df72;
+    background-color: #05df7233;
 }
 
 .bg_orange {
-  color: #ff8903;
-  background-color: #ff890333;
-
+    color: #ff8903;
+    background-color: #ff890333;
 }
 
 .bg_red {
-  color: #ff6467;
-  background-color: #ff646733;
-
+    color: #ff6467;
+    background-color: #ff646733;
 }
 
 .danger {
-  transition: .3s ease all !important;
-  color: rgb(255, 80, 80);
+    transition: 0.3s ease all !important;
+    color: rgb(255, 80, 80);
 }
 
 .danger:hover {
-  color: rgb(255, 80, 80);
-  background-color: rgba(255, 20, 20, 0.2);
+    color: rgb(255, 80, 80);
+    background-color: rgba(255, 20, 20, 0.2);
 }
 
 .bg_gray {
-  color: rgb(170, 170, 170);
-  background-color: rgba(170, 170, 170, 0.2);
-  padding: 12px 16px;
+    color: rgb(170, 170, 170);
+    background-color: rgba(170, 170, 170, 0.2);
+    padding: 12px 16px;
 }
