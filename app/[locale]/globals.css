@@ -153,7 +153,7 @@ body {
 
 @keyframes blink {
   50% {
-    opacity: 0;
+    opacity: 0.01;
   }
 }
 
@@ -179,7 +179,7 @@ body {
 @keyframes pulse_anim {
   100% {
     transform: scale(2);
-    opacity: 0;
+    opacity: 0.01;
   }
 }
 
@@ -207,7 +207,7 @@ body {
 
 .fade_in {
   animation: fade_in 0.3s ease 0s forwards;
-  opacity: 0;
+  opacity: 0.01;
 
 }
 
@@ -225,7 +225,7 @@ body {
 
 @keyframes fade_out {
   to {
-    opacity: 0;
+    opacity: 0.01;
   }
 }
 

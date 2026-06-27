@@ -33,8 +33,8 @@ export default async function Hero() {
 			</div>
 			<Terminal />
 
-			<div className="w-[250px] aspect-square bg-(--clr-accent2) absolute bottom-16 -left-[10dvw] rounded-full blur-[200px] -z-50"></div>
-			<div className="w-[250px] aspect-square bg-(--clr-accent) absolute top-16 -right-[10dvw] rounded-full blur-[200px] -z-50"></div>
+			<div className="w-62.5 aspect-square bg-(--clr-accent2) absolute bottom-16 left-[-10dvw] rounded-full blur-[200px] -z-50"></div>
+			<div className="w-62.5 aspect-square bg-(--clr-accent) absolute top-16 right-[-10dvw] rounded-full blur-[200px] -z-50"></div>
 		</section>
 	);
 }
