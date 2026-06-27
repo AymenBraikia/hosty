@@ -1,10 +1,18 @@
 @import "tailwindcss";
 
 :root {
-  --background: #F1F5F9;
+    --background: #020617;
+    --foreground: #F1F5F9;
+    --clr-foreground-opacity: #f1f5f912;
+    --clr-foreground-opacity2: #f1f5f94a;
+    --clr-background-opacity: #00000012;
+    --clr-background-opacity2: #00000052;
+
+
+  /* --background: #F1F5F9; */
   --background2: #d3d4d6;
   --background3: #bdbdbd;
-  --foreground: #020617;
+  /* --foreground: #020617; */
   --foreground2: #474747;
   --foreground3: #767676;
 
@@ -27,10 +35,10 @@
   --clr-surface-light2: #1F2937;
 
   --clr-border-opacity: rgba(241, 245, 249, 0.11);
-  --clr-background-opacity: rgba(241, 245, 249, 0.07);
+  /* --clr-background-opacity: rgba(241, 245, 249, 0.07);
   --clr-background-opacity2: rgba(241, 245, 249, 0.29);
   --clr-foreground-opacity: rgba(0, 0, 0, 0.07);
-  --clr-foreground-opacity2: rgba(0, 0, 0, 0.32);
+  --clr-foreground-opacity2: rgba(0, 0, 0, 0.32); */
 }
 
 @theme inline {
@@ -40,7 +48,7 @@
   --font-mono: var(--font-geist-mono);
 }
 
-@media (prefers-color-scheme: dark) {
+/* @media (prefers-color-scheme: dark) {
   :root {
     --background: #020617;
     --foreground: #F1F5F9;
@@ -49,7 +57,7 @@
     --clr-background-opacity: #00000012;
     --clr-background-opacity2: #00000052;
   }
-}
+} */
 
 ::-webkit-scrollbar {
   display: none;
