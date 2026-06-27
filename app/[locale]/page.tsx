@@ -14,9 +14,9 @@ export default function Home() {
                 {/* <Header promotion={{ content: "Don't miss the Cyber week deals", expire_date: 1767364412613 }} /> */}
                 <Header />
             </Provider>
-            {/* <Body /> */}
+            <Body />
 
-            {/* <Footer /> */}
+            <Footer />
         </div>
     );
 }
