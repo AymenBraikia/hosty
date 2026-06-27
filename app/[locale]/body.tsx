@@ -15,7 +15,7 @@ const Perks = dynamic(() => import("./components/perks"), { ssr: true, loading: 
 const Pricing = dynamic(() => import("./components/pricing"), { ssr: true, loading: () => <></> });
 const Trust = dynamic(() => import("./components/trust"), { ssr: true, loading: () => <></> });
 
-const Network = dynamic(() => import("./components/network"), { ssr: false, loading: () => <></> });
+const Network = dynamic(() => import("./components/network"), { ssr: true, loading: () => <></> });
 
 export default function Body() {
     return (
