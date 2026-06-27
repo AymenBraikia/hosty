@@ -1,5 +1,5 @@
 "use client";
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import Button from "../components/button";
 import Server from "../components/svg/server";
 import Trash from "../components/svg/trash";
@@ -18,6 +18,12 @@ export default function Body() {
 
     const subTotal = Number(items.reduce((sum, item) => sum + item.price * item.amount, 0).toFixed(2));
     const total = Number((subTotal * 1.1).toFixed(2));
+
+    useEffect(() => {
+        if (data?.cart) {
+            set_items(data.cart);
+        }
+    }, [data?.cart]);
     return (
         <div className={`w-dvw min-h-dvh mt-16 px-32 py-16 flex justify-center ${items.length ? "items-start" : "items-center min-h-[50dvh!important]"} flex-col gap-8`}>
             {items.length ? (
@@ -46,7 +52,7 @@ export default function Body() {
                                                         return !notifciation_visibility && setTimeout(() => set_notifciation_visibility(false), 8e3);
                                                     }
 
-                                                    editCart("id" in e ? { id: e.id, amount: e.amount + 1 } : { domain: e.name, amount: e.amount - 1 }).catch(() => {
+                                                    editCart(typeof e.id == "number" ? { id: e.id, amount: e.amount + 1 } : { domain: e.name, amount: e.amount + 1 }).catch(() => {
                                                         set_notifciation_visibility(true);
                                                         set_err("There was an issue updating Quantity");
                                                         return !notifciation_visibility && setTimeout(() => set_notifciation_visibility(false), 8e3);
@@ -65,7 +71,7 @@ export default function Body() {
                                                         set_notifciation_visibility(true);
                                                         return !notifciation_visibility && setTimeout(() => set_notifciation_visibility(false), 8e3);
                                                     }
-                                                    editCart("id" in e ? { id: e.id, amount: e.amount - 1 } : { domain: e.name, amount: e.amount - 1 }).catch(() => {
+                                                    editCart(typeof e.id == "number" ? { id: e.id, amount: e.amount - 1 } : { domain: e.name, amount: e.amount - 1 }).catch(() => {
                                                         set_notifciation_visibility(true);
                                                         set_err("There was an issue updating Quantity");
                                                         return !notifciation_visibility && setTimeout(() => set_notifciation_visibility(false), 8e3);
@@ -81,7 +87,7 @@ export default function Body() {
                                             <p className="font-bold text-xl text-foreground">${e.price}</p>
 
                                             <Button
-                                                action={async () => await deleteCart("id" in e ? { id: e.id } : { domain: e.name })}
+                                                action={async () => await deleteCart(typeof e.id == "number" ? { id: e.id } : { domain: e.name })}
                                                 content=""
                                                 children_el={<Trash s={25} color="currentColor" css="hover:text-red-500 transition cursor-pointer" />}
                                             />

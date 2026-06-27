@@ -10,7 +10,7 @@ export async function editWish({ id, domain, amount }: { id?: number; domain?: s
     if (!user) return;
 
     return await new Promise(async (resolve, reject) => {
-        const product = user.wish_list.find((e) => ("id" in e ? e.id == id : e.name == domain));
+        const product = user.wish_list.find((e) => (typeof e.id == "number" ? e.id == id : e.name == domain));
         if (!product) return reject("product is not in wish list");
 
         const filter = id ? { email: user.email, "wish_list.id": id } : { email: user.email, "wish_list.name": domain };

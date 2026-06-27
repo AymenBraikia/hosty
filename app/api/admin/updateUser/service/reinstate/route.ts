@@ -21,14 +21,14 @@ export async function POST(req: Request) {
 	const target = await userCollection.findOne({ email });
 	if (!target) return NextResponse.json({ error: "Target user not found" }, { status: 404 });
 
-	const service = target.services.find((s) => s.id == id);
+	const service = target.services.compute.find((s) => s.id == id);
 	if (!service) return NextResponse.json({ error: "Service not found" }, { status: 404 });
 
 	const result = await userCollection.updateOne(
 		{ email },
 		{
 			$set: {
-				[`services.${target.services.indexOf(service)}.suspended`]: false,
+				[`services.${target.services.compute.indexOf(service)}.suspended`]: false,
 			},
 		},
 	);

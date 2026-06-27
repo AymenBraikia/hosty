@@ -16,7 +16,7 @@ export async function addToWish(data: FormData): Promise<void> {
     const id = +data.get("id")! as number;
 
     return await new Promise(async (resolve, reject) => {
-        if ([...user.cart, ...user.wish_list].find((e) => "id" in e && e.id == id)) return reject("product already in cart or wish list");
+        if ([...user.cart, ...user.wish_list].find((e) => typeof e.id == "number" && e.id == id)) return reject("product already in cart or wish list");
 
         const product = (await get_services(id)) as WithId<hostService>;
         if (!product) return reject("product does not exist");

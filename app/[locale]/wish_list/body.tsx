@@ -34,9 +34,9 @@ export default function Body() {
                                         </div>
                                         <div className="flex justify-between items-center gap-4 text-gray-500">
                                             <p className="font-bold text-xl text-foreground">${e.price}</p>
-                                            <AtcBtn available={true} product_id={"id" in e ? e.id : e.name} css={{ color: "var(--foreground)" }} />
+                                            <AtcBtn available={true} product_id={typeof e.id == "number" ? e.id : e.name} css={{ color: "var(--foreground)" }} />
                                             <Button
-                                                action={async () => await deleteWish("id" in e ? { id: e.id } : { domain: e.name })}
+                                                action={async () => await deleteWish(typeof e.id == "number" ? { id: e.id } : { domain: e.name })}
                                                 content=""
                                                 children_el={<Trash s={25} color="currentColor" css="hover:text-red-500 transition cursor-pointer" />}
                                             />

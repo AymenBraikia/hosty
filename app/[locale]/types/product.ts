@@ -1,11 +1,11 @@
 interface serviceBase {
-    type: "Cloud VDS" | "Cloud VPS" | "Dedicated Server" | "Domain";
     price: number;
     discount?: number;
 }
 
 export interface hostService extends serviceBase {
     id: number;
+    type: "Cloud VDS" | "Cloud VPS" | "Dedicated Server";
     description?: string;
     most_popular?: boolean;
     badge?: string;
@@ -20,8 +20,10 @@ export interface hostService extends serviceBase {
     os: "Ubuntu 18.04" | "Ubuntu 20.04" | "Ubuntu 22.04" | "Ubuntu 24.04" | "Debian 10" | "Debian 11" | "Debian 12" | "Windows Server 2012" | "Windows Server 2016" | "Windows Server 2019" | "Windows Server 2022" | "Windows Server 2025";
 }
 export interface domain extends serviceBase {
+    type: "Domain";
     name: string;
     extension: string;
+    id: undefined;
 }
 
 export interface hostServiceOrder extends hostService {
@@ -43,6 +45,7 @@ export interface hostServiceSub extends hostService {
     renew: boolean;
     role: "owner" | "admin";
     suspended: boolean;
+    active: boolean;
 }
 
 export interface domainSub extends domain {
@@ -53,6 +56,7 @@ export interface domainSub extends domain {
     renew: boolean;
     role: "owner" | "admin";
     suspended: boolean;
+    active: boolean;
 }
 
 export interface order {
@@ -106,7 +110,7 @@ export interface admin_data {
         suspended: boolean;
         admin: boolean;
         active_subscription: {
-            id: number|null;
+            id: number | null;
             price: number;
             type: "Domain" | "Cloud VPS" | "Cloud VDS" | "Dedicated Server";
             started: string | Date;

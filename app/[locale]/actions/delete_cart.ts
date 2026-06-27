@@ -10,7 +10,7 @@ export async function deleteCart({ id, domain }: { id?: number; domain?: string 
     if (!user) return;
 
     return await new Promise(async (resolve, reject) => {
-        const service = user.cart.find((e) => ("id" in e ? e.id == id : e.name == domain));
+        const service = user.cart.find((e) => (typeof e.id == "number" ? e.id == id : e.name == domain));
         if (!service) return reject("item is not in cart");
         const target = id ? { "cart.compute": service } : { "cart.domains": service };
 

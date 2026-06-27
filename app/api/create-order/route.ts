@@ -45,7 +45,6 @@ export async function POST() {
     // const items = cart;
 
     const ref_id = `ORDER-${Math.random().toString(36).substring(2, 10).toUpperCase()}`;
-
     // calculate total amount
     const total_amount_cents: number = Math.round(cart.reduce((prev: number, item: { price: number; amount: number }) => prev + item.price * item.amount, 0) * 100);
     const total_amount: number = total_amount_cents / 100;

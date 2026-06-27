@@ -6,7 +6,7 @@ import getUser from "@/lib/getUser";
 import Provider from "./context/user_data_provider";
 
 export default function Home() {
-	const data = use(getUser());
+	const data = use(getUser())!;
 
 	return (
 		<div className="flex flex-col overflow-hidden">
