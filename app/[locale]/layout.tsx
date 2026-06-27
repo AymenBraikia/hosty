@@ -1,99 +1,18 @@
-// app/layout.tsx
+import { Nunito, JetBrains_Mono } from "next/font/google";
 import type { Metadata, Viewport } from "next";
-import localFont from "next/font/local";
 import "./globals.css";
 
-const myFont = localFont({
-    src: [
-        {
-            path: "../../public/fonts/Nunito/Nunito-ExtraLight.ttf",
-            weight: "200",
-            style: "normal",
-        },
-        {
-            path: "../../public/fonts/Nunito/Nunito-Light.ttf",
-            weight: "300",
-            style: "normal",
-        },
-        {
-            path: "../../public/fonts/Nunito/Nunito-Regular.ttf",
-            weight: "400",
-            style: "normal",
-        },
-        {
-            path: "../../public/fonts/Nunito/Nunito-Medium.ttf",
-            weight: "500",
-            style: "normal",
-        },
-        {
-            path: "../../public/fonts/Nunito/Nunito-SemiBold.ttf",
-            weight: "600",
-            style: "normal",
-        },
-        {
-            path: "../../public/fonts/Nunito/Nunito-Bold.ttf",
-            weight: "700",
-            style: "normal",
-        },
-        {
-            path: "../../public/fonts/Nunito/Nunito-ExtraBold.ttf",
-            weight: "800",
-            style: "normal",
-        },
-        {
-            path: "../../public/fonts/Nunito/Nunito-Black.ttf",
-            weight: "900",
-            style: "normal",
-        },
-    ],
+// 1 file instead of 8. Automatically compressed to .woff2. Served locally.
+const myFont = Nunito({
+    subsets: ["latin"],
+    display: "swap",
     variable: "--font-main",
-    display: "swap",
 });
-const myFont2 = localFont({
-    src: [
-        // {
-        // 	path: "../public/fonts/JetBrains_Mono/JetBrainsMono-ExtraLight.ttf",
-        // 	weight: "200",
-        // 	style: "normal",
-        // },
-        // {
-        // 	path: "../public/fonts/JetBrains_Mono/JetBrainsMono-Light.ttf",
-        // 	weight: "300",
-        // 	style: "normal",
-        // },
-        {
-            path: "../../public/fonts/JetBrains_Mono/JetBrainsMono-Regular.ttf",
-            weight: "400",
-            style: "normal",
-        },
-        // {
-        // 	path: "../public/fonts/JetBrains_Mono/JetBrainsMono-Medium.ttf",
-        // 	weight: "500",
-        // 	style: "normal",
-        // },
-        // {
-        // 	path: "../public/fonts/JetBrains_Mono/JetBrainsMono-SemiBold.ttf",
-        // 	weight: "600",
-        // 	style: "normal",
-        // },
-        // {
-        // 	path: "../public/fonts/JetBrains_Mono/JetBrainsMono-Bold.ttf",
-        // 	weight: "700",
-        // 	style: "normal",
-        // },
-        // {
-        // 	path: "../public/fonts/JetBrains_Mono/JetBrainsMono-ExtraBold.ttf",
-        // 	weight: "800",
-        // 	style: "normal",
-        // },
-        // {
-        // 	path: "../public/fonts/JetBrains_Mono/JetBrainsMono-Black.ttf",
-        // 	weight: "900",
-        // 	style: "normal",
-        // },
-    ],
-    variable: "--font-terminal",
+
+const myFont2 = JetBrains_Mono({
+    subsets: ["latin"],
     display: "swap",
+    variable: "--font-terminal",
 });
 
 export const metadata: Metadata = {
