@@ -34,7 +34,7 @@ export default function Header(props: { promotion?: { url?: string; content: str
         <header className="w-dvw h-fit px-5 lg:px-0 py-2.5 bg-(--clr-background-opacity) backdrop-blur-3xl fixed left-0 top-0 flex justify-between items-center z-50">
             <div className="flex justify-start items-center gap-10 w-3/5 sm:w-3/10 lg:w-[15%]">
                 <Link className="flex justify-center items-center font-bold text-3xl" href={"/"}>
-                    <Image width={70} height={70} src={logoIcon} alt="logo" />
+                    <Image width={70} height={70} src={logoIcon} alt="logo" priority />
                     <p className="text-transparent [background:var(--gradient)] decoration-0" style={{ backgroundClip: "text" }}>
                         Hosty
                     </p>
@@ -195,7 +195,7 @@ function Nav({ active, close }: { active: boolean; close: () => void }) {
 
             <div className="flex flex-col justify-center items-start gap-4 text-[18px]">
                 <Link className="text-white hover:text-gray-400 transition flex gap-4 justify-center items-center" href={"#"}>
-                    Terms of use
+                    Terms
                 </Link>
                 <Link className="text-white hover:text-gray-400 transition flex gap-4 justify-center items-center" href={"#"}>
                     Privacy Policy
