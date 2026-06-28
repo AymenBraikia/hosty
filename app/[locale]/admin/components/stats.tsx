@@ -141,7 +141,7 @@ export default function Stats() {
 					</div>
 				</Card>
 			</div>
-			<div className="flex justify-between items-center gap-4 w-full">
+			<div className="flex justify-between items-center flex-col lg:flex-row gap-4 w-full">
 				<LineChart title="Revenue Overview" subtitle="Gross processed volume" prefix="$" data={data.profit_history} labels={["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"]} />
 				<CircleChart
 				product="Nodes"
@@ -159,5 +159,5 @@ export default function Stats() {
 }
 
 function Card({ children }: { children: React.ReactNode }) {
-	return <div className="flex justify-center items-center bg-linear-to-r from-(--clr-surface) to-(--clr-surface-accent) relative w-[calc(33%-16px)] min-w-[200px] h-45 overflow-hidden rounded-2xl border border-(--clr-surface-light2)">{children}</div>;
+	return <div className="flex justify-center items-center bg-linear-to-r from-(--clr-surface) to-(--clr-surface-accent) relative lg:w-[calc(33%-16px)] w-full min-w-50 h-45 overflow-hidden rounded-2xl border border-(--clr-surface-light2)">{children}</div>;
 }

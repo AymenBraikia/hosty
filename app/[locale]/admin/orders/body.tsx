@@ -5,7 +5,7 @@ import Processing from "../../components/svg/processing";
 export default function Body() {
 	return (
 		<>
-			<div className="flex justify-start items-center gap-4 font-bold">
+			<div className="flex lg:flex-nowrap flex-wrap justify-start items-center gap-4 font-bold">
 				<div className="flex justify-between items-center w-full flex-wrap bg-(--clr-surface) border-2 border-(--clr-surface-light2) p-4 rounded-2xl">
 					<div className="flex justify-between items-center w-full">
 						<h5 className="text-gray-400">TOTAL ORDERS</h5>

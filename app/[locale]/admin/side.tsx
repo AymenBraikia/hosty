@@ -21,7 +21,7 @@ export default function Side() {
 	const pathname = usePathname();
 
 	return (
-		<nav className="w-64 relative top-[10dvh]">
+		<nav className="lg:flex hidden w-64 relative top-[10dvh]">
 			<ul className="flex flex-col justify-start items-start gap-5">
 				{navItems.map(({ icon: Icon, label, url }) => {
 					const isActive = pathname.replace(/^\/[a-z]{2}(-[A-Z]{2})?/, "") === url;

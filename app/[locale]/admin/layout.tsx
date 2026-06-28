@@ -14,10 +14,10 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
 		<>
 			<Provider data={data}>
 				<Header />
-				<section className="w-[90dvw] min-h-dvh pt-24 flex justify-center items-start translate-x-[5dvw] gap-16">
+				<section className="lg:w-[90dvw] w-full min-h-dvh pt-24 flex justify-center items-start lg:translate-x-[5dvw] gap-16">
 					<Sidebar />
 
-					<main className="flex-1 p-8 overflow-y-auto">{children}</main>
+					<main className="flex-1 lg:p-8 p-2 overflow-y-auto">{children}</main>
 				</section>
 			</Provider>
 		</>

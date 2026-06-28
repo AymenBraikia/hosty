@@ -131,7 +131,7 @@ const route = ["instances", "domains", "billing", "settings"].find((seg) => segm
 
     const data = useContext(user_data) as UserData;
     return (
-        <nav className={`sm:hidden w-dvw h-dvh flex flex-col justify-start items-start gap-20 py-20 px-5 fixed left-0 top-0 transition ${active ? "translate-x-0" : "translate-x-full"} z-50 bg-black/60 overflow-y-auto`}>
+        <nav className={`sm:hidden w-dvw h-dvh flex flex-col justify-start items-start gap-20 py-20 px-5 fixed left-0 top-0 transition ${active ? "translate-x-0" : "translate-x-full"} z-50 bg-black/80 overflow-y-auto`}>
             <Button css="absolute top-5 right-5" action={close} children_el={<Cross s={30} />} />
             <div className="flex flex-col justify-center items-start gap-6 text-[18px]">
                 <Link className="text-white hover:text-gray-400 transition flex gap-4 justify-center items-center" href={"/hosting"}>
