@@ -1,6 +1,6 @@
 "use client";
 
-import { usePathname, useRouter } from "next/navigation";
+import { usePathname } from "next/navigation";
 import Button from "../components/button";
 import Billing from "../components/svg/billing";
 import Out from "../components/svg/out";
@@ -18,11 +18,10 @@ const navItems = [
 ];
 
 export default function Side() {
-	const router = useRouter();
 	const pathname = usePathname();
 
 	return (
-		<nav className="w-64 relative top-[10dvh]">
+		<nav className="w-64 relative top-[10dvh] lg:flex hidden">
 			<ul className="flex flex-col justify-start items-start gap-5">
 				{navItems.map(({ icon: Icon, label, url }) => {
 					const isActive = pathname.replace(/^\/[a-z]{2}(-[A-Z]{2})?/, "") === url;

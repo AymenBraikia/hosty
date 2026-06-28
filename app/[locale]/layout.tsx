@@ -2,7 +2,6 @@ import { Nunito, JetBrains_Mono } from "next/font/google";
 import type { Metadata, Viewport } from "next";
 import "./globals.css";
 
-// 1 file instead of 8. Automatically compressed to .woff2. Served locally.
 const myFont = Nunito({
     subsets: ["latin"],
     display: "swap",

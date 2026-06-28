@@ -19,6 +19,10 @@ import Book from "./svg/book";
 import Dashboard from "./svg/dashboard";
 import Language from "./svg/language";
 import Cpu from "./svg/cpu";
+import Expand from "./svg/expand";
+import Server from "./svg/server";
+import Billing from "./svg/billing";
+import Settings from "./svg/settings";
 
 export default function Header(props: { promotion?: { url?: string; content: string; expire_date: number } }) {
     const [navState, setNavState] = useState<boolean>(false);
@@ -118,11 +122,16 @@ function Nav({ active, close }: { active: boolean; close: () => void }) {
     const router = useRouter();
     const pathname = usePathname();
 
+const segments = pathname.split("/");
+const route = ["instances", "domains", "billing", "settings"].find((seg) => segments.includes(seg)) ?? "dashboard";
+
     const lang = useLocale();
+
+    const [expand_dashboard, set_expend_dashboard] = useState<boolean>(false);
 
     const data = useContext(user_data) as UserData;
     return (
-        <nav className={`w-dvw h-dvh flex flex-col justify-start items-start gap-20 py-20 px-5 fixed left-0 top-0 transition ${active ? "translate-x-0" : "translate-x-full"} z-50 bg-black/60`}>
+        <nav className={`sm:hidden w-dvw h-dvh flex flex-col justify-start items-start gap-20 py-20 px-5 fixed left-0 top-0 transition ${active ? "translate-x-0" : "translate-x-full"} z-50 bg-black/60 overflow-y-auto`}>
             <Button css="absolute top-5 right-5" action={close} children_el={<Cross s={30} />} />
             <div className="flex flex-col justify-center items-start gap-6 text-[18px]">
                 <Link className="text-white hover:text-gray-400 transition flex gap-4 justify-center items-center" href={"/hosting"}>
@@ -134,9 +143,29 @@ function Nav({ active, close }: { active: boolean; close: () => void }) {
                 <Link className="text-white hover:text-gray-400 transition flex gap-4 justify-center items-center" href={"/docs"}>
                     {<Book s={20} />} Docs
                 </Link>
-                <Link className="text-white hover:text-gray-400 transition flex gap-4 justify-center items-center" href={"/dashboard"}>
-                    {<Dashboard s={20} />} Dashboard
-                </Link>
+                <Button
+                    action={() => set_expend_dashboard(!expand_dashboard)}
+                    children_el={<Expand s={30} css={`transition ${expand_dashboard ? "rotate-180" : "rotate-0"}`} />}
+                    css="text-white hover:text-gray-400 transition flex gap-4 justify-center items-center"
+                    content={"Dashboard"}
+                />
+                <div className={`text-white w-full flex flex-col justify-between items-start gap-4 transition overflow-hidden ${expand_dashboard ? "h-fit" : "h-0"}`}>
+                    <Link className={`hover:text-gray-400 transition flex gap-4 justify-center items-center ${route == "dashboard" && "text-(--clr-primary)"}`} href={"/dashboard"}>
+                        {<Dashboard s={20} />} Overview
+                    </Link>
+                    <Link className={`hover:text-gray-400 transition flex gap-4 justify-center items-center ${route == "instances" && "text-(--clr-primary)"}`} href={"/dashboard/instances"}>
+                        {<Server s={20} />} Instances
+                    </Link>
+                    <Link className={`hover:text-gray-400 transition flex gap-4 justify-center items-center ${route == "domains" && "text-(--clr-primary)"}`} href={"/dashboard/domains"}>
+                        {<Web s={20} />} Domains
+                    </Link>
+                    <Link className={`hover:text-gray-400 transition flex gap-4 justify-center items-center ${route == "billing" && "text-(--clr-primary)"}`} href={"/dashboard/billing"}>
+                        {<Billing s={20} />} Billing
+                    </Link>
+                    <Link className={`hover:text-gray-400 transition flex gap-4 justify-center items-center ${route == "settings" && "text-(--clr-primary)"}`} href={"/dashboard/settings"}>
+                        {<Settings s={20} />} Settings
+                    </Link>
+                </div>
             </div>
 
             <div className="flex justify-center items-center gap-4">

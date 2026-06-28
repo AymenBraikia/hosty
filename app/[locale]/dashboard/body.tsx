@@ -13,8 +13,8 @@ export default function Body() {
 
 	return (
 		<>
-			<div className="w-full h-fit flex justify-between items-center gap-4">
-				<div className="w-1/3 p-8 rounded-2xl bg-(--clr-surface) border border-(--clr-surface-light2) flex flex-col justify-center items-start gap-4 ">
+			<div className="w-full h-fit flex justify-between items-center gap-4 flex-wrap sm:flex-nowrap">
+				<div className="w-full sm:w-1/3 p-8 rounded-2xl bg-(--clr-surface) border border-(--clr-surface-light2) flex flex-col justify-center items-start gap-4 ">
 					<h4 className="text-gray-300 font-bold text-xl">Total Instances</h4>
 					<div className="flex justify-between items-center w-full">
 						<p className="font-bold text-2xl">{data?.services.length}</p>
@@ -23,7 +23,7 @@ export default function Body() {
 						</div>
 					</div>
 				</div>
-				<div className="w-1/3 p-8 rounded-2xl bg-(--clr-surface) border border-(--clr-surface-light2) flex flex-col justify-center items-start gap-4">
+				<div className="w-full sm:w-1/3 p-8 rounded-2xl bg-(--clr-surface) border border-(--clr-surface-light2) flex flex-col justify-center items-start gap-4">
 					<h4 className="text-gray-300 font-bold text-xl">Active Instances</h4>
 					<div className="flex justify-between items-center w-full">
 						<p className="font-bold text-2xl">{data?.services.filter((e: { active: boolean }) => e.active).length}</p>
@@ -32,7 +32,7 @@ export default function Body() {
 						</div>
 					</div>
 				</div>
-				<div className="w-1/3 p-8 rounded-2xl bg-(--clr-surface) border border-(--clr-surface-light2) flex flex-col justify-center items-start gap-4">
+				<div className="w-full sm:w-1/3 p-8 rounded-2xl bg-(--clr-surface) border border-(--clr-surface-light2) flex flex-col justify-center items-start gap-4">
 					<h4 className="text-gray-300 font-bold text-xl">Monthly Cost</h4>
 					<div className="flex justify-between items-center w-full">
 						<p className="font-bold text-2xl">${data ? data.services.reduce((prev: number, item: { price: number }) => prev + item.price, 0).toFixed(2) : 0}</p>
@@ -41,7 +41,7 @@ export default function Body() {
 						</div>
 					</div>
 				</div>
-				<div className="w-1/3 p-8 rounded-2xl bg-(--clr-surface) border border-(--clr-surface-light2) flex flex-col justify-center items-start gap-4">
+				<div className="w-full sm:w-1/3 p-8 rounded-2xl bg-(--clr-surface) border border-(--clr-surface-light2) flex flex-col justify-center items-start gap-4">
 					<h4 className="text-gray-300 font-bold text-xl">Uptime</h4>
 					<div className="flex justify-between items-center w-full">
 						<p className="font-bold text-2xl">99.9%</p>
@@ -51,7 +51,8 @@ export default function Body() {
 					</div>
 				</div>
 			</div>
-			<div className="flex flex-col justify-start items-start bg-(--clr-surface) w-full rounded-2xl p-8">
+
+			<div className="w-full flex flex-col justify-start items-start bg-(--clr-surface) rounded-2xl p-4 sm:p-8">
 				<h3 className="font-bold text-2xl">Recent Activity</h3>
 				{data?.recent_activity.map((e: { id: string; title: string; description: string; date: string; status: number }) => (
 					<div key={e.id} className="flex justify-between items-center w-full relative py-4 px-6 border-b border-(--clr-surface-light2)">
@@ -68,45 +69,6 @@ export default function Body() {
 						</div>
 					</div>
 				))}
-				{/* <div className="flex justify-between items-center w-full relative py-4 px-6 border-b border-(--clr-surface-light2)">
-					<div>
-						<div className="bg-(--clr-primary) w-2 aspect-square rounded-full absolute left-0 top-1/2 -translate-y-1/2"></div>
-						<div className="flex flex-col justify-center items-start">
-							<h6 className="font-bold">Created new VPS</h6>
-							<p className="text-xs text-gray-500">srv-03 (starting-env)</p>
-						</div>
-					</div>
-					<div className="flex flex-col justify-center items-start">
-						<p className="text-xs text-gray-400">2 hours ago</p>
-						<h6 className="text-green-400 text-[14px] font-bold">Completed</h6>
-					</div>
-				</div> */
-				/* <div className="flex justify-between items-center w-full relative py-4 px-6 border-b border-(--clr-surface-light2)">
-					<div>
-						<div className="bg-(--clr-primary) w-2 aspect-square rounded-full absolute left-0 top-1/2 -translate-y-1/2"></div>
-						<div className="flex flex-col justify-center items-start">
-							<h6 className="font-bold">Created new VPS</h6>
-							<p className="text-xs text-gray-500">srv-03 (starting-env)</p>
-						</div>
-					</div>
-					<div className="flex flex-col justify-center items-start">
-						<p className="text-xs text-gray-400">2 hours ago</p>
-						<h6 className="text-green-400 text-[14px] font-bold">Completed</h6>
-					</div>
-				</div>
-				<div className="flex justify-between items-center w-full relative py-4 px-6 border-b border-(--clr-surface-light2)">
-					<div>
-						<div className="bg-(--clr-primary) w-2 aspect-square rounded-full absolute left-0 top-1/2 -translate-y-1/2"></div>
-						<div className="flex flex-col justify-center items-start">
-							<h6 className="font-bold">Created new VPS</h6>
-							<p className="text-xs text-gray-500">srv-03 (starting-env)</p>
-						</div>
-					</div>
-					<div className="flex flex-col justify-center items-start">
-						<p className="text-xs text-gray-400">2 hours ago</p>
-						<h6 className="text-green-400 text-[14px] font-bold">Completed</h6>
-					</div>
-				</div> */}
 			</div>
 		</>
 	);
