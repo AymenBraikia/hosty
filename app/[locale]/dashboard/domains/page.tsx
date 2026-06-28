@@ -6,67 +6,16 @@ import Manage_btns from "./manage";
 import { useRouter } from "next/navigation";
 import { Domain } from "../../types/product";
 
-const domainsData = [
-    {
-        name: "Aymen0.xyz",
-        reg: "6/28/2026",
-        exp: "6/28/2028",
-        status: false,
-        renew: true,
-    },
-    {
-        name: "Aymen1.xyz",
-        reg: "6/28/2026",
-        exp: "6/28/2028",
-        status: true,
-        renew: true,
-    },
-    {
-        name: "Aymen2.xyz",
-        reg: "6/28/2026",
-        exp: "6/28/2028",
-        status: false,
-        renew: false,
-    },
-    {
-        name: "Aymen3.xyz",
-        reg: "6/28/2026",
-        exp: "6/28/2028",
-        status: true,
-        renew: true,
-    },
-    {
-        name: "Aymen4.xyz",
-        reg: "6/28/2026",
-        exp: "6/28/2028",
-        status: true,
-        renew: false,
-    },
-    {
-        name: "Aymen5.xyz",
-        reg: "6/28/2026",
-        exp: "6/28/2028",
-        status: false,
-        renew: true,
-    },
-    {
-        name: "Aymen6.xyz",
-        reg: "6/28/2026",
-        exp: "6/28/2028",
-        status: true,
-        renew: true,
-    },
-];
 export default function Home() {
-    const [domains, setDomains] = useState<Domain[] | null>(domainsData);
+    const [domains, setDomains] = useState<Domain[] | null>(null);
     const router = useRouter();
 
-    // useEffect(() => {
-    //     get_domains().then((res) => {
-    //         if (typeof res === "string") router.push(res);
-    //         else setDomains(res);
-    //     });
-    // }, []);
+    useEffect(() => {
+        get_domains().then((res) => {
+            if (typeof res === "string") router.push(res);
+            else setDomains(res);
+        });
+    }, []);
 
     if (!domains)
         return (
