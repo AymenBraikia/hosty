@@ -12,12 +12,12 @@ import Language from "./svg/language";
 import Settings from "./svg/settings";
 import Dashboard from "./svg/dashboard";
 import Server from "./svg/server";
-import Web from "./svg/web";
 import Billing from "./svg/billing";
 import Cross from "./svg/cross";
 import Burger from "./svg/burger";
 import Out from "../components/svg/out";
 import User from "./svg/user";
+import { signOut } from "../actions/auth/sign_out";
 
 export default function Header() {
     const [navState, setNavState] = useState<boolean>(false);
@@ -48,7 +48,7 @@ function Nav({ active, close }: { active: boolean; close: () => void }) {
     const lang = useLocale();
 
     return (
-        <nav className={`sm:hidden w-dvw h-dvh flex flex-col justify-start items-start gap-20 py-20 px-5 fixed left-0 top-0 transition ${active ? "translate-x-0" : "translate-x-full"} z-50 bg-black/80 overflow-y-auto`}>
+        <nav className={`lg:hidden w-dvw h-dvh flex flex-col justify-start items-start gap-20 py-20 px-5 fixed left-0 top-0 transition ${active ? "translate-x-0" : "translate-x-full"} z-50 bg-black/80 overflow-y-auto`}>
             <Button css="absolute top-5 right-5" action={close} children_el={<Cross s={30} />} />
             <div className="flex flex-col justify-center items-start gap-6 text-[18px]">
                 <div className={`text-white w-full flex flex-col justify-between items-start gap-4 transition overflow-hidden h-fit`}>
@@ -93,7 +93,14 @@ function Nav({ active, close }: { active: boolean; close: () => void }) {
                     </div>
                     <div className="w-full text-red-400 flex justify-start items-center gap-4 rounded-2xl">
                         <Out s={40} color="currentColor" />
-                        <Button css="w-full flex justify-start items-center" action={async () => await fetch("/api/sign_out", { method: "POST" })} content="Sign Out" url="/login" />
+                        <Button
+                            css="w-full flex justify-start items-center"
+                            action={() => {
+                                router.prefetch("/login");
+                                signOut().then(() => router.push("/login"));
+                            }}
+                            content="Sign Out"
+                        />
                     </div>
                 </div>
             </div>

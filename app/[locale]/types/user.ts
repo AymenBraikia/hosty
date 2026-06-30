@@ -32,4 +32,5 @@ export default interface User {
     total_spent: number;
     monthly_spendings: number;
     billing: Bill[];
+    failed_signin_attempts: { ip: string; attempts: number }[];
 }

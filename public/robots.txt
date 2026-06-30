@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://your-hostify-demo.com/sitemap.xml
+Sitemap: https://hosty-three.vercel.app/en/sitemap.xml

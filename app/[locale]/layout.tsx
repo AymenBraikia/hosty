@@ -15,7 +15,7 @@ const myFont2 = JetBrains_Mono({
 });
 
 export const metadata: Metadata = {
-    metadataBase: new URL("https://your-hostify-demo.com"),
+    metadataBase: new URL("https://hosty-three.vercel.app/en"),
     title: {
         default: "Hostify – Modern Hosting Dashboard for Developers",
         template: "%s | Hostify",
@@ -50,7 +50,7 @@ export const metadata: Metadata = {
     openGraph: {
         type: "website",
         locale: "en_US",
-        url: "https://your-hostify-demo.com",
+        url: "https://hosty-three.vercel.app/en",
         siteName: "Hostify",
         title: "Hostify – Modern Hosting Dashboard",
         description: "A fast, intuitive hosting dashboard for developers. Real-time server insights, deployments, and system metrics in a clean UI.",
@@ -83,7 +83,7 @@ export const metadata: Metadata = {
         },
     },
     alternates: {
-        canonical: "https://your-hostify-demo.com",
+        canonical: "https://hosty-three.vercel.app/en",
     },
 };
 export const viewport: Viewport = {

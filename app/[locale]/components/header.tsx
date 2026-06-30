@@ -23,6 +23,8 @@ import Expand from "./svg/expand";
 import Server from "./svg/server";
 import Billing from "./svg/billing";
 import Settings from "./svg/settings";
+import Out from "./svg/out";
+import { signOut } from "../actions/auth/sign_out";
 
 export default function Header(props: { promotion?: { url?: string; content: string; expire_date: number } }) {
     const [navState, setNavState] = useState<boolean>(false);
@@ -108,7 +110,7 @@ export default function Header(props: { promotion?: { url?: string; content: str
                     )}
                 </div>
             </div>
-            <div className="sm:hidden flex justify-center items-center">
+            <div className="lg:hidden flex justify-center items-center">
                 <Button action={() => setNavState(true)} children_el={<Burger s={30} />} />
             </div>
 
@@ -122,8 +124,8 @@ function Nav({ active, close }: { active: boolean; close: () => void }) {
     const router = useRouter();
     const pathname = usePathname();
 
-const segments = pathname.split("/");
-const route = ["instances", "domains", "billing", "settings"].find((seg) => segments.includes(seg)) ?? "dashboard";
+    const segments = pathname.split("/");
+    const route = ["instances", "domains", "billing", "settings"].find((seg) => segments.includes(seg)) ?? "dashboard";
 
     const lang = useLocale();
 
@@ -131,7 +133,7 @@ const route = ["instances", "domains", "billing", "settings"].find((seg) => segm
 
     const data = useContext(user_data) as UserData;
     return (
-        <nav className={`sm:hidden w-dvw h-dvh flex flex-col justify-start items-start gap-20 py-20 px-5 fixed left-0 top-0 transition ${active ? "translate-x-0" : "translate-x-full"} z-50 bg-black/80 overflow-y-auto`}>
+        <nav className={`lg:hidden w-dvw h-dvh flex flex-col justify-start items-start gap-20 py-20 px-5 fixed left-0 top-0 transition ${active ? "translate-x-0" : "translate-x-full"} z-50 bg-black/80 overflow-y-auto`}>
             <Button css="absolute top-5 right-5" action={close} children_el={<Cross s={30} />} />
             <div className="flex flex-col justify-center items-start gap-6 text-[18px]">
                 <Link className="text-white hover:text-gray-400 transition flex gap-4 justify-center items-center" href={"/hosting"}>
@@ -212,6 +214,18 @@ const route = ["instances", "domains", "billing", "settings"].find((seg) => segm
                                     <></>
                                 )}
                             </Link>
+                            {/* <div className="w-full text-red-400 flex justify-start items-center gap-4 rounded-2xl"> */}
+                            <div className="relative flex justify-center text-[18px] font-bold items-center gap-4 text-red-400 transition cursor-pointer">
+                                <Out s={40} color="currentColor" />
+                                <Button
+                                    css="w-full flex justify-start items-center"
+                                    action={() => {
+                                        router.prefetch("/login");
+                                        signOut().then(() => router.push("/login"));
+                                    }}
+                                    content="Sign Out"
+                                />
+                            </div>
                         </>
                     ) : (
                         <>

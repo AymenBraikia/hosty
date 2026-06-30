@@ -1,6 +1,6 @@
 import { useRef, useState } from "react";
 
-export default function Input(props: { type: string; placeholder?: string; id?: string; req?: boolean }) {
+export default function Input(props: { type: string; placeholder?: string; id?: string; req?: boolean,name?:string }) {
 	const [val, set_value] = useState<string>("");
 	const inp = useRef<HTMLInputElement>(null);
 
@@ -14,7 +14,7 @@ export default function Input(props: { type: string; placeholder?: string; id?: 
 			>
 				{props.placeholder}
 			</div>
-			<input required={props.req} id={props.id} ref={inp} onChange={() => set_value(inp.current!.value)} name={props.type} data-placeholder={props.placeholder} type={props.type} className="relative outline-0 w-full transition p-4" />
+			<input required={props.req} id={props.id} ref={inp} onChange={() => set_value(inp.current!.value)} name={props.name||props.type} data-placeholder={props.placeholder} type={props.type} className="relative outline-0 w-full transition p-4" />
 			<div className="left-0 bottom-0 bg_anim2 w-0 h-px z-10 transition group-focus-within:w-full"></div>
 		</div>
 	);
