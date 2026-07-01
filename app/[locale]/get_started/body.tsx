@@ -74,7 +74,7 @@ export default function Body() {
                         </Link>
                     </p>
                     <p className="text-gray-400">
-                        Sign in <Button css="text-(--clr-primary) font-bold " action={signInDemo} content="Demo Account" />
+                        Sign in <Button css="text-(--clr-primary) font-bold " action={() => signInDemo().then(() => router.push("/dashboard"))} content="Demo Account" />
                     </p>
                 </div>
             </form>

@@ -4,7 +4,7 @@ import Button from "../components/button";
 import Input from "../components/input";
 import Link from "next/link";
 import { useRouter, useSearchParams } from "next/navigation";
-import { signIn } from "../actions/auth/sign_in";
+import { signIn, signInDemo } from "../actions/auth/sign_in";
 
 const reg = {
     email: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
@@ -66,6 +66,9 @@ export default function Body() {
                         <Link className="text-(--clr-primary) font-bold" href={"/get_started"}>
                             Get Started
                         </Link>
+                    </p>
+                    <p className="text-gray-400">
+                        Sign in <Button css="text-(--clr-primary) font-bold " action={() => signInDemo().then(() => router.push("/dashboard"))} content="Demo Account" />
                     </p>
                 </div>
             </form>

@@ -80,7 +80,7 @@ export async function signIn(data: FormData): Promise<{ error: string } | void> 
 }
 
 export async function signInDemo(): Promise<void> {
-    return await new Promise(async (resolve, reject) => {
+    return await new Promise(async (resolve) => {
         const cookieStore = await cookies();
 
         const payload = {
@@ -109,6 +109,8 @@ export async function signInDemo(): Promise<void> {
         });
 
         revalidatePath("/");
+
+        console.log("dam")
 
         return resolve();
     });
